@@ -10,3 +10,7 @@ hr.style-five {
 hr.style-five:after {  /* Not really supposed to work, but does */
     content: "\00a0";  /* Prevent margin collapse */
 }
+
+.form-horizontal .control-label{
+    text-align:left !important;
+}
