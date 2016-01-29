@@ -14,3 +14,11 @@ hr.style-five:after {  /* Not really supposed to work, but does */
 .form-horizontal .control-label{
     text-align:left !important;
 }
+
+i.white-icon{
+   color:#fff;
+}
+
+a.white-icon{
+    color:#fff;
+}
