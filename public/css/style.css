@@ -22,3 +22,8 @@ i.white-icon{
 a.white-icon{
     color:#fff;
 }
+
+.form-action{
+    padding: inherit;
+}
+.top-buffer { margin-top:20px; }

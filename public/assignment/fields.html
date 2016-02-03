@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../img/form-favicon.ico" sizes="48x48">
+
+    <title>Form Make - Fields</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="home.html">Form Maker</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Username</a></li>
+                <li><a href="#">Logout</a></li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><a href="#">Home <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Admin</a></li>
+                <li class="active"><a href="#">Forms</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div>
+                <h1>Forms : Registration Form</h1>
+            </div>
+            <ul class="nav nav-tabs">
+                <li role="presentation"><a href="forms.html">Forms</a></li>
+                <li role="presentation" class="active"><a href="#">Fields</a></li>
+            </ul>
+            <div class="top-buffer">
+                <form>
+                    <div class="form-group">
+                        <label for="inputFirstName" class="col-sm-2 col-md-12">First Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputLastName" class="col-sm-2 col-md-12 top-buffer">Last Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDateOfBirth" class="col-sm-2 col-md-12 top-buffer">Date Of Birth</label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" id="inputDateOfBirth">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputGender" class="col-sm-2 col-md-12 top-buffer">Gender</label>
+                        <div class="dropdown col-sm-10">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="inputGender"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Select
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li value="MALE"><a href="#">Male</a></li>
+                                <li value="FEMALE"><a href="#">Female</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-md-12 top-buffer">Roles</label>
+                        <div class="col-sm-2 col-md-12">
+                            <div class="checkbox">
+                                <label for="inputAdminCheckbox">
+                                    <input type="checkbox" value="admin" id="inputAdminCheckbox">
+                                    Admin
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="inputStudentCheckbox">
+                                    <input type="checkbox" value="student" id="inputStudentCheckbox">
+                                    Student
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="inputUserCheckbox">
+                                    <input type="checkbox" value="user" id="inputUserCheckbox">
+                                    User
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <div><label>License Agreement</label></div>
+                            <div>
+                                <label for="inputLicenseAgreeYes">
+                                    <input type="radio" value="user" name="LicenceAgree" id="inputLicenseAgreeYes">
+                                    Yes
+                                </label>
+                            </div>
+                            <div>
+                                <label for="inputLicenseAgreeNo">
+                                    <input type="radio" value="user" name="LicenceAgree" id="inputLicenseAgreeNo">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>
