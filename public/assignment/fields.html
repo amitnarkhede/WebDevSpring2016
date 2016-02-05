@@ -37,7 +37,6 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Username</a></li>
                 <li><a href="#">Logout</a></li>
-
             </ul>
         </div>
     </div>
@@ -53,7 +52,7 @@
                 <li class="active"><a href="#">Forms</a></li>
             </ul>
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-sm-9 col-sm-offset-3 col-md-offset-2 main">
             <div>
                 <h2>Forms : Registration Form</h2>
             </div>
@@ -61,24 +60,25 @@
                 <li role="presentation"><a href="forms.html">Forms</a></li>
                 <li role="presentation" class="active"><a href="#">Fields</a></li>
             </ul>
-            <div class="top-buffer">
+            <div class="top-buffer table-responsive">
                 <form>
                     <div class="form-group row">
                         <label for="inputFirstName" class="col-sm-12">First Name</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
+                            <input type="text" class="form-control width-controlled" id="inputFirstName"
+                                   placeholder="First Name">
                         </div>
-                        <div class="col-sm-3">
-                            <a href="#">
+                        <div class="col-sm-3 nowrap-button">
+                            <a href="#" class="btn btn-warning">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </a>
-                            <a href="#">
+                            <a href="#" class="btn btn-primary">
                                 <span class="glyphicon glyphicon-plus"></span>
                             </a>
-                            <a href="#">
+                            <a href="#" class="btn btn-danger">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
-                            <a href="#">
+                            <a href="#" class="btn btn-info">
                                 <span class="glyphicon glyphicon-align-justify"></span>
                             </a>
                         </div>
@@ -86,19 +86,20 @@
                     <div class="form-group row">
                         <label for="inputLastName" class="col-sm-12">Last Name</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
+                            <input type="text" class="form-control width-controlled" id="inputLastName"
+                                   placeholder="Last Name">
                         </div>
-                        <div class="col-sm-3">
-                            <a href="#">
+                        <div class="col-sm-3 nowrap-button">
+                            <a href="#" class="btn btn-warning">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </a>
-                            <a href="#">
+                            <a href="#" class="btn btn-primary">
                                 <span class="glyphicon glyphicon-plus"></span>
                             </a>
-                            <a href="#">
+                            <a href="#" class="btn btn-danger">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
-                            <a href="#">
+                            <a href="#" class="btn btn-info">
                                 <span class="glyphicon glyphicon-align-justify"></span>
                             </a>
                         </div>
@@ -106,19 +107,19 @@
                     <div class="form-group row">
                         <label for="inputDateOfBirth" class="col-sm-12">Date Of Birth</label>
                         <div class="col-sm-9">
-                            <input type="date" class="form-control" id="inputDateOfBirth">
+                            <input type="date" class="form-control width-controlled" id="inputDateOfBirth">
                         </div>
-                        <div class="col-sm-3">
-                            <a href="#">
+                        <div class="col-sm-3 nowrap-button">
+                            <a href="#" class="btn btn-warning">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </a>
-                            <a href="#">
+                            <a href="#" class="btn btn-primary">
                                 <span class="glyphicon glyphicon-plus"></span>
                             </a>
-                            <a href="#">
+                            <a href="#" class="btn btn-danger">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
-                            <a href="#">
+                            <a href="#" class="btn btn-info">
                                 <span class="glyphicon glyphicon-align-justify"></span>
                             </a>
                         </div>
@@ -136,17 +137,17 @@
                                 <li value="FEMALE"><a href="#">Female</a></li>
                             </ul>
                         </div>
-                        <div class="col-sm-3">
-                            <a href="#">
+                        <div class="col-sm-3 nowrap-button">
+                            <a href="#" class="btn btn-warning">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </a>
-                            <a href="#">
+                            <a href="#" class="btn btn-primary">
                                 <span class="glyphicon glyphicon-plus"></span>
                             </a>
-                            <a href="#">
+                            <a href="#" class="btn btn-danger">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
-                            <a href="#">
+                            <a href="#" class="btn btn-info">
                                 <span class="glyphicon glyphicon-align-justify"></span>
                             </a>
                         </div>
@@ -164,75 +165,73 @@
                                 <input type="checkbox" id="inputUserCheckbox">
                             </label> User<br>
                         </div>
-                        <div class="col-sm-3">
-                            <a href="#">
+                        <div class="col-sm-3 nowrap-button">
+                            <a href="#" class="btn btn-warning">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </a>
-                            <a href="#">
+                            <a href="#" class="btn btn-primary">
                                 <span class="glyphicon glyphicon-plus"></span>
                             </a>
-                            <a href="#">
+                            <a href="#" class="btn btn-danger">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
-                            <a href="#">
+                            <a href="#" class="btn btn-info">
                                 <span class="glyphicon glyphicon-align-justify"></span>
                             </a>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12">License Agreement</label><br>
+                        <div class="col-sm-9">
+                            <label for="inputLicenseAgreeYes">
+                                <input type="radio" value="user" name="LicenceAgree" id="inputLicenseAgreeYes">
+                            </label> Yes <br>
+                            <label for="inputLicenseAgreeNo">
+                                <input type="radio" value="user" name="LicenceAgree" id="inputLicenseAgreeNo">
+                            </label> No <br>
+                        </div>
+                        <div class="col-sm-3 nowrap-button">
+                            <a href="#" class="btn btn-warning">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                            <a href="#" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </a>
+                            <a href="#" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                            <a href="#" class="btn btn-info">
+                                <span class="glyphicon glyphicon-align-justify"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group row">
+                        <label for="inputGender" class="col-sm-12">Add New Field</label>
+                        <div class="dropdown col-sm-9">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="inputGender"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Single Line Text
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li value="singleLineTxt"><a href="#">Single Line Text</a></li>
+                                <li value="dataField"><a href="#">Date Field</a></li>
+                                <li value="dropDown"><a href="#">Dropdown Field</a></li>
+                                <li value="checkBoxField"><a href="#">Checkboxes Field</a></li>
+                                <li value="radioButton"><a href="#">Radio Button Field</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-3 nowrap-button">
+                            <a href="#" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </a>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-12">License Agreement</label><br>
-                <div class="col-sm-9">
-                    <label for="inputLicenseAgreeYes">
-                        <input type="radio" value="user" name="LicenceAgree" id="inputLicenseAgreeYes">
-                    </label> Yes <br>
-                    <label for="inputLicenseAgreeNo">
-                        <input type="radio" value="user" name="LicenceAgree" id="inputLicenseAgreeNo">
-                    </label> No <br>
-
-                </div>
-                <div class="col-sm-3">
-                    <a href="#">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                    </a>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </a>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </a>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-align-justify"></span>
-                    </a>
-                </div>
-            </div>
-            <hr>
-            <div class="form-group row">
-                <label for="inputGender" class="col-sm-12">Add New Field</label>
-                <div class="dropdown col-sm-9">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="inputGender"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Single Line Text
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li value="singleLineTxt"><a href="#">Single Line Text</a></li>
-                        <li value="dataField"><a href="#">Date Field</a></li>
-                        <li value="dropDown"><a href="#">Dropdown Field</a></li>
-                        <li value="checkBoxField"><a href="#">Checkboxes Field</a></li>
-                        <li value="radioButton"><a href="#">Radio Button Field</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-3">
-                    <a href="#">
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </a>
-                </div>
-            </div>
-            </form>
         </div>
     </div>
-</div>
 </div>
 
 <!-- Bootstrap core JavaScript

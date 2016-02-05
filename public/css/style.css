@@ -18,4 +18,14 @@ a.white-icon{
     padding: inherit;
 }
 
-.top-buffer { margin-top:20px; }
+.top-buffer {
+    margin-top:20px;
+}
+
+input.width-controlled {
+    width: 70%; !important;
+}
+
+.nowrap-button {
+    white-space: nowrap;
+}
