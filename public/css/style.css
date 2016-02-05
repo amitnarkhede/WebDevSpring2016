@@ -29,3 +29,11 @@ input.width-controlled {
 .nowrap-button {
     white-space: nowrap;
 }
+
+a.clickable-td {
+    display:block;
+    width:100%;
+    height:100%;
+    color: inherit;
+    text-decoration: none;
+}
