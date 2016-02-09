@@ -2,28 +2,33 @@ header {
     background-image: url(../img/header.jpg);
 }
 
-.form-horizontal .control-label{
-    text-align:left !important;
+.form-horizontal .control-label {
+    text-align: left !important;
 }
 
-i.white-icon{
-   color:#fff;
+i.white-icon {
+    color: #fff;
 }
 
-a.white-icon{
-    color:#fff;
+hr {
+    max-width: 10%;
 }
 
-.form-action{
+a.white-icon {
+    color: #fff;
+}
+
+.form-action {
     padding: inherit;
 }
 
 .top-buffer {
-    margin-top:20px;
+    margin-top: 20px;
 }
 
 input.width-controlled {
-    width: 70%; !important;
+    width: 70%;
+!important;
 }
 
 .nowrap-button {
@@ -31,9 +36,23 @@ input.width-controlled {
 }
 
 a.clickable-td {
-    display:block;
-    width:100%;
-    height:100%;
+    display: block;
+    width: 100%;
+    height: 100%;
     color: inherit;
     text-decoration: none;
+}
+
+.boston-bg {
+    background-image: url(../img/boston.jpg)
+}
+
+.northeastern-bg {
+    background-image: url(../img/nu.jpg);
+    background-size: 100%;
+}
+
+.northeastern-ryder-bg {
+    background-image: url(../img/nu_ryder.jpg);
+    background-size: 100%;
 }
