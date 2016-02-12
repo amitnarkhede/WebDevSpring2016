@@ -49,10 +49,16 @@ a.clickable-td {
 
 .northeastern-bg {
     background-image: url(../img/nu.jpg);
-    background-size: 100%;
+    background-size: cover;
 }
 
 .northeastern-ryder-bg {
     background-image: url(../img/nu_ryder.jpg);
-    background-size: 100%;
+    background-size: cover;
+}
+
+@media (max-width : 768px) {
+    .sm-small-image {
+        max-width:60%
+    }
 }
