@@ -19,7 +19,7 @@
         ];
 
         var service = {
-            findUserByCredentials : findUserByCredentials,
+            findUserByCredentials:findUserByCredentials,
             findAllUsers:findAllUsers,
             createUser:createUser,
             deleteUserById:deleteUserById,
@@ -64,7 +64,14 @@
 
         function deleteUserById(userId, callback){
 
+            for(index = 0; index < users.length; index++){
 
+                if (users[index]._id == userId){
+                    users.splice(i,1);
+                }
+            }
+
+            callback(users);
         };
 
         function updateUser(userId, user, callback){
@@ -78,6 +85,5 @@
             console.log(users);
             callback(users[index]);
         };
-
     }
 })();

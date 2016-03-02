@@ -12,11 +12,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li ng-class="{'active': $location.url()=='/register'}"><a href="#/register">Register</a></li>
-                <li ng-class="{'active': $location.url()=='/login'}"><a href="#/login">Login</a></li>
-                <li ng-class="{'active': $location.url()=='/logout'}"><a href="#/logout">Logout</a></li>
-                <li ng-class="{'active': $location.url()=='/username'}"><a href="#/username">Username</a></li>
-                <li ng-class="{'active': $location.url()=='/admin'}"><a href="#/admin">Admin</a></li>
+                <li ng-hide="user" ng-class="{'active': $location.url()=='/register'}"><a href="#/register">Register</a></li>
+                <li ng-hide="user" ng-class="{'active': $location.url()=='/login'}"><a href="#/login">Login</a></li>
+                <li ng-show="user" ng-class="{'active': $location.url()=='/username'}"><a href="#/username">{{user.username}}</a></li>
+                <li ng-show="user" ng-class="{'active': $location.url()=='/logout'}"><a href="#/logout" ng-click="logout()">Logout</a></li>
+                <li ng-show="user" ng-class="{'active': $location.url()=='/admin'}"><a href="#/admin">Admin</a></li>
             </ul>
         </div>
     </div>

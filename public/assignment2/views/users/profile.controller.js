@@ -13,6 +13,7 @@
             //console.log(userId);
             UserService.updateUser(userId,updatedUser,function(res){
                 $rootScope.user = res;
+                $scope.message = "Profile updated successfully!";
                 console.log($rootScope.user);
             });
         };

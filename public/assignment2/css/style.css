@@ -1,0 +1,11 @@
+.custom-alert-red{
+    color:red;
+    font-size: large;
+    padding-bottom: 15px
+}
+
+.custom-alert-green{
+    color: green;
+    font-size: large;
+    padding-bottom: 15px
+}
