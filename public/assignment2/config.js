@@ -18,6 +18,9 @@
             .when("/forms",{
                 templateUrl:"views/forms/forms.view.html"
             })
+            .when("/fields",{
+                templateUrl:"views/fields/fields.view.html"
+            })
             .when("/register",{
                 templateUrl:"views/users/register.view.html",
                 controller:"RegisterController"
