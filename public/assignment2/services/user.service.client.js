@@ -54,7 +54,8 @@
                 "lastName":"",
                 "username":user.username,
                 "password":user.password,
-                "email": user.email
+                "email": user.email,
+                "roles": "student"
             };
 
             users.push(newUser);

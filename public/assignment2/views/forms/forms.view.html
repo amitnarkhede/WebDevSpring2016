@@ -1,6 +1,9 @@
 <div>
     <h1>Forms</h1>
 </div>
+
+<div ng-show="alertMessage" class="alert alert-danger" role="alert">{{alertMessage}}</div>
+
 <ul class="nav nav-tabs">
     <li role="presentation" class="active"><a href="#">Forms</a></li>
     <li role="presentation"><a href="#/fields">Fields</a></li>
@@ -11,31 +14,17 @@
         <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"/></a><b>Action</b></th>
     </tr>
     <tr>
-        <td><input type="text" class="form-control" id="inputFormName" placeholder="name"></td>
+        <td><input type="text" class="form-control" id="inputFormName" placeholder="name" ng-model="newFormName"></td>
         <td class="nowrap-button">
-            <a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-plus"/></a>
-            <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-ok"/></a>
+            <a ng-click="addForm(newFormName)" class="btn btn-primary"><span class="glyphicon glyphicon-plus"/></a>
+            <a ng-click="updateForm(newFormName)" class="btn btn-success"><span class="glyphicon glyphicon-ok"/></a>
         </td>
     </tr>
-    <tr>
-        <td><a class="clickable-td" href="../fields/fields.view.html">Registration Form</a></td>
+    <tr ng-repeat="form in forms">
+        <td><a class="clickable-td">{{form.title}}</a></td>
         <td class="nowrap-button">
-            <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"/></a>
-            <a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"/></a>
-        </td>
-    </tr>
-    <tr>
-        <td><a class="clickable-td" href="../fields/fields.view.html">Contact List</a></td>
-        <td class="nowrap-button">
-            <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"/></a>
-            <a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"/></a>
-        </td>
-    </tr>
-    <tr>
-        <td><a class="clickable-td" href="../fields/fields.view.html">To Do List</a></td>
-        <td class="nowrap-button">
-            <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"/></a>
-            <a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"/></a>
+            <a ng-click="deleteForm($index)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"/></a>
+            <a ng-click="selectForm($index)" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"/></a>
         </td>
     </tr>
 </table>
