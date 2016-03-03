@@ -13,7 +13,7 @@
 
                 UserService.createUser(newUser,function(res){
                     $rootScope.user = res;
-                    console.log($rootScope.user);
+                    //console.log($rootScope.user);
                 });
 
                 $location.url("/profile");

@@ -10,7 +10,7 @@
 
         function logout(){
             $rootScope.user = null;
-            console.log("User has been logged out!");
+            //console.log("User has been logged out!");
             $location.url("/home");
         };
     }

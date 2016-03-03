@@ -9,13 +9,13 @@
 
         function login(loginUser){
 
-            console.log($scope.loginUser);
+            //console.log($scope.loginUser);
 
             if($scope.loginUser != null && loginUser.username != null && loginUser.password !=null){
 
                 UserService.findUserByCredentials(loginUser.username,loginUser.password,function(res){
                     $rootScope.user = res;
-                    console.log($rootScope.user);
+                    //console.log($rootScope.user);
 
                     if($rootScope.user != null){
                         $location.url("/profile");
