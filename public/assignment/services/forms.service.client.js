@@ -31,8 +31,8 @@
             var userForms = [];
             for(var f in forms) {
                 if (forms[f].userId == userId) {
-                    userForms.push(forms[u]);
-                    console.log(userForms);
+                    userForms.push(forms[f]);
+                    //console.log(userForms);
                 }
             }
             callback(userForms);
