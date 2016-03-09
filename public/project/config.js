@@ -1,27 +1,42 @@
 (function(){
     angular
-        .module("OmdbApi")
-        .config(Config);
+        .module("FormBuilderApp")
+        .config(configuration);
 
-    function Config($routeProvider) {
+    function configuration($routeProvider){
         $routeProvider
-            .when("/home", {
-                templateUrl: "views/home/home.html"
+            .when("/home",{
+                templateUrl:"views/home/home.view.html"
             })
-            .when("/search", {
-                templateUrl: "views/search/search.html",
-                controller: "SearchController"
+            .when("/profile",{
+                templateUrl:"views/users/profile.view.html",
+                controller:"ProfileController"
             })
-            .when("/search/:title", {
-                templateUrl: "views/search/search.html",
-                controller: "SearchController"
+            .when("/admin",{
+                templateUrl:"views/admin/admin.view.html",
+                controller:"AdminController"
             })
-            .when("/details/:imdb_id", {
-                templateUrl: "views/details/details.html",
-                controller: "DetailsController as model"
+            .when("/forms",{
+                templateUrl:"views/forms/forms.view.html",
+                controller:"FormController"
+            })
+            .when("/fields",{
+                templateUrl:"views/fields/fields.view.html",
+                controller:"FieldsController"
+            })
+            .when("/register",{
+                templateUrl:"views/users/register.view.html",
+                controller:"RegisterController"
+            })
+            .when("/login",{
+                templateUrl:"views/users/login.view.html",
+                controller:"LoginController"
+            })
+            .when("/username",{
+                templateUrl:"views/users/profile.view.html"
             })
             .otherwise({
-                redirectTo: "/home"
+                redirectTo:"/home"
             });
     }
 })();

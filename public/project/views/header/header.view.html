@@ -1,5 +1,23 @@
-<ul class="nav nav-tabs" ng-controller="HeaderController">
-    <li ng-class="{'active': $location.url().indexOf('home') >= 0}"><a href="#/home">Home</a></li>
-    <li ng-class="{'active': $location.url().indexOf('search') >= 0}"><a href="#/search">Search</a></li>
-    <li ng-class="{'active': $location.url().indexOf('details') >= 0}"><a href="#/details">Details</a></li>
-</ul>
+<nav ng-controller="HeaderController" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#/home" class="navbar-brand">TheFilmDB</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-hide="user" ng-class="{'active': $location.url()=='/register'}"><a href="#/register">Register</a></li>
+                <li ng-hide="user" ng-class="{'active': $location.url()=='/login'}"><a href="#/login">Login</a></li>
+                <li ng-show="user" ng-class="{'active': $location.url()=='/username'}"><a href="#/username">{{user.username}}</a></li>
+                <li ng-show="user" ng-class="{'active': $location.url()=='/logout'}"><a href="#/logout" ng-click="logout()">Logout</a></li>
+                <li ng-show="user.roles == 'admin'" ng-class="{'active': $location.url()=='/admin'}"><a href="#/admin">Admin</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

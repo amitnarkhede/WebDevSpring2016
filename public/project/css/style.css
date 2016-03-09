@@ -1,11 +1,23 @@
-.brand{
-    color:#864646
+.custom-alert-red{
+    color:red;
+    font-size: large;
+    padding-bottom: 15px
 }
 
-.address-bar{
-    color:#7489ff
+.custom-alert-green{
+    color: green;
+    font-size: large;
+    padding-bottom: 15px
 }
 
-.filmdb-navbar{
-    background-color: #E0E0E0
+.carousel-caption-white{
+    color:#2e6da4;
+}
+
+.botton-margin-10{
+    margin-bottom: 10px;
+}
+
+.custom-blockquote{
+    background-color: rgba(216, 215, 213, 0.30)
 }
