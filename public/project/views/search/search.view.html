@@ -1,0 +1,31 @@
+<div class="row">
+    <h1 class="text-center">Search For the movie</h1>
+    <h2>Search</h2>
+</div>
+
+<div class="container-fluid">
+    <input ng-model="movieTitle" class="form-control"/>
+
+    <a href="#/search/{{movieTitle}}" class="btn btn-primary btn-block">
+        Search
+    </a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Poster</th>
+            <th>Title</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-click="selectMovie(movie)" ng-repeat="movie in data.Search">
+            <td>
+                <img height="100px" ng-src="{{movie.Poster}}"/>
+            </td>
+            <td>
+                <!--<a href="#/details/{{movie.imdbID}}">{{movie.Title}}</a>>-->
+                <a>{{movie.Title}}</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

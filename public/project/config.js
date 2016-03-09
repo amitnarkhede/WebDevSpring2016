@@ -16,13 +16,13 @@
                 templateUrl:"views/admin/admin.view.html",
                 controller:"AdminController"
             })
-            .when("/forms",{
-                templateUrl:"views/forms/forms.view.html",
-                controller:"FormController"
+            .when("/search",{
+                templateUrl:"views/search/search.view.html",
+                controller:"SearchController"
             })
-            .when("/fields",{
-                templateUrl:"views/fields/fields.view.html",
-                controller:"FieldsController"
+            .when("/search/:title",{
+                templateUrl:"views/search/search.view.html",
+                controller:"SearchController"
             })
             .when("/register",{
                 templateUrl:"views/users/register.view.html",
