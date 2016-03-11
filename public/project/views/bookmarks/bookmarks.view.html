@@ -1,0 +1,30 @@
+<div>
+    <h1>Bookmarked Movies by {{user.username}}</h1>
+</div>
+
+<div class="col-sm-offset-2 col-sm-10"><center class="custom-alert-red">{{alertMessage}}</center></div>
+
+<table class="table table-striped top-buffer">
+    <tr>
+        <th><b>Poster</b></th>
+        <th><b>Movie Title</b></th>
+        <th><b>Action</b></th>
+    </tr>
+    <tr>
+        <td><input type="text" class="form-control" id="inputFormName" placeholder="name" ng-model="newFormName"></td>
+        <td class="nowrap-button">
+            <a ng-click="addForm(newFormName)" class="btn btn-primary"><span class="glyphicon glyphicon-plus"/></a>
+            <a ng-click="updateForm(newFormName)" class="btn btn-success"><span class="glyphicon glyphicon-ok"/></a>
+        </td>
+    </tr>
+    <tr ng-repeat="form in forms">
+        <td>
+            <img height="100px" ng-src="{{form.poster}}"/>
+        </td>
+        <td><a class="clickable-td">{{form.movieTitle}}</a></td>
+        <td class="nowrap-button">
+            <a ng-click="deleteForm($index)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"/></a>
+            <a ng-click="selectForm($index)" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"/></a>
+        </td>
+    </tr>
+</table>

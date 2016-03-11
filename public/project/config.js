@@ -24,6 +24,10 @@
                 templateUrl:"views/search/search.view.html",
                 controller:"SearchController"
             })
+            .when("/bookmarks",{
+                templateUrl:"views/bookmarks/bookmarks.view.html",
+                controller:"BookmarkController"
+            })
             .when("/register",{
                 templateUrl:"views/users/register.view.html",
                 controller:"RegisterController"

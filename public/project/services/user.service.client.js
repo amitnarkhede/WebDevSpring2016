@@ -20,7 +20,11 @@
 
         var userMovieLikes = [
             {
-                "user_id":123, "movieTitle": "Star Wars", "imdbID" : 'tt0076759', "poster" : "http://ia.media-imdb.com/images/M/MV5BMTU4NTczODkwM15BMl5BanBnXkFtZTcwMzEyMTIyMw@@._V1_SX300.jpg"
+                "user_id":123,
+                "movieTitle": "Star Wars",
+                "imdbID" : 'tt0076759',
+                "poster" : "http://ia.media-imdb.com/images/M/MV5BMTU4NTczODkwM15BMl5BanBnXkFtZTcwMzEyMTIyMw@@._V1_SX300.jpg",
+                "comments" : ""
             }
         ];
 
@@ -30,7 +34,8 @@
             createUser:createUser,
             deleteUserById:deleteUserById,
             updateUser:updateUser,
-            addMovieLike:addMovieLike
+            addMovieLike:addMovieLike,
+            getMovieLike:getMovieLike
         };
 
         return service;
@@ -100,12 +105,25 @@
                 "user_id":userID,
                 "movieTitle":title,
                 "imdbID":imdbID,
-                "poster":poster
+                "poster":poster,
+                "comments":""
             };
 
             userMovieLikes.push(movieLike);
             console.log(userMovieLikes);
 
         };
+
+        function getMovieLike(userID,callback){
+            var movies = [];
+
+            for(index = 0; index < userMovieLikes.length; index++){
+                if(userMovieLikes[index].user_id == userID){
+                    movies.push(userMovieLikes[index]);
+                }
+            }
+
+            callback(movies);
+        }
     }
 })();
