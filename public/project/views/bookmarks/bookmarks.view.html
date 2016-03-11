@@ -21,7 +21,7 @@
         <td>
             <img height="100px" ng-src="{{form.poster}}"/>
         </td>
-        <td><a class="clickable-td">{{form.movieTitle}}</a></td>
+        <td><a class="clickable-td" href="#/details/{{form.imdbID}}">{{form.movieTitle}}</a></td>
         <td class="nowrap-button">
             <a ng-click="deleteForm($index)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"/></a>
             <a ng-click="selectForm($index)" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"/></a>

@@ -15,6 +15,13 @@
             findMovieTrailer: findMovieTrailer
         };
 
+        var userMovieLikes = [
+            {
+                "user_id": 123,
+                "imdbID" : 'tt0076759'
+            }
+        ];
+
         return api;
 
         function findMovieByImdbId(imdbId, callback) {
@@ -32,7 +39,7 @@
         }
 
         function findMovieTrailer(imdbId,callback){
-            console.log(TRAILER_SEARCH_URL);
+            //console.log(TRAILER_SEARCH_URL);
             var url = TRAILER_SEARCH_URL.replace("IMDBID",imdbId);
             $http.get(url)
                 .success(callback);

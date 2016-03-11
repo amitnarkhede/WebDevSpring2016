@@ -24,6 +24,10 @@
                 templateUrl:"views/search/search.view.html",
                 controller:"SearchController"
             })
+            .when("/details/:imdb_id", {
+                templateUrl: "views/details/details.view.html",
+                controller: "DetailsController as model"
+            })
             .when("/bookmarks",{
                 templateUrl:"views/bookmarks/bookmarks.view.html",
                 controller:"BookmarkController"
