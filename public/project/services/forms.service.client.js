@@ -35,14 +35,14 @@
             callback(userForms);
         };
 
-        function deleteFormById(formId,callback){
+        function deleteFormById(formId,currentUserForms,callback){
+            forms = currentUserForms;
             for(var f in forms) {
-                if (forms[f]._id == formId) {
+                if (forms[f].imdbID == formId) {
                     forms.splice(f, 1);
                     break;
                 }
             }
-
             callback(forms);
         };
 

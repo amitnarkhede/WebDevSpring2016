@@ -67,7 +67,7 @@
         function deleteForm(index){
             $scope.alertMessage = null;
             formIndexSelected = index;
-            FormService.deleteFormById(currentUserForms[index]._id,renderFormAfterAction);
+            FormService.deleteFormById(currentUserForms[index].imdbID,currentUserForms,renderFormAfterAction);
         }
 
         function renderFormAfterAction(userforms){
