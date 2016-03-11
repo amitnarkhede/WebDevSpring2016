@@ -18,12 +18,19 @@
                 "username":"ed",     "password":"ed",      "roles": ["student"]		}
         ];
 
+        var userMovieLikes = [
+            {
+                "user_id":123, "movieTitle": "Star Wars", "imdbID" : 'tt0076759', "poster" : "http://ia.media-imdb.com/images/M/MV5BMTU4NTczODkwM15BMl5BanBnXkFtZTcwMzEyMTIyMw@@._V1_SX300.jpg"
+            }
+        ];
+
         var service = {
             findUserByCredentials:findUserByCredentials,
             findAllUsers:findAllUsers,
             createUser:createUser,
             deleteUserById:deleteUserById,
-            updateUser:updateUser
+            updateUser:updateUser,
+            addMovieLike:addMovieLike
         };
 
         return service;
@@ -85,6 +92,20 @@
             }
             //console.log(users);
             callback(users[index]);
+        };
+
+        function addMovieLike(imdbID,poster,title,userID){
+            //console.log(imdbID+poster+title+userID);
+            var movieLike = {
+                "user_id":userID,
+                "movieTitle":title,
+                "imdbID":imdbID,
+                "poster":poster
+            };
+
+            userMovieLikes.push(movieLike);
+            console.log(userMovieLikes);
+
         };
     }
 })();

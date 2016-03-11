@@ -14,6 +14,7 @@
         <tr>
             <th>Poster</th>
             <th>Title</th>
+            <th>Bookmark</th>
         </tr>
         </thead>
         <tbody>
@@ -23,7 +24,11 @@
             </td>
             <td>
                 <!--<a href="#/details/{{movie.imdbID}}">{{movie.Title}}</a>>-->
-                <a>{{movie.Title}}</a>
+                <a href="#/details/{{movie.imdbID}}">{{movie.Title}}</a>
+            </td>
+
+            <td>
+                <a ng-click="likeMovie(movie.imdbID,movie.Poster,movie.Title)">Bookmark This</a>
             </td>
         </tr>
         </tbody>

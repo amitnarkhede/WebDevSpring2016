@@ -5,9 +5,10 @@
         .module("FormBuilderApp")
         .controller("SearchController", SearchController);
 
-    function SearchController($scope, $http, $routeParams, $location, MovieService) {
+    function SearchController($scope, $rootScope, $routeParams, $location, MovieService,UserService) {
 
         //$scope.movieTitle = "Star Wars";
+        $scope.likeMovie = likeMovie;
 
         function init() {
             var movieTitle = $routeParams.title;
@@ -36,6 +37,18 @@
             //console.log(response);
 
             $scope.data = response;
+        }
+
+        function likeMovie(imdbID,poster,title){
+
+            if($rootScope.user){
+                //console.log(imdbID + poster + title);
+                UserService.addMovieLike(imdbID,poster,title,$rootScope.user._id);
+
+            }else {
+
+                $location.url("/login");
+            }
         }
     }
 })();
