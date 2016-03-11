@@ -5,16 +5,6 @@
 
     function BookmarkController($scope,FormService,$rootScope,$location,UserService) {
 
-        function init(){
-            if($rootScope.user == null) {
-                $location.url("/login");
-            }else{
-                UserService.getMovieLike($rootScope.user._id,renderMovies);
-            }
-        };
-
-        init();
-
         $scope.alertMessage = null;
         var formIndexSelected;
         var currentUserForms = [];
@@ -25,9 +15,21 @@
         $scope.deleteForm = deleteForm;
         $scope.selectForm = selectForm;
 
+
+        function init(){
+            if($rootScope.user == null) {
+                $location.url("/login");
+            }else{
+                UserService.getMovieLike($rootScope.user._id,renderMovies);
+            }
+        };
+
+        init();
+
         function renderMovies(userforms){
             $scope.forms = userforms;
             currentUserForms = userforms;
+            //console.log(currentUserForms);
         }
 
         function addForm(formName) {
@@ -39,7 +41,7 @@
                 };
                 FormService.createFormForUser(user._id, newForm, renderAddForm);
             }else{
-                $scope.alertMessage = "Please enter a name for the form";
+                //$scope.alertMessage = "Please enter a name for the form";
             }
         }
 
@@ -53,11 +55,12 @@
             if (newFormName != null) {
                 $scope.alertMessage = null;
                 var formSelected = currentUserForms[formIndexSelected];
-                formSelected.title = newFormName;
-                FormService.updateFormById(formSelected._id, formSelected, renderFormAfterAction);
+                formSelected.comments = newFormName;
+                FormService.updateFormById(formSelected.imdbID, formSelected,currentUserForms, renderFormAfterAction);
                 $scope.newFormName = null;
+                $scope.movieName = null;
             }else {
-                $scope.alertMessage = "Please select a form to update";
+                $scope.alertMessage = "Please select a movie comment to update";
             }
         }
 
@@ -68,12 +71,22 @@
         }
 
         function renderFormAfterAction(userforms){
-            FormService.findAllFormsForUser(currentUser._id,renderForms);
+            //console.log("After update :");
+            //console.log(userforms);
+            //FormService.findAllFormsForUser(currentUser._id,renderMovies);
+            renderMovies(userforms);
+            //$scope.newFormName = null;
+            //$scope.movieName = null;
         }
+
         function selectForm(index){
+            //console.log(index);
             $scope.alertMessage = null;
             formIndexSelected = index;
-            $scope.newFormName = currentUserForms[index].title;
+            //console.log(currentUserForms);
+            console.log("Hello");
+            $scope.newFormName = currentUserForms[index].comments;
+            $scope.movieName = currentUserForms[index].movieTitle;
         }
     }
 

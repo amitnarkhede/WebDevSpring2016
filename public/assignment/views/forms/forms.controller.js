@@ -70,6 +70,7 @@
         function selectForm(index){
             $scope.alertMessage = null;
             formIndexSelected = index;
+            console.log(currentUserForms);
             $scope.newFormName = currentUserForms[index].title;
         }
     }

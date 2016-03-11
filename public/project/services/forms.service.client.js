@@ -4,10 +4,7 @@
         .factory("FormService",FormService);
 
     function FormService() {
-        var forms = [
-            {"_id": "000", "title": "Contacts", "userId": 123},
-            {"_id": "010", "title": "ToDo",     "userId": 123},
-            {"_id": "020", "title": "CDs",      "userId": 234}];
+        var forms = [];
 
         var model={ createFormForUser:createFormForUser,
             findAllFormsForUser:findAllFormsForUser,
@@ -49,15 +46,19 @@
             callback(forms);
         };
 
-        function updateFormById(formId, newForm, callback){
+        function updateFormById(formId, newForm,currentUserForms, callback){
+            forms = currentUserForms;
+            console.log(formId);
             for(var f in forms) {
-                if (forms[f]._id == formId) {
-                    forms[f].title  = newForm.title;
-                    forms[f].userId = newForm.userId;
+                console.log(f);
+                console.log(forms[f]);
+                if (forms[f].imdbID == formId) {
+                    forms[f].comments  = newForm.comments;
+                    //forms[f].userId = newForm.userId;
                     break;
                 }
             }
-            callback(forms[f]);
+            callback(forms);
         };
     }
 })();
