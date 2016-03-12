@@ -2,7 +2,7 @@
     var DETAILS_URL = "http://www.omdbapi.com/?i=IMDBID&type=movie&plot=full&tomatoes=true";
 
     angular
-        .module("FormBuilderApp")
+        .module("TheFilmDBApp")
         .controller("DetailsController", DetailsController);
 
     function DetailsController($scope, $rootScope, $routeParams, MovieService,UserService) {

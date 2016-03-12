@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module("FormBuilderApp")
+        .module("TheFilmDBApp")
         .factory("FormService",FormService);
 
     function FormService() {
@@ -48,10 +48,10 @@
 
         function updateFormById(formId, newForm,currentUserForms, callback){
             forms = currentUserForms;
-            console.log(formId);
+            //console.log(formId);
             for(var f in forms) {
-                console.log(f);
-                console.log(forms[f]);
+                //console.log(f);
+                //console.log(forms[f]);
                 if (forms[f].imdbID == formId) {
                     forms[f].comments  = newForm.comments;
                     //forms[f].userId = newForm.userId;

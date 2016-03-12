@@ -1,6 +1,6 @@
 (function(){
     angular
-        .module("FormBuilderApp")
+        .module("TheFilmDBApp")
         .controller("RegisterController",RegisterController);
 
     function RegisterController($rootScope,$scope,$location,UserService){

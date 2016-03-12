@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module("FormBuilderApp")
+        .module("TheFilmDBApp")
         .controller("BookmarkController",BookmarkController);
 
     function BookmarkController($scope,FormService,$rootScope,$location,UserService) {
@@ -84,7 +84,7 @@
             $scope.alertMessage = null;
             formIndexSelected = index;
             //console.log(currentUserForms);
-            console.log("Hello");
+            //console.log("Hello");
             $scope.newFormName = currentUserForms[index].comments;
             $scope.movieName = currentUserForms[index].movieTitle;
         }

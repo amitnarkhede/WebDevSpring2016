@@ -5,7 +5,7 @@
     var TRAILER_SEARCH_URL = "http://api.themoviedb.org/3/movie/IMDBID?api_key=" + theMovieDBKey + "&append_to_response=trailers";
 
     angular
-        .module("FormBuilderApp")
+        .module("TheFilmDBApp")
         .factory("MovieService", MovieService);
 
     function MovieService($http) {

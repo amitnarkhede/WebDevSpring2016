@@ -1,6 +1,6 @@
 (function(){
     angular
-        .module("FormBuilderApp")
+        .module("TheFilmDBApp")
         .controller("HeaderController", HeaderController);
 
     function HeaderController($scope,$rootScope,$location,UserService){

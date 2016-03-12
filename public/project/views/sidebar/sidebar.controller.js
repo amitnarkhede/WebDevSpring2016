@@ -1,6 +1,6 @@
 (function(){
     angular
-        .module("FormBuilderApp")
+        .module("TheFilmDBApp")
         .controller("SidebarController", SidebarController);
 
     function SidebarController(){

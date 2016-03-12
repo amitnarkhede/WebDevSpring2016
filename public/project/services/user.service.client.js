@@ -1,6 +1,6 @@
 (function(){
     angular
-        .module("FormBuilderApp")
+        .module("TheFilmDBApp")
         .factory("UserService",UserService);
 
     function UserService(){
@@ -110,7 +110,7 @@
             };
 
             userMovieLikes.push(movieLike);
-            console.log(userMovieLikes);
+            //console.log(userMovieLikes);
 
         };
 

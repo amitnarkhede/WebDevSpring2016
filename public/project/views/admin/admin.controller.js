@@ -1,6 +1,6 @@
 (function(){
     angular
-        .module("FormBuilderApp")
+        .module("TheFilmDBApp")
         .controller("AdminController", AdminController);
 
     function AdminController($rootScope,$location){

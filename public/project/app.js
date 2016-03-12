@@ -1,6 +1,6 @@
 (function(){
     angular
-        .module("FormBuilderApp", ["ngRoute"])
+        .module("TheFilmDBApp", ["ngRoute"])
         .filter('trusted', ['$sce', function ($sce) {
             return function(url) {
                 return $sce.trustAsResourceUrl(url);

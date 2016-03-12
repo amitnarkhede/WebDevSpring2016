@@ -2,7 +2,7 @@
     var SEARCH_URL = "http://www.omdbapi.com/?s=TITLE&page=PAGE&type=movie";
 
     angular
-        .module("FormBuilderApp")
+        .module("TheFilmDBApp")
         .controller("SearchController", SearchController);
 
     function SearchController($scope, $rootScope, $routeParams, $location, MovieService,UserService) {

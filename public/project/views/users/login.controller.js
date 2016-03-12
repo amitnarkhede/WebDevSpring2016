@@ -1,6 +1,6 @@
 (function(){
     angular
-        .module("FormBuilderApp")
+        .module("TheFilmDBApp")
         .controller("LoginController",LoginController);
 
     function LoginController($rootScope,$location,$scope,UserService){

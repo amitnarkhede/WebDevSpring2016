@@ -1,6 +1,6 @@
 (function(){
     angular
-        .module("FormBuilderApp")
+        .module("TheFilmDBApp")
         .controller("ProfileController",ProfileController);
 
     function ProfileController($rootScope,$scope,UserService){
