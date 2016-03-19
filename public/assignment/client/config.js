@@ -20,8 +20,10 @@
 
             })
 
-            .when("/fields", {
-                templateUrl: "views/forms/fields.view.html"
+            .when("/forms/:formId/fields", {
+                templateUrl: "views/forms/field.view.html",
+                controller:"FieldController",
+                controllerAs:"model"
             })
 
             .when("/register", {

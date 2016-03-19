@@ -1,4 +1,5 @@
 (function(){
+
     angular
         .module("FormBuilderApp")
         .factory("UserService",UserService);
@@ -9,6 +10,7 @@
 
             setCurrentUser : setCurrentUser,
             updateUser : updateUser,
+            //  deleteUserById : deleteUserById,
             findAllUsers : findAllUsers,
             findUserByCredentials:findUserByCredentials,
             register: register,

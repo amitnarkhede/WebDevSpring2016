@@ -10,8 +10,7 @@
             deleteForm:deleteForm,
             addForm:addForm,
             updateForm:updateForm
-        };
-
+        }
         return model;
 
         function findFormByTitle(title){
