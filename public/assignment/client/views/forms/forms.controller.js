@@ -1,78 +1,91 @@
-(function() {
-    angular
-        .module("FormBuilderApp")
+(function(){
+    "use strict";
+    angular.module("FormBuilderApp")
         .controller("FormController",FormController);
 
-    function FormController($scope,FormService,$rootScope,$location) {
-        $scope.alertMessage = null;
-        var formIndexSelected;
-        var currentUserForms = [];
-        var user;
+    function FormController(FormService,$rootScope,$location){
 
-        if($rootScope.user == null){
-            $location.url("/home");
+        var vm=this;
+        vm.currentUser=$rootScope.currentUser;
+        vm.message=null;
+
+        vm.addForm=addForm;
+        vm.updateForm=updateForm;
+        vm.deleteForm=deleteForm;
+        vm.selectForm=selectForm;
+
+        function init(){
+
+            if(vm.currentUser == null){
+                $location.url("/home");
+            }
+            else{
+                FormService.findAllFormsForUser(vm.currentUser._id)
+                    .then(function(response){
+                        if(response.data) {
+                            vm.forms=response.data;
+                        }
+                    });
+            }
         }
-        else{
-            user = $rootScope.user;
-            FormService.findAllFormsForUser(currentUser._id,renderForms);
-        }
+        init();
 
-        $scope.addForm = addForm;
-        $scope.updateForm = updateForm;
-        $scope.deleteForm = deleteForm;
-        $scope.selectForm = selectForm;
-
-        function renderForms(userforms){
-            $scope.forms = userforms;
-            currentUserForms = userforms;
-        }
-
-        function addForm(formName) {
-            if (formName != null) {
-                var newForm = {
-                    "_id": null,
-                    "title": formName,
-                    "userId": null
-                };
-                FormService.createFormForUser(user._id, newForm, renderAddForm);
-            }else{
-                $scope.alertMessage = "Please enter a name for the form";
+        function addForm(formName){
+            var userId=vm.currentUser._id;
+            var newForm={"title":formName};
+            if(formName!=null){
+                FormService.addForm(newForm,userId)
+                    .then(function(response){
+                        vm.forms=response.data;
+                        vm.formIndexSelected=null;
+                        vm.formName=null;
+                    })
+            }
+            else{
+                vm.message="Enter a form name";
             }
         }
 
-        function renderAddForm(newForm){
-            $scope.newFormName = null;
-            currentUserForms.push(newForm);
-            $scope.forms = currentUserForms;
+        function updateForm(form){
+            if (form!= null) {
+                var formToBeUpdatedId= vm.forms[vm.formIndexSelected]._id;
+                var changedForm ={"title" : form, "userId" : vm.currentUser._id ,
+                    "_id": formToBeUpdatedId};
+                FormService.updateForm(formToBeUpdatedId,changedForm)
+                    .then(finalList)
+            }
         }
 
-        function updateForm(newFormName) {
-            if (newFormName != null) {
-                $scope.alertMessage = null;
-                var formSelected = currentUserForms[formIndexSelected];
-                formSelected.title = newFormName;
-                FormService.updateFormById(formSelected._id, formSelected, renderFormAfterAction);
-                $scope.newFormName = null;
-            }else {
-                $scope.alertMessage = "Please select a form to update";
-            }
+        function finalList(response){
+            FormService.findAllFormsForUser(vm.currentUser._id)
+                .then(function(response){
+                    if(response.data) {
+                        vm.forms=response.data;
+                        vm.formIndexSelected=null;
+                        vm.formName=null;
+                    }
+                });
+        }
+
+        function selectForm(index){
+            vm.formIndexSelected = index;
+            vm.formName = vm.forms[index].title;
         }
 
         function deleteForm(index){
-            $scope.alertMessage = null;
-            formIndexSelected = index;
-            FormService.deleteFormById(currentUserForms[index]._id,renderFormAfterAction);
+            var userId=vm.currentUser._id;
+            vm.formIndexSelected = index;
+            var formToDelete=vm.forms[index]._id;
+            FormService.deleteForm(formToDelete,userId)
+                .then(function(response){
+                    vm.forms=response.data;
+                    vm.formIndexSelected=null;
+                    vm.formName=null;
+                })
         }
 
-        function renderFormAfterAction(userforms){
-            FormService.findAllFormsForUser(currentUser._id,renderForms);
-        }
-        function selectForm(index){
-            $scope.alertMessage = null;
-            formIndexSelected = index;
-            console.log(currentUserForms);
-            $scope.newFormName = currentUserForms[index].title;
-        }
     }
 
 })();
+
+

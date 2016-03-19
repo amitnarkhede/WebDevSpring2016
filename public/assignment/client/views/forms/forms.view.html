@@ -1,30 +1,54 @@
-<div>
-    <h1>Forms</h1>
+<html>
+
+<body ng-controller="FormController">
+<div class="row">
+    <h1 class="page-header">Forms</h1>
+
+    <div ng-show="model.alertMessage" class="alert alert-danger" role="alert">{{model.alertMessage}}</div>
+
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a>Forms</a></li>
+        <li role="presentation"><a href="#/fields">Fields</a></li>
+    </ul>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-condensed">
+            <tr>
+                <th bgcolor="gray">
+                    <a href="#">
+                        <span class="glyphicon glyphicon-triangle-bottom"></span>
+                    </a>
+                    Form Name
+                </th>
+                <th bgcolor="gray">
+                    <a href="#">
+                        <span class="glyphicon glyphicon-triangle-bottom"></span>
+                    </a>
+                    Action
+                </th>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="Form name" class="form-control" ng-model="model.formName"></td>
+                <td class="text-nowrap">
+                    <button type="button" class="btn btn-primary add-right-pad" ng-click="model.addForm(model.formName)">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                    <button type="button" class="btn btn-success" ng-click="model.updateForm(model.formName)">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </button></td>
+            </tr>
+
+            <tr ng-repeat="form in model.forms">
+                <td><a>{{form.title}} </a></td>
+                <td>
+                    <a ng-click="model.deleteForm($index)"><span class="glyphicon glyphicon-remove"></span></a>
+                    <a ng-click="model.selectForm($index)"><span class="glyphicon glyphicon-pencil"></span></a></td>
+            </tr>
+        </table>
+
+    </div>
 </div>
+</body>
 
-<div class="col-sm-offset-2 col-sm-10"><center class="custom-alert-red">{{alertMessage}}</center></div>
+</html>
 
-<ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="#">Forms</a></li>
-    <li role="presentation"><a href="#/fields">Fields</a></li>
-</ul>
-<table class="table table-striped top-buffer">
-    <tr>
-        <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"/></a><b>Form Name</b></th>
-        <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"/></a><b>Action</b></th>
-    </tr>
-    <tr>
-        <td><input type="text" class="form-control" id="inputFormName" placeholder="name" ng-model="newFormName"></td>
-        <td class="nowrap-button">
-            <a ng-click="addForm(newFormName)" class="btn btn-primary"><span class="glyphicon glyphicon-plus"/></a>
-            <a ng-click="updateForm(newFormName)" class="btn btn-success"><span class="glyphicon glyphicon-ok"/></a>
-        </td>
-    </tr>
-    <tr ng-repeat="form in forms">
-        <td><a class="clickable-td">{{form.title}}</a></td>
-        <td class="nowrap-button">
-            <a ng-click="deleteForm($index)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"/></a>
-            <a ng-click="selectForm($index)" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"/></a>
-        </td>
-    </tr>
-</table>
