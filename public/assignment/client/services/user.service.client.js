@@ -21,7 +21,7 @@
         return model;
 
         function setCurrentUser(user){
-            console.log(user);
+           // console.log(user);
             $rootScope.currentUser=user;
         }
 
