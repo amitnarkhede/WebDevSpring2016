@@ -1,11 +1,10 @@
 (function(){
-    angular
-        .module("FormBuilderApp")
-        .controller("SidebarController", SidebarController);
+    "use strict";
+    angular.module("FormBuilderApp")
+        .controller("SideBarController",SideBarController);
 
-    function SidebarController(){
-        //This is left blank intentionally as there is nothing to be implemented here currently
-        //console.log("Hello from sidebar")
+    function SideBarController($scope,$location){
+        $scope.$location=$location;
 
     }
 })();
