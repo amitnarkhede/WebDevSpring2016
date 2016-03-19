@@ -3,7 +3,7 @@
         .module("FormBuilderApp")
         .factory("UserService",UserService);
 
-    function UserService(){
+    function UserService($http){
 
         var users = [
             {	"_id":123, "firstName":"Alice",            "lastName":"Wonderland",
@@ -28,17 +28,28 @@
 
         return service;
 
-        function findUserByCredentials(username, password, callback){
-            loggedInUser = null;
-            for(index = 0; index < users.length; index++){
+        //function findUserByCredentials(username, password, callback){
+        //    loggedInUser = null;
+        //    for(index = 0; index < users.length; index++){
+        //
+        //        if (users[index].username == username && users[index].password == password){
+        //            loggedInUser = users[index];
+        //            break;
+        //        }
+        //    }
+        //    //console.log(users);
+        //    callback(loggedInUser);
+        //};
 
-                if (users[index].username == username && users[index].password == password){
-                    loggedInUser = users[index];
-                    break;
-                }
-            }
-            //console.log(users);
-            callback(loggedInUser);
+        function findUserByCredentials(username, password, callback) {
+
+            var url = "/api/assignment/username=:username&password=:password";
+
+            url = url.replace(":username",username);
+            url = url.replace(":password",password);
+
+            return $http.get(url);
+
         };
 
         function findAllUsers(callback){
