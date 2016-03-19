@@ -1,101 +1,94 @@
 (function(){
+
     angular
         .module("FormBuilderApp")
         .factory("UserService",UserService);
 
-    function UserService($http){
+    function UserService($rootScope,$http){
 
-        var users = [
-            {	"_id":123, "firstName":"Alice",            "lastName":"Wonderland",
-                "username":"alice",  "password":"alice",   "roles": ["student"]		},
-            {	"_id":234, "firstName":"Bob",              "lastName":"Hope",
-                "username":"bob",    "password":"bob",     "roles": ["admin"]		},
-            {	"_id":345, "firstName":"Charlie",          "lastName":"Brown",
-                "username":"charlie","password":"charlie", "roles": ["faculty"]		},
-            {	"_id":456, "firstName":"Dan",              "lastName":"Craig",
-                "username":"dan",    "password":"dan",     "roles": ["faculty", "admin"]},
-            {	"_id":567, "firstName":"Edward",           "lastName":"Norton",
-                "username":"ed",     "password":"ed",      "roles": ["student"]		}
-        ];
+        var model = {
+            users :[
 
-        var service = {
-            findUserByCredentials:findUserByCredentials,
-            findAllUsers:findAllUsers,
+                {        "_id":123, "firstName":"Alice",            "lastName":"Wonderland",
+                    "username":"alice",  "password":"alice",   "roles": ["student"]                },
+                {        "_id":234, "firstName":"Bob",              "lastName":"Hope",
+                    "username":"bob",    "password":"bob",     "roles": ["admin"]                },
+                {        "_id":345, "firstName":"Charlie",          "lastName":"Brown",
+                    "username":"charlie","password":"charlie", "roles": ["faculty"]                },
+                {        "_id":456, "firstName":"Dan",              "lastName":"Craig",
+                    "username":"dan",    "password":"dan",     "roles": ["faculty", "admin"]},
+                {        "_id":567, "firstName":"Edward",           "lastName":"Norton",
+                    "username":"ed",     "password":"ed",      "roles": ["student"]                }
+            ],
+            findUserByCredentials : findUserByCredentials,
+            setCurrentUser : setCurrentUser,
+            updateUser : updateUser,
             createUser:createUser,
-            deleteUserById:deleteUserById,
-            updateUser:updateUser
+            deleteUserById : deleteUserById,
+            findAllUsers : findAllUsers,
+            login:login,
+            register: register
         };
+        return model;
 
-        return service;
+        function setCurrentUser(user){
+            $rootScope.currentUser=user;
+        }
 
-        //function findUserByCredentials(username, password, callback){
-        //    loggedInUser = null;
-        //    for(index = 0; index < users.length; index++){
-        //
-        //        if (users[index].username == username && users[index].password == password){
-        //            loggedInUser = users[index];
-        //            break;
-        //        }
-        //    }
-        //    //console.log(users);
-        //    callback(loggedInUser);
-        //};
+        function findUserByCredentials(username,password,callback){
+            callback($http.post("/api/project/user"));
+        }
 
-        function findUserByCredentials(username, password, callback) {
+        function createUser(user,callback){
 
-            var url = "/api/assignment/username=:username&password=:password";
-
-            url = url.replace(":username",username);
-            url = url.replace(":password",password);
-
-            return $http.get(url);
-
-        };
-
-        function findAllUsers(callback){
-
-            callback(users);
-
-        };
-
-        function createUser(user, callback){
-            var newUser = {
-                "_id":(new Date).getTime(),
-                "firstName": "",
-                "lastName":"",
-                "username":user.username,
-                "password":user.password,
-                "email": user.email,
-                "roles": "student"
+            var user ={
+                username: user.username,
+                password:user.password,
+                _id:(new Date).getTime(),
+                email:user.email
             };
-
-            users.push(newUser);
-
-            callback(newUser);
-        };
+            model.users.push(user);
+            callback(user);
+        }
 
         function deleteUserById(userId, callback){
-
-            for(index = 0; index < users.length; index++){
-
-                if (users[index]._id == userId){
-                    users.splice(i,1);
+            for(var u in model.users) {
+                if (model.users[u]._id == userId) {
+                    model.users.splice(u, 1);
                 }
             }
+            callback(model.users);
+        }
 
+        function findAllUsers(callback){
             callback(users);
-        };
+        }
 
-        function updateUser(userId, user, callback){
-            for(index = 0; index < users.length; index++){
+        function findAllUsers(callback) {
+            callback(users);
+        }
 
-                if (users[index]._id == userId){
-                    users[index] = user;
-                    break;
+        function deleteUserById(userId, callback) {
+            for(var u in model.users) {
+                if (model.users[u]._id === userId) {
+                    model.users.splice(u, 1);
                 }
             }
-            //console.log(users);
-            callback(users[index]);
-        };
+            callback(model.users);
+        }
+
+        function login(credentials){
+            return $http.post("/api/assignment/formMaker/login",credentials);
+        }
+
+        function register(user){
+            return $http.post("/api/assignment/formMaker/register", user);
+        }
+
+        function updateUser(user){
+            return $http.post("/api/assignment/formMaker/updateUser/"+user._id,user);
+        }
+
     }
 })();
+
