@@ -15,13 +15,6 @@
             findMovieTrailer: findMovieTrailer
         };
 
-        var userMovieLikes = [
-            {
-                "user_id": 123,
-                "imdbID" : 'tt0076759'
-            }
-        ];
-
         return api;
 
         function findMovieByImdbId(imdbId, callback) {

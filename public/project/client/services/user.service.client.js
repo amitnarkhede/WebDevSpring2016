@@ -35,6 +35,7 @@
 
         function findAllUsers(callback){
 
+            var users = $http("/api/project/alluser");
             callback(users);
 
         };
@@ -47,19 +48,11 @@
             if(user){
                 $rootScope.user = user;
             }
-
         };
 
-        function deleteUserById(userId, callback){
+        function deleteUserById(userId){
 
-            for(index = 0; index < users.length; index++){
-
-                if (users[index]._id == userId){
-                    users.splice(i,1);
-                }
-            }
-
-            callback(users);
+            return $http.delete("/api/project/user/"+userId);
         };
 
         function updateUser(userId,updatedUser){
