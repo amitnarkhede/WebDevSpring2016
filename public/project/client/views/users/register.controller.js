@@ -11,13 +11,12 @@
             //console.log($scope.user);
             if(newUser != null){
 
-                UserService.createUser(newUser,function(res){
-                    $rootScope.user = res;
-                    //console.log($rootScope.user);
-                });
+                var res = UserService.createUser(newUser);
 
-                $location.url("/profile");
-
+                if(res){
+                    UserService.setCurrentUser(newUser);
+                    $location.url("/profile");
+                }
             }
         };
     };

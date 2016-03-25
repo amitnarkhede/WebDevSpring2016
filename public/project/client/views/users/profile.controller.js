@@ -4,12 +4,12 @@
         .controller("ProfileController",ProfileController);
 
     function ProfileController($rootScope,$scope,UserService){
-        currentUser = $rootScope.user;
+        var currentUser = $rootScope.user;
         $scope.update = update;
 
         function update(updatedUser){
             //console.log($scope.user);
-            userId = $rootScope.user._id;
+            var userId = currentUser._id;
             //console.log(userId);
             UserService.updateUser(userId,updatedUser,function(res){
                 $rootScope.user = res;

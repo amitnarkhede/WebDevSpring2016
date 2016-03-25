@@ -38,6 +38,7 @@ module.exports= function(){
     };
 
     function createNewUser(userDetails){
+        console.log(userDetails.username);
         var oldUser= findUserByUsername(userDetails.username);
         if(oldUser== null){
             userDetails._id =  (new Date()).getTime();
