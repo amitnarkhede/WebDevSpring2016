@@ -3,20 +3,7 @@
         .module("TheFilmDBApp")
         .factory("UserService",UserService);
 
-    function UserService($http){
-
-        var users = [
-            {	"_id":123, "firstName":"Alice",            "lastName":"Wonderland",
-                "username":"alice",  "password":"alice",   "roles": ["student"]		},
-            {	"_id":234, "firstName":"Bob",              "lastName":"Hope",
-                "username":"bob",    "password":"bob",     "roles": ["admin"]		},
-            {	"_id":345, "firstName":"Charlie",          "lastName":"Brown",
-                "username":"charlie","password":"charlie", "roles": ["faculty"]		},
-            {	"_id":456, "firstName":"Dan",              "lastName":"Craig",
-                "username":"dan",    "password":"dan",     "roles": ["faculty", "admin"]},
-            {	"_id":567, "firstName":"Edward",           "lastName":"Norton",
-                "username":"ed",     "password":"ed",      "roles": ["student"]		}
-        ];
+    function UserService($http,$rootScope){
 
         var userMovieLikes = [
             {
@@ -32,6 +19,7 @@
             findUserByCredentials:findUserByCredentials,
             findAllUsers:findAllUsers,
             createUser:createUser,
+            setCurrentUser : setCurrentUser,
             deleteUserById:deleteUserById,
             updateUser:updateUser,
             addMovieLike:addMovieLike,
@@ -54,9 +42,9 @@
         //};
 
         function findUserByCredentials(username,password,callback){
-            var credentials = {"username" : username, "password" : password};
-            console.log(credentials);
-            return $http.post("/api/project/user", credentials);
+            //var credentials = {"username" : username, "password" : password};
+            //console.log(credentials);
+            return $http.get("/api/project/user/" + username + "/" + password);
         }
 
         function findAllUsers(callback){
@@ -64,6 +52,7 @@
             callback(users);
 
         };
+
 
         function createUser(user, callback){
             var newUser = {
@@ -79,6 +68,13 @@
             users.push(newUser);
 
             callback(newUser);
+        };
+
+        function setCurrentUser(user){
+            if(user){
+                $rootScope.user = user;
+            }
+
         };
 
         function deleteUserById(userId, callback){

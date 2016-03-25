@@ -11,13 +11,13 @@
 
             //console.log($scope.loginUser);
 
-            if($scope.loginUser != null && loginUser.username != null && loginUser.password !=null){
+            if(loginUser != null && loginUser.username != null && loginUser.password !=null){
 
-                UserService.findUserByCredentials(loginUser.username,loginUser.password,function(res){
-                    $rootScope.user = res;
-                    //console.log($rootScope.user);
+                var res = UserService.findUserByCredentials(loginUser.username,loginUser.password);
 
-                    if($rootScope.user != null){
+                res.then(function onSuccess(response) {
+                    if(response){
+                        UserService.setCurrentUser(response.data);
                         $location.url("/profile");
                     }
                     else{
@@ -28,10 +28,6 @@
             else {
                 $scope.message = "Please enter username and password!";
             }
-
-
-
-
         };
     };
 })();
