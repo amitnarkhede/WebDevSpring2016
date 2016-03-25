@@ -8,14 +8,13 @@
         $scope.update = update;
 
         function update(updatedUser){
-            //console.log($scope.user);
             var userId = currentUser._id;
-            //console.log(userId);
-            UserService.updateUser(userId,updatedUser,function(res){
-                $rootScope.user = res;
+            var res = UserService.updateUser(userId,updatedUser);
+
+            if(res){
+                UserService.setCurrentUser(updatedUser);
                 $scope.message = "Profile updated successfully!";
-                //console.log($rootScope.user);
-            });
+            }
         };
     };
 })();

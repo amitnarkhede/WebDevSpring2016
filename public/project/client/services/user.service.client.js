@@ -28,22 +28,8 @@
 
         return service;
 
-        //function findUserByCredentials(username, password, callback){
-        //    loggedInUser = null;
-        //    for(index = 0; index < users.length; index++){
-        //
-        //        if (users[index].username == username && users[index].password == password){
-        //            loggedInUser = users[index];
-        //            break;
-        //        }
-        //    }
-        //    //console.log(users);
-        //    callback(loggedInUser);
-        //};
-
         function findUserByCredentials(username,password){
-            //var credentials = {"username" : username, "password" : password};
-            //console.log(credentials);
+
             return $http.get("/api/project/user/" + username + "/" + password);
         }
 
@@ -53,39 +39,8 @@
 
         };
 
-
-        //function createUser(user, callback){
-        //    var newUser = {
-        //        "_id":(new Date).getTime(),
-        //        "firstName": "",
-        //        "lastName":"",
-        //        "username":user.username,
-        //        "password":user.password,
-        //        "email": user.email,
-        //        "roles": "student"
-        //    };
-        //
-        //    users.push(newUser);
-        //
-        //    callback(newUser);
-        //};
-
         function createUser(user){
-            //var newUser = {
-            //    "_id":(new Date).getTime(),
-            //    "firstName": "",
-            //    "lastName":"",
-            //    "username":user.username,
-            //    "password":user.password,
-            //    "email": user.email,
-            //    "roles": "student"
-            //};
-
             return $http.post("/api/project/register", user);
-
-            //users.push(newUser);
-
-            //callback(newUser);
         };
 
         function setCurrentUser(user){
@@ -107,25 +62,13 @@
             callback(users);
         };
 
-        //function updateUser(userId, user, callback){
-        //    for(index = 0; index < users.length; index++){
-        //
-        //        if (users[index]._id == userId){
-        //            users[index] = user;
-        //            break;
-        //        }
-        //    }
-        //    //console.log(users);
-        //    callback(users[index]);
-        //};
-
         function updateUser(userId,updatedUser){
-            $http.put("/api/project/updateUser/"+userId,updatedUser);
+            return $http.put("/api/project/updateUser/"+userId,updatedUser);
         };
 
 
         function addMovieLike(imdbID,poster,title,userID){
-            //console.log(imdbID+poster+title+userID);
+
             var movieLike = {
                 "user_id":userID,
                 "movieTitle":title,
