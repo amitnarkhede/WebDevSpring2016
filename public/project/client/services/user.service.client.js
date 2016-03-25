@@ -41,7 +41,7 @@
         //    callback(loggedInUser);
         //};
 
-        function findUserByCredentials(username,password,callback){
+        function findUserByCredentials(username,password){
             //var credentials = {"username" : username, "password" : password};
             //console.log(credentials);
             return $http.get("/api/project/user/" + username + "/" + password);

@@ -1,6 +1,7 @@
 /**
  * Created by amitv on 24-Mar-16.
  */
+
 module.exports = function(app,userModel) {
     app.get("/api/project/user/:username/:password", findUserByCredentials);
 
@@ -11,7 +12,6 @@ module.exports = function(app,userModel) {
         var password=req.params.password;
 
         var user = userModel.findUserByCredentials(username,password);
-        //console.log(user);
         res.json(user);
     };
 }

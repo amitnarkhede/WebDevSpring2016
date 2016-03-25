@@ -1,5 +1,6 @@
 (function(){
     var SEARCH_URL = "http://www.omdbapi.com/?s=TITLE&page=PAGE&type=movie";
+    var POSTER_URL = "http://img.omdbapi.com/?i=IMDBID&apikey=2bf5ee9";
 
     angular
         .module("TheFilmDBApp")
@@ -26,12 +27,8 @@
             //console.log(response.Search.length);
 
             for(index = 0; index < response.Search.length; index++){
-                //console.log(index);
-                if (response.Search[index]["Poster"] == "N/A"){
-                    response.Search[index]["PosterAvailable"] = false;
-                }else{
-                    response.Search[index]["PosterAvailable"] = true;
-                }
+                console.log(response.Search[index]);
+                response.Search[index]["Poster"] = POSTER_URL.replace("IMDBID",response.Search[index]["imdbID"]);
             }
 
             //console.log(response);
