@@ -6,7 +6,8 @@
     function FormService() {
         var forms = [];
 
-        var model={ createFormForUser:createFormForUser,
+        var model={
+            createFormForUser:createFormForUser,
             findAllFormsForUser:findAllFormsForUser,
             deleteFormById:deleteFormById,
             updateFormById:updateFormById
@@ -29,7 +30,6 @@
             for(var f in forms) {
                 if (forms[f].userId == userId) {
                     userForms.push(forms[f]);
-                    //console.log(userForms);
                 }
             }
             callback(userForms);
@@ -48,13 +48,9 @@
 
         function updateFormById(formId, newForm,currentUserForms, callback){
             forms = currentUserForms;
-            //console.log(formId);
             for(var f in forms) {
-                //console.log(f);
-                //console.log(forms[f]);
                 if (forms[f].imdbID == formId) {
                     forms[f].comments  = newForm.comments;
-                    //forms[f].userId = newForm.userId;
                     break;
                 }
             }

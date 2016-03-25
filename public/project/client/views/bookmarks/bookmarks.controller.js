@@ -20,16 +20,19 @@
             if($rootScope.user == null) {
                 $location.url("/login");
             }else{
-                UserService.getMovieLike($rootScope.user._id,renderMovies);
+                UserService
+                    .getMovieLike($rootScope.user._id)
+                    .then(function(res){
+                        renderMovies(res.data);
+                    });
             }
         };
 
         init();
 
-        function renderMovies(userforms){
-            $scope.forms = userforms;
-            currentUserForms = userforms;
-            //console.log(currentUserForms);
+        function renderMovies(movies){
+            $scope.forms = movies;
+            currentUserForms = movies;
         }
 
         function addForm(formName) {

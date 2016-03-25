@@ -27,7 +27,7 @@
             //console.log(response.Search.length);
 
             for(index = 0; index < response.Search.length; index++){
-                console.log(response.Search[index]);
+                //console.log(response.Search[index]);
                 response.Search[index]["Poster"] = POSTER_URL.replace("IMDBID",response.Search[index]["imdbID"]);
             }
 
