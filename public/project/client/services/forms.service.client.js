@@ -3,7 +3,7 @@
         .module("TheFilmDBApp")
         .factory("FormService",FormService);
 
-    function FormService() {
+    function FormService($http) {
         var forms = [];
 
         var model={
@@ -35,26 +35,28 @@
             callback(userForms);
         };
 
-        function deleteFormById(formId,currentUserForms,callback){
-            forms = currentUserForms;
-            for(var f in forms) {
-                if (forms[f].imdbID == formId) {
-                    forms.splice(f, 1);
-                    break;
-                }
-            }
-            callback(forms);
+        //function deleteFormById(formId,currentUserForms,callback){
+        //    forms = currentUserForms;
+        //    for(var f in forms) {
+        //        if (forms[f].imdbID == formId) {
+        //            forms.splice(f, 1);
+        //            break;
+        //        }
+        //    }
+        //    callback(forms);
+        //};
+
+        function deleteFormById(userID,imdbID){
+            var details = {"userID" : userID , "imdbID" : imdbID};
+            return $http.delete("/api/project/deletemovie/"+ userID + "/" + imdbID);
+
         };
 
-        function updateFormById(formId, newForm,currentUserForms, callback){
-            forms = currentUserForms;
-            for(var f in forms) {
-                if (forms[f].imdbID == formId) {
-                    forms[f].comments  = newForm.comments;
-                    break;
-                }
-            }
-            callback(forms);
+        function updateFormById(userid,imdbId, comment){
+
+            var updatedObject = {"userid" : userid, "imdbID" : imdbId , "comment" : comment};
+            return $http.put("/api/project/updatecomment",updatedObject);
         };
+
     }
 })();

@@ -54,42 +54,45 @@
             $scope.forms = currentUserForms;
         }
 
-        function updateForm(newFormName) {
-            if (newFormName != null) {
+        function updateForm(imdbID,comment) {
+            if (imdbID != null) {
                 $scope.alertMessage = null;
-                var formSelected = currentUserForms[formIndexSelected];
-                formSelected.comments = newFormName;
-                FormService.updateFormById(formSelected.imdbID, formSelected,currentUserForms, renderFormAfterAction);
-                $scope.newFormName = null;
-                $scope.movieName = null;
+
+                FormService.updateFormById($rootScope.user._id,imdbID,comment);
+
+                clearSelection();
+                init();
             }else {
                 $scope.alertMessage = "Please select a movie comment to update";
             }
         }
 
-        function deleteForm(index){
+        function clearSelection(){
+            $scope.simdbID = null;
+            $scope.sMovieTitle = null;
+            $scope.sComments = null;
+        }
+
+        function deleteForm(imdbID){
             $scope.alertMessage = null;
-            formIndexSelected = index;
-            FormService.deleteFormById(currentUserForms[index].imdbID,currentUserForms,renderFormAfterAction);
+            FormService.deleteFormById($rootScope.user._id,imdbID);
+            init();
         }
 
         function renderFormAfterAction(userforms){
-            //console.log("After update :");
-            //console.log(userforms);
-            //FormService.findAllFormsForUser(currentUser._id,renderMovies);
             renderMovies(userforms);
-            //$scope.newFormName = null;
-            //$scope.movieName = null;
         }
 
         function selectForm(index){
-            //console.log(index);
+
             $scope.alertMessage = null;
             formIndexSelected = index;
-            //console.log(currentUserForms);
-            //console.log("Hello");
-            $scope.newFormName = currentUserForms[index].comments;
-            $scope.movieName = currentUserForms[index].movieTitle;
+            var selected = currentUserForms[index];
+            $scope.sMovieTitle = selected.movieTitle;
+            $scope.sComments = selected.comments;
+            $scope.simdbID = selected.imdbID;
+            $scope.sPoster = selected.poster;
+
         }
     }
 

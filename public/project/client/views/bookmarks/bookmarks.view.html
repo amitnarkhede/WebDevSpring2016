@@ -12,11 +12,11 @@
         <th><b>Action</b></th>
     </tr>
     <tr>
-        <td></td>
-        <td><input type="text" disabled ng-model="movieName"/></td>
-        <td><input type="text" class="form-control" id="inputFormName" placeholder="Comments" ng-model="newFormName"></td>
+        <td>{{simdbID}}</td>
+        <td><input type="text" disabled ng-model="sMovieTitle"/></td>
+        <td><input type="text" class="form-control" id="inputFormName" placeholder="Comments" ng-model="sComments"></td>
         <td class="nowrap-button">
-            <a ng-click="updateForm(newFormName)" class="btn btn-success"><span class="glyphicon glyphicon-ok"/></a>
+            <a ng-click="updateForm(simdbID,sComments)" class="btn btn-success"><span class="glyphicon glyphicon-ok"/></a>
         </td>
     </tr>
     <tr ng-repeat="movie in forms">
@@ -26,7 +26,7 @@
         <td><a class="clickable-td" href="#/details/{{movie.imdbID}}">{{movie.movieTitle}}</a></td>
         <td>{{movie.comments}}</a></td>
         <td class="nowrap-button">
-            <a ng-click="deleteForm($index)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"/></a>
+            <a ng-click='deleteForm(movie.imdbID)' class="btn btn-danger"><span class="glyphicon glyphicon-remove"/></a>
             <a ng-click="selectForm($index)" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"/></a>
         </td>
     </tr>
