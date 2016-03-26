@@ -2,24 +2,29 @@
     <h1>Bookmarked Movies by {{user.username}}</h1>
 </div>
 
-<div class="col-sm-offset-2 col-sm-10"><center class="custom-alert-red">{{alertMessage}}</center></div>
+<div class="col-sm-10"><center class="custom-alert-red">{{alertMessage}}</center></div>
 
 <table class="table table-striped top-buffer">
-    <tr>
-        <th><b>Poster</b></th>
-        <th><b>Movie Title</b></th>
+    <tr class="row">
+        <th colspan="2"><b>Movie Title</b></th>
         <th><b>Comments</b></th>
         <th><b>Action</b></th>
     </tr>
-    <tr>
-        <td>{{simdbID}}</td>
-        <td><input type="text" disabled ng-model="sMovieTitle"/></td>
+    <tr class="row">
+        <td colspan="2"><input type="text" disabled ng-model="sMovieTitle"/></td>
         <td><input type="text" class="form-control" id="inputFormName" placeholder="Comments" ng-model="sComments"></td>
         <td class="nowrap-button">
             <a ng-click="updateForm(simdbID,sComments)" class="btn btn-success"><span class="glyphicon glyphicon-ok"/></a>
         </td>
     </tr>
-    <tr ng-repeat="movie in forms">
+    <br>
+    <tr class="row">
+        <th><b>Poster</b></th>
+        <th><b>Movie Title</b></th>
+        <th><b>Comments</b></th>
+        <th><b>Action</b></th>
+    </tr>
+    <tr ng-repeat="movie in forms" class="row">
         <td>
             <img height="100px" ng-src="{{movie.poster}}"/>
         </td>
