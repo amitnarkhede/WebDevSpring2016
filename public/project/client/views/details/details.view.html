@@ -34,6 +34,9 @@
 </div>
 
 <div ng-show="model.trailer">
+    <br>
     <h2>Trailer : </h2><br>
-    <iframe ng-src="{{model.trailer | trusted}}" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe ng-src="{{model.trailer | trusted}}" frameborder="0" allowfullscreen></iframe>
+    </div>
 </div>

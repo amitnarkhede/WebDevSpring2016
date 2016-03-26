@@ -1,5 +1,6 @@
 (function(){
     var DETAILS_URL = "http://www.omdbapi.com/?i=IMDBID&type=movie&plot=full&tomatoes=true";
+    var POSTER_URL = "http://img.omdbapi.com/?i=IMDBID&apikey=2bf5ee9"
 
     angular
         .module("TheFilmDBApp")
@@ -25,9 +26,10 @@
         function renderDetails(response) {
             //console.log(response);
             vm.details = response;
+            vm.details.Poster = POSTER_URL.replace("IMDBID",vm.details.imdbID);
 
             MovieService.findMovieTrailer(imdbId,function(res){
-                    ///console.log(res);
+                    console.log(res);
                     if(res['trailers']['youtube'][0]){
                         vm.trailer = "http://www.youtube.com/embed/" + res['trailers']['youtube'][0]['source'].trim()
                     }else{

@@ -62,3 +62,7 @@ a.clickable-td {
         max-width:60%
     }
 }
+
+.embed-responsive {
+    width: 80%;
+}
