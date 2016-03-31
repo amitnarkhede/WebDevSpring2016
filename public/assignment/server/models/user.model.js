@@ -1,6 +1,13 @@
 var mock = require("./user.mock.json");
 
-module.exports= function(){
+module.exports= function(uuid,db,mongoose){
+    // load user schema
+
+    var UserSchema = require("./user.schema.server.js")(mongoose);
+
+    var UserModel = mongoose.model('User',UserSchema);
+
+    var q = require("q");
 
     var api = {
         findUserByCredentials: findUserByCredentials,
@@ -10,7 +17,8 @@ module.exports= function(){
         deleteUser:deleteUser,
         getUserByUserName:getUserByUserName,
         getUserById:getUserById
-    }
+    };
+
         return api;
 
     function findUserByCredentials(username,password) {
@@ -33,13 +41,29 @@ module.exports= function(){
     }
 
     function createNewUser(userDetails){
-        var oldUser= findUserByUsername(userDetails.username);
+        var deferred = q.defer();
+        var oldUser = findUserByUsername(userDetails.username);
+
         if(oldUser== null){
-            userDetails._id =  (new Date()).getTime();
+
+            UserModel.create(userDetails,function(err,doc){
+                if(err){
+                    deferred.reject(err);
+                }
+                else{
+                    deferred.resolve(doc);
+
+                }
+            });
+
+            /*userDetails._id =  (new Date()).getTime();
             mock.push(userDetails);
-                    return userDetails;
+                    return userDetails;*/
         }
-        return null;
+        //return null;
+
+        //return a promise
+        return deferred.promise;
     }
 
     function updateUser(id,updatedUserDetails) {

@@ -1,6 +1,6 @@
 var formMock = require("./form.mock.json");
 
-module.exports= function(){
+module.exports= function(uuid,db,mongoose){
 
     var api = {
         getFieldsForForm:getFieldsForForm,

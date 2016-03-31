@@ -16,10 +16,23 @@ module.exports = function(app,userModel) {
     }
 
     function register(req,res){
-        var userDetails = req.body;
-        var newUser=userModel.createNewUser(userDetails);
-        res.json(newUser);
+        var user = req.body;
+        userModel
+            .createNewUser(user)
+            .then(
+                //login in promise resolved
+                function( doc ){
+                    //console.log(doc);
+                    req.session.currentUser = user;
+                    res.json(user);
+                },
+                //send error if promise rejected
+                function( err ){
+                    //console.log(err);
+                    res.status(400).send(err);
 
+                }
+            );
     }
 
     function updateUser(req,res){
