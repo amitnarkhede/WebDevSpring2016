@@ -13,6 +13,7 @@
         function init(){
 
         }
+
         init();
 
         function register(user){
@@ -45,15 +46,16 @@
             UserService
                 .register(user)
                 .then(function (response){
+                    console.log(response.data);
+
                     if(response.data) {
                         UserService.setCurrentUser(response.data);
                         $location.url("/profile");
                     }
                     else{
-                        vm.message="Username already exists";
+                        vm.message = "Username already exists";
                     }
                 });
         }
     }
 })();
-

@@ -23,8 +23,8 @@ module.exports = function(app,userModel) {
                 //login in promise resolved
                 function( doc ){
                     //console.log(doc);
-                    req.session.currentUser = user;
-                    res.json(user);
+                    req.session.currentUser = doc;
+                    res.json(doc);
                 },
                 //send error if promise rejected
                 function( err ){
@@ -35,11 +35,32 @@ module.exports = function(app,userModel) {
             );
     }
 
+    //function updateUser(req,res){
+    //    var id=req.params.id;
+    //    var updatedUserDetails = req.body;
+    //    var updatedUser=userModel.updateUser(id,updatedUserDetails);
+    //    res.json(updatedUser);
+    //}
+
     function updateUser(req,res){
         var id=req.params.id;
         var updatedUserDetails = req.body;
-        var updatedUser=userModel.updateUser(id,updatedUserDetails);
-        res.json(updatedUser);
+
+        userModel
+            .updateUser(id,updatedUserDetails)
+            .then(
+                //login in promise resolved
+                function( doc ){
+                    //console.log(doc);
+                    req.session.currentUser = doc;
+                    res.json(doc);
+                },
+                //send error if promise rejected
+                function( err ){
+                    //console.log(err);
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function deleteUser(req,res){

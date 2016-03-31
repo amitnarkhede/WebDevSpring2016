@@ -10,9 +10,6 @@
         vm.message= null;
         vm.update=update;
 
-        // vm.user = currentUser;
-
-
         vm.firstName=currentUser.firstName;
         vm.lastName=currentUser.lastName;
         vm.username=currentUser.username;
@@ -22,18 +19,22 @@
         function init(){
 
         }
-        init;
+
+        init();
 
         function update(username,passwaord,firstName,lastName,email){
+
+            //prepare new user object that needs to be sent to remote
             var newDetails= {"_id":currentUser._id, "username" : username, "firstName": firstName,
                 "lastName":lastName , "email" :email ,"password" :passwaord};
-            UserService.updateUser(newDetails)
+
+            UserService
+                .updateUser(newDetails)
                 .then(
                     function(response){
-                        if(response){
-
-                            UserService.setCurrentUser(response.data);
-
+                        if(response.data.ok){
+                            //console.log(response.data.ok)
+                            UserService.setCurrentUser(newDetails);
                             vm.message="Profile Update";
                         }
                         else{

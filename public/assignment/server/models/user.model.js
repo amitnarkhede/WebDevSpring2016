@@ -74,12 +74,12 @@ module.exports= function(uuid,db,mongoose){
         UserModel.update(
             {_id : userId},
             {$set : updatedUserDetails},
-            function(err,doc){
+            function(err,stats){
                 if(err){
-                    deferred.reject(err);
+                    deferred.reject();
                 }
                 else{
-                    deferred.resolve(doc);
+                    deferred.resolve(stats);
                 }
             });
         //return a promise
