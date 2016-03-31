@@ -1,5 +1,3 @@
-var mock = require("./user.mock.json");
-
 module.exports= function(uuid,db,mongoose){
     // load user schema
 
@@ -15,100 +13,111 @@ module.exports= function(uuid,db,mongoose){
         createNewUser :createNewUser,
         updateUser:updateUser,
         deleteUser:deleteUser,
-        getUserByUserName:getUserByUserName,
-        getUserById:getUserById
+        getAllUsers:getAllUsers
     };
 
-        return api;
+    return api;
 
     function findUserByCredentials(username,password) {
-        for(var u in mock) {
-                      if( mock[u].username == username &&
-                                mock[u].password == password) {
-                               return mock[u];
-                            }
-                   }
-                return null;
-        }
+        var deferred = q.defer();
+        UserModel.find(
+            {username: username, password : password},
+            function(err,doc){
+                if(err){
+                    deferred.reject(err);
+                }else{
+                    deferred.resolve(doc);
+                }
+            }
+        );
+
+        return deferred.promise;
+    }
+
 
     function findUserByUsername(userName){
-        for(var u in mock){
-            if(mock[u].username=== userName){
-                return mock[u];
+        var deferred = q.defer();
+        UserModel.find(
+            {username: userName},
+            function(err,doc){
+                if(err){
+                    deferred.reject(err);
+                }else{
+                    deferred.resolve(doc);
+                }
             }
-            return null;
-        }
+        );
+
+        return deferred.promise;
     }
 
     function createNewUser(userDetails){
         var deferred = q.defer();
-        var oldUser = findUserByUsername(userDetails.username);
 
-        if(oldUser== null){
+        UserModel.create(userDetails,function(err,doc){
+            if(err){
+                deferred.reject(err);
+            }
+            else{
+                deferred.resolve(doc);
 
-            UserModel.create(userDetails,function(err,doc){
-                if(err){
-                    deferred.reject(err);
-                }
-                else{
-                    deferred.resolve(doc);
-
-                }
-            });
-
-            /*userDetails._id =  (new Date()).getTime();
-            mock.push(userDetails);
-                    return userDetails;*/
-        }
-        //return null;
+            }
+        });
 
         //return a promise
         return deferred.promise;
     }
 
-    function updateUser(id,updatedUserDetails) {
+    function updateUser(userId,updatedUserDetails){
+        var deferred = q.defer();
 
-        //we need to check if userName is unique here
-        for (var u in mock) {
-            if (mock[u]._id == id) {
-                mock[u] = updatedUserDetails;
-                mock[u].email = updatedUserDetails.email;
-                return mock[u];
-            }
-        }
+        UserModel.update(
+            {_id : userId},
+            {$set : updatedUserDetails},
+            function(err,doc){
+                if(err){
+                    deferred.reject(err);
+                }
+                else{
+                    deferred.resolve(doc);
+                }
+            });
+        //return a promise
+        return deferred.promise;
     }
 
-        function deleteUser(id) {
-            for (var u in mock) {
-                if (mock[u]._id == id) {
-                    mock.splice(u, 1);
+    function deleteUser(userId) {
+        var deferred = q.defer();
+
+        UserModel.remove(
+            {_id : userId},
+            function(err,doc){
+                if(err){
+                    deferred.reject(err);
                 }
-            }
-        }
+                else{
+                    deferred.resolve(doc);
+                }
+            });
+
+        return deferred.promise;
+    }
 
     function getAllUsers(){
-        return mock;
+        var deferred = q.defer();
+
+        UserModel.find(
+            function(err,doc){
+                if(err){
+                    deferred.reject(err);
+                }
+                else{
+                    deferred.resolve(doc);
+                }
+            });
+
+        return deferred.promise;
     }
-
-    function getUserByUserName(username){
-        for (var u in mock) {
-            if (mock[u].username == username) {
-                return mock[u];
-            }
-        }
-        return null;
-    }
-
-    function getUserById(id){
-        for (var u in mock) {
-            if (mock[u]._id == id) {
-                return mock[u];
-            }
-        }
-        return null;
-    }
-
-
 }
 
 
