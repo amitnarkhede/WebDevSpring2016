@@ -18,12 +18,11 @@ app.use(multer());
 // define process.env.PASSPORT_SECRET in your local environment!
 
 app.use(session({
-    secret:process.env.PASSPORT_SECRET,
     resave: true,
-    saveUninitialized: true
-}));
+    saveUninitialized: true,
+    secret: process.env.PASSPORT_SECRET }));
 
-app.use(cookieParser());
+//app.use(cookieParser());
 
 var connectionString = 'mongodb://127.0.0.1:27017/cs5610fall2015exmpl1';
 
