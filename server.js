@@ -24,7 +24,7 @@ app.use(session({
 
 //app.use(cookieParser());
 
-var connectionString = 'mongodb://127.0.0.1:27017/cs5610fall2015exmpl1';
+var connectionString = 'mongodb://127.0.0.1:27017/webdev2016';
 
 // use remote connection string
 // if running in remote server
