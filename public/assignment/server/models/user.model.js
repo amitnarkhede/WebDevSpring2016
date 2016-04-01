@@ -20,12 +20,13 @@ module.exports= function(uuid,db,mongoose){
 
     function findUserByCredentials(username,password) {
         var deferred = q.defer();
-        UserModel.find(
+        UserModel.findOne(
             {username: username, password : password},
             function(err,doc){
                 if(err){
                     deferred.reject(err);
                 }else{
+                    //console.log("Found : "+ doc);
                     deferred.resolve(doc);
                 }
             }

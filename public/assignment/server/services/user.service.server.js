@@ -11,8 +11,23 @@ module.exports = function(app,userModel) {
     function findUserByCredentails(req,res){
         var username=req.params.username;
         var password=req.params.password;
-        var user=userModel.findUserByCredentials(username,password);
-        res.json(user);
+
+        userModel
+            .findUserByCredentials(username,password)
+            .then(
+                //login if promise resolved
+                function( doc ){
+                    req.session.currentUser = doc;
+                    res.json(doc);
+                },
+                //send error if promise rejected
+                function( err ){
+                    //console.log(err);
+                    res.status(400).send(err);
+
+                }
+            );
+        //res.json(user);
     }
 
     function register(req,res){
@@ -20,7 +35,7 @@ module.exports = function(app,userModel) {
         userModel
             .createNewUser(user)
             .then(
-                //login in promise resolved
+                //login if promise resolved
                 function( doc ){
                     //console.log(doc);
                     req.session.currentUser = doc;
