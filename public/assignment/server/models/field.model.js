@@ -1,6 +1,8 @@
 var formMock = require("./form.mock.json");
 
-module.exports= function(uuid,db,mongoose){
+module.exports= function(formModel,db,mongoose){
+
+    var q = require("q");
 
     var api = {
         getFieldsForForm:getFieldsForForm,
@@ -12,55 +14,66 @@ module.exports= function(uuid,db,mongoose){
     return api;
 
     function getFieldsForForm(formId){
-        for (var u in formMock) {
-            if (formMock[u]._id == formId) {
-                return formMock[u].fields;
-            }
-        }
-        return null;
+
+        var deferred = q.defer();
+        formModel
+            .findFormById(formId)
+            .then(function(doc){
+                deferred.resolve(doc[0].fields);
+            });
+
+        return deferred.promise;
     }
 
     function createFieldForForm(formId,field){
-        for (var u in formMock) {
-            if (formMock[u]._id == formId) {
-                formMock[u].fields.push(field);
-                return formMock[u].fields;
-            }
-        }
-        return null;
+
+        formModel
+            .findFormById(formId)
+            .then(function(doc){
+                var fields = doc[0].fields;
+                fields.push(field);
+                doc[0].fields = fields;
+
+                doc[0].save();
+            });
     }
 
     function deleteFieldFromForm(formId,fieldId){
-        for (var u in formMock) {
-            if (formMock[u]._id == formId) {
-                for(var v in formMock[u].fields){
-                    if(fieldId== formMock[u].fields[v]._id){
-                        formMock[u].fields.splice(v,1);
-                        var allFields=getFieldsForForm(formId);
-                        return allFields;
+
+        formModel
+            .findFormById(formId)
+            .then(function(doc){
+                var fields = doc[0].fields;
+
+                for(var f in fields){
+                    if(fields[f]._id == fieldId){
+                        fields.splice(f,1);
                     }
                 }
-            }
-        }
-        return null;
+
+                doc[0].fields = fields;
+                doc[0].save();
+            });
     }
 
     function updateField(formId,fieldId,updatedField){
-        for (var u in formMock) {
-            if (formMock[u]._id == formId) {
-                for(var v in formMock[u].fields){
-                    if(fieldId== formMock[u].fields[v]._id){
-                        console.log("before",formMock[u].fields[v]);
-                        formMock[u].fields[v]=updatedField;
-                        console.log("after",formMock[u].fields[v]);
-                        var allFields=getFieldsForForm(formId);
-                        console.log("all",allFields);
-                        return allFields;
+        console.log(formId);
+        formModel
+            .findFormById(formId)
+            .then(function(doc){
+
+                var fields = doc[0].fields;
+
+                for(var f in fields){
+                    if(fields[f]._id == fieldId){
+                        fields[f]=updatedField;
                     }
                 }
-            }
-        }
-        return null;
+
+                doc[0].fields = fields;
+
+                doc[0].save();
+            });
 
     }
 

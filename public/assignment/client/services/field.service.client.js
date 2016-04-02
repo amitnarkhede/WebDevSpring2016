@@ -12,12 +12,13 @@
             getFieldForForm:getFieldForForm,
             deleteFieldFromForm:deleteFieldFromForm,
             updateField:updateField
-        }
+        };
+
         return model;
 
 
         function createFieldForForm(formId,field){
-            console.log("am in field service");
+            //console.log("am in field service");
             return $http.post("/api/assignment/form/"+formId+"/field",field);
         }
 
@@ -35,6 +36,9 @@
         }
 
         function updateField(formId,fieldId,field){
+            formId = formId.toString();
+            console.log("client side",formId);
+
             return $http.put("/api/assignment/form/"+formId+"/field/"+fieldId, field);
         }
     }

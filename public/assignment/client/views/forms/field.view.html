@@ -69,28 +69,28 @@
                                         <div ng-switch on="model.selectedField.type"> 
 
                                             <label ng-switch-when="TEXT" type="text">Label</label>
-                                            <input ng-switch-when="TEXT" type="TEXT" ng-model="model.field.label">
+                                            <input ng-switch-when="TEXT" type="TEXT" ng-model="model.selectedField.label">
                                             <label ng-switch-when="TEXT" type="text">Placeholder</label>
-                                            <input ng-switch-when="TEXT" type="text" ng-model="model.field.placeholder"> 
+                                            <input ng-switch-when="TEXT" type="text" ng-model="model.selectedField.placeholder"> 
 
 
                                             <label ng-switch-when="TEXTAREA" type="text">Label</label>
-                                            <input ng-switch-when="TEXTAREA" type="TEXTAREA"ng-model="model.field.label" >
+                                            <input ng-switch-when="TEXTAREA" type="TEXTAREA"ng-model="model.selectedField.label" >
                                             <label ng-switch-when="TEXTAREA" type="text">Placeholder</label>
                                             <textarea ng-switch-when="TEXTAREA" class="form-control" rows="3"></textarea> 
 
                                             <label ng-switch-when="DATE">Label</label>
-                                            <input ng-switch-when="DATE" type="date" ng-model="model.field.label"> 
+                                            <input ng-switch-when="DATE" type="date" ng-model="model.selectedField.label"> 
 
 
                                             <label ng-switch-when="EMAIL" type="email">Label</label>
-                                            <input ng-switch-when="EMAIL" type="text" ng-model="model.field.label">
+                                            <input ng-switch-when="EMAIL" type="text" ng-model="model.selectedField.label">
                                             <label ng-switch-when="EMAIL" type="email">Placeholder</label>
-                                            <input ng-switch-when="EMAIL" type="email" ng-model="model.field.placeholder"> 
+                                            <input ng-switch-when="EMAIL" type="email" ng-model="model.selectedField.placeholder"> 
 
 
                                             <label ng-switch-when="OPTIONS" type="text">Label</label>
-                                            <input ng-switch-when="OPTIONS" type="text" ng-model="model.field.label">
+                                            <input ng-switch-when="OPTIONS" type="text" ng-model="model.selectedField.label">
                                             <label ng-switch-when="OPTIONS" type="text">Options</label>
                                             <select ng-switch-when="OPTIONS"> 
                                                 <option ng-repeat="option in model.selectedField.options">{{model.selectedField.label}}</option> 
@@ -98,7 +98,7 @@
 
 
                                             <label ng-switch-when="CHECKBOXES" type="text">Label</label>
-                                            <input ng-switch-when="CHECKBOXES" type="text" ng-model="model.field.label">
+                                            <input ng-switch-when="CHECKBOXES" type="text" ng-model="model.selectedField.label">
                                             <div class="checkbox" ng-switch-when="CHECKBOXES"> 
                                                 <label ng-repeat="option in model.selectedField.options"> 
                                                     <input type="checkbox" value=""> 
@@ -107,7 +107,7 @@
                                             </div> 
 
                                             <label ng-switch-when="RADIOBUTTONS" type="text">Label</label>
-                                            <input ng-switch-when="RADIOBUTTONS" type="text" ng-model="model.field.label">
+                                            <input ng-switch-when="RADIOBUTTONS" type="text" ng-model="model.selectedField.label">
                                             <div class="radio" ng-switch-when="RADIOBUTTONS"> 
                                                 <label ng-repeat="option in model.selectedField.options"> 
                                                     <input type="radio"> 
@@ -117,7 +117,7 @@
 
                                             <div>
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                <button class="btn btn-default" ng-click="model.okayField(field)">Ok</button>
+                                                <button class="btn btn-default" ng-click="model.okayField(model.selectedField)">Ok</button>
                                             </div> 
                                         </div> 
                                     </div>

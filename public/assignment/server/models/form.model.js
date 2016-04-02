@@ -8,6 +8,7 @@ module.exports= function(uuid,db,mongoose){
 
     var api = {
         findFormByTitle:findFormByTitle,
+        findFormById:findFormById,
         findAllFormsForUser:findAllFormsForUser,
         addForm:addForm,
         deleteForm:deleteForm,
@@ -20,11 +21,26 @@ module.exports= function(uuid,db,mongoose){
 
         var deferred = q.defer();
 
-        FormModel.find(title , function(err,doc){
+        FormModel.find({title : title} , function(err,doc){
             if(err){
                 deferred.reject(err);
             } else {
                 deferred.resolve(doc[0]);
+            }
+        });
+
+        return deferred.promise;
+    }
+
+    function findFormById(formId) {
+
+        var deferred = q.defer();
+
+        FormModel.find({_id : formId} , function(err,doc){
+            if(err){
+                deferred.reject(err);
+            } else {
+                deferred.resolve(doc);
             }
         });
 
@@ -93,6 +109,8 @@ module.exports= function(uuid,db,mongoose){
     function updateForm(formId,newForm){
 
         var deferred = q.defer();
+        newForm.updated = (new Date).getTime();
+
         FormModel.update({_id : formId}, newForm, function(err,doc){
             if(err){
                 deferred.reject(err);
