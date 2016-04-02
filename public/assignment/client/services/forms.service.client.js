@@ -25,8 +25,8 @@
             return $http.get("/api/assignment/findAllFormsForUser/"+id+"/form");
         }
 
-        function deleteForm(formToDelete,userId){
-            return $http.delete("/api/assignment/form/"+formToDelete+"/"+userId);
+        function deleteForm(formToDelete){
+            return $http.delete("/api/assignment/form/"+formToDelete);
         }
         function updateForm(formToBeUpdatedId,form){
             return $http.put("/api/assignment/form/"+formToBeUpdatedId,form);

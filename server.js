@@ -22,7 +22,7 @@ app.use(session({
     saveUninitialized: true,
     secret: process.env.PASSPORT_SECRET }));
 
-//app.use(cookieParser());
+app.use(cookieParser());
 
 var connectionString = 'mongodb://127.0.0.1:27017/webdev2016';
 

@@ -28,6 +28,7 @@
                     });
             }
         }
+
         init();
 
         function addForm(formName){
@@ -36,7 +37,8 @@
             if(formName!=null){
                 FormService.addForm(newForm,userId)
                     .then(function(response){
-                        vm.forms=response.data;
+                        //console.log(response);
+                        vm.forms.push(response.data);
                         vm.formIndexSelected=null;
                         vm.formName=null;
                     })
@@ -57,6 +59,7 @@
         }
 
         function finalList(response){
+            console.log(response);
             FormService.findAllFormsForUser(vm.currentUser._id)
                 .then(function(response){
                     if(response.data) {
@@ -68,6 +71,8 @@
         }
 
         function selectForm(index){
+            console.log(vm.forms[index]);
+
             vm.formIndexSelected = index;
             vm.formName = vm.forms[index].title;
         }
@@ -78,10 +83,8 @@
             var formToDelete=vm.forms[index]._id;
             FormService.deleteForm(formToDelete,userId)
                 .then(function(response){
-                    console.log("after deletion",response.data);
-                    vm.forms=response.data;
-                    vm.formIndexSelected=null;
-                    vm.formName=null;
+                    //console.log("after deletion",response.data);
+                    init();
                 })
         }
 
