@@ -69,6 +69,12 @@ module.exports= function(uuid,db,mongoose){
 
     function updateUser(userId,updatedUserDetails){
         var deferred = q.defer();
+        if(!Array.isArray(updatedUserDetails.email)) {
+            updatedUserDetails.email = updatedUserDetails.email.split(",");
+        }
+        if(!Array.isArray(updatedUserDetails.phone)) {
+            updatedUserDetails.phone = updatedUserDetails.phone.split(",");
+        }
 
         UserModel.update(
             {_id : userId},

@@ -15,6 +15,7 @@
         vm.username=currentUser.username;
         vm.password=currentUser.password;
         vm.email=currentUser.email;
+        vm.phone=currentUser.phone;
 
         function init(){
 
@@ -22,11 +23,11 @@
 
         init();
 
-        function update(username,passwaord,firstName,lastName,email){
+        function update(username,passwaord,firstName,lastName,email,phone){
 
             //prepare new user object that needs to be sent to remote
             var newDetails= {"_id":currentUser._id, "username" : username, "firstName": firstName,
-                "lastName":lastName , "email" :email ,"password" :passwaord};
+                "lastName":lastName , "email" :email ,"password" :passwaord, "phone" : phone};
 
             UserService
                 .updateUser(newDetails)
