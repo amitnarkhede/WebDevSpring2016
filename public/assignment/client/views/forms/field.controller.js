@@ -18,7 +18,6 @@
         function init(){
             FieldService.getFieldsForForm(formId)
                 .then(function(response){
-                    console.log(response);
                     vm.existingFields=response.data;
                 })
         }
@@ -61,28 +60,37 @@
                 ]};
             }
 
-            FieldService.createFieldForForm(formId, field);
-            init();
+            FieldService
+                .createFieldForForm(formId, field)
+                .then(function(res){
+                    init();
+                });
+
 
 
         }
 
         function removeField(field){
-            FieldService.deleteFieldFromForm(formId, field._id);
-            init();
+            FieldService
+                .deleteFieldFromForm(formId, field._id)
+                .then(function(res){
+                    init();
+                });
+
         }
 
         function editField(field){
-            //console.log("Selected field : ",field);
             vm.selectedField=field;
             init();
         }
 
         function okayField(field){
-            FieldService.updateField(formId,vm.selectedField._id,field);
-            init();
+            FieldService
+                .updateField(formId,vm.selectedField._id,field)
+                .then(function(res){
+                    init();
+                });
         }
-
     }
 })();
 
