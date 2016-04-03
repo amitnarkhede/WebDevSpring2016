@@ -26,7 +26,6 @@ module.exports= function(uuid,db,mongoose){
                 if(err){
                     deferred.reject(err);
                 }else{
-                    //console.log("Found : "+ doc);
                     deferred.resolve(doc);
                 }
             }
@@ -64,7 +63,6 @@ module.exports= function(uuid,db,mongoose){
 
             }
         });
-
         //return a promise
         return deferred.promise;
     }
@@ -106,7 +104,6 @@ module.exports= function(uuid,db,mongoose){
 
     function getAllUsers(){
         var deferred = q.defer();
-
         UserModel.find(
             function(err,doc){
                 if(err){

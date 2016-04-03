@@ -19,20 +19,20 @@
                                 <label>{{field.label}}</label>
 
                                 <div ng-switch on="field.type">
-                                    <input ng-switch-when="TEXT" type="text" placeholder={{field.placeholder}}>
-                                    <textarea ng-switch-when="TEXTAREA" class="form-control" rows="3"></textarea>
-                                    <input ng-switch-when="DATE" type="date">
-                                    <input ng-switch-when="EMAIL" type="email" placeholder={{field.placeholder}}>
+                                    <input class="form-control" ng-switch-when="TEXT" type="text" placeholder={{field.placeholder}}>
+                                    <textarea class="form-control" ng-switch-when="TEXTAREA" class="form-control" rows="3" placeholder={{field.placeholder}}></textarea>
+                                    <input class="form-control" ng-switch-when="DATE" type="date">
+                                    <input class="form-control" ng-switch-when="EMAIL" type="email" placeholder={{field.placeholder}}>
                                     <select ng-switch-when="OPTIONS">
                                         <option ng-repeat="option in field.options">{{option.label}}</option>
                                     </select>
                                     <div class="checkbox" ng-switch-when="CHECKBOXES">
                                         <label ng-repeat="option in field.options">
-                                            <input type="checkbox" value="">
-                                            {{option}}
+                                            <input type="checkbox" value="{{option.value}}">
+                                            {{option.label}}
                                         </label>
                                     </div>
-                                    <div class="radio" ng-switch-when="RADIOBUTTONS">
+                                    <div class="radio" ng-switch-when="RADIO">
                                         <label ng-repeat="option in field.options">
                                             <input type="radio">
                                             {{option.label}}
@@ -44,9 +44,8 @@
                     </div>
                     <div class="col-xs-5">
                         <button ng-click="model.editField(field)" data-toggle="modal" href="#" class="glyphicon glyphicon-pencil" data-target="#myEdit"></button>
-                        <span href="#" class="glyphicon glyphicon-plus"></span>
+
                         <button ng-click="model.removeField(field)" href="#" class="glyphicon glyphicon-remove"></button>
-                        <span href="#" class="glyphicon glyphicon-menu-hamburger"></span>
                     </div>
                 </div>
 
@@ -61,67 +60,78 @@
                                 <h4 class="modal-title">{{model.selectedField.type}}</h4>
                             </div>
                             <div class="modal-body">
+                                <div ng-switch on="model.selectedField.type"> 
+                                    <div ng-switch-when="TEXT">
+                                        <form>
+                                            <label>Label</label>
+                                            <input type="TEXT" class="form-control" ng-model="model.selectedField.label"><br>
+                                            <label>Placeholder</label>
+                                            <input type="text" class="form-control" ng-model="model.selectedField.placeholder"> 
+                                        </form>
+                                    </div>
 
-                                <form> 
-                                    <div class="form-group form-horizontal"> 
+                                    <div ng-switch-when="TEXTAREA">
+                                        <form>
+                                            <label>Label</label>
+                                            <input class="form-control" type="text" ng-model="model.selectedField.label" ><br>
+                                            <label>Placeholder</label>
+                                            <textarea class="form-control" rows="3" ng-model="model.selectedField.placeholder"></textarea>
+                                        </form>
+                                    </div>
+
+                                    <div ng-switch-when="DATE">
+                                        <form>
+                                            <label>Label</label>
+                                            <input class="form-control" type="text" ng-model="model.selectedField.label"> 
+                                        </form>
+                                    </div>
 
 
-                                        <div ng-switch on="model.selectedField.type"> 
-
-                                            <label ng-switch-when="TEXT" type="text">Label</label>
-                                            <input ng-switch-when="TEXT" type="TEXT" ng-model="model.selectedField.label">
-                                            <label ng-switch-when="TEXT" type="text">Placeholder</label>
-                                            <input ng-switch-when="TEXT" type="text" ng-model="model.selectedField.placeholder"> 
-
-
-                                            <label ng-switch-when="TEXTAREA" type="text">Label</label>
-                                            <input ng-switch-when="TEXTAREA" type="TEXTAREA"ng-model="model.selectedField.label" >
-                                            <label ng-switch-when="TEXTAREA" type="text">Placeholder</label>
-                                            <textarea ng-switch-when="TEXTAREA" class="form-control" rows="3"></textarea> 
-
-                                            <label ng-switch-when="DATE">Label</label>
-                                            <input ng-switch-when="DATE" type="date" ng-model="model.selectedField.label"> 
-
-
-                                            <label ng-switch-when="EMAIL" type="email">Label</label>
-                                            <input ng-switch-when="EMAIL" type="text" ng-model="model.selectedField.label">
-                                            <label ng-switch-when="EMAIL" type="email">Placeholder</label>
-                                            <input ng-switch-when="EMAIL" type="email" ng-model="model.selectedField.placeholder"> 
-
-
-                                            <label ng-switch-when="OPTIONS" type="text">Label</label>
-                                            <input ng-switch-when="OPTIONS" type="text" ng-model="model.selectedField.label">
-                                            <label ng-switch-when="OPTIONS" type="text">Options</label>
+                                    <div ng-switch-when="DATE">
+                                        <form>
+                                            <label>Label</label>
+                                            <input class="form-control" type="text" ng-model="model.selectedField.label">
+                                            <label>Options</label>
                                             <select ng-switch-when="OPTIONS"> 
-                                                <option ng-repeat="option in model.selectedField.options">{{model.selectedField.label}}</option> 
+                                                <option ng-repeat="option in model.selectedField.options">
+                                                    {{model.selectedField.label}}
+                                                </option> 
                                             </select> 
+                                        </form>
+                                    </div>
 
-
-                                            <label ng-switch-when="CHECKBOXES" type="text">Label</label>
-                                            <input ng-switch-when="CHECKBOXES" type="text" ng-model="model.selectedField.label">
-                                            <div class="checkbox" ng-switch-when="CHECKBOXES"> 
+                                    <div ng-switch-when="CHECKBOXES">
+                                        <form>
+                                            <label>Label</label>
+                                            <input class="form-control" type="text" ng-model="model.selectedField.label">
+                                            <div class="checkbox"> 
                                                 <label ng-repeat="option in model.selectedField.options"> 
-                                                    <input type="checkbox" value=""> 
-                                                    {{option}} 
+                                                    <input type="checkbox" value="{{option.value}} "> 
+                                                    {{option.label}} 
                                                 </label> 
-                                            </div> 
+                                            </div>
+                                        </form>
+                                    </div> 
 
-                                            <label ng-switch-when="RADIOBUTTONS" type="text">Label</label>
-                                            <input ng-switch-when="RADIOBUTTONS" type="text" ng-model="model.selectedField.label">
-                                            <div class="radio" ng-switch-when="RADIOBUTTONS"> 
+
+                                    <div ng-switch-when="RADIO">
+                                        <form>
+                                            <label>Label</label>
+                                            <input class="form-control" type="text" ng-model="model.selectedField.label">
+                                            <div class="radio"> 
                                                 <label ng-repeat="option in model.selectedField.options"> 
                                                     <input type="radio"> 
                                                     {{option.label}} 
                                                 </label> 
                                             </div>
-
-                                            <div>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                <button class="btn btn-default" ng-click="model.okayField(model.selectedField)">Ok</button>
-                                            </div> 
-                                        </div> 
+                                        </form>
                                     </div>
-                                     </form>
+
+                                    <div>
+                                        <button class="btn btn-default" ng-click="model.okayField(model.selectedField)" data-dismiss="modal">Confirm</button>
+                                    </div> 
+                                </div> 
+
                             </div>
                         </div>
 
