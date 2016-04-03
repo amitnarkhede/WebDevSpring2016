@@ -31,13 +31,9 @@ module.exports = function(app,fieldModel) {
     }
 
     function updateField(req,res){
-        //console.log("updateField called");
         var formId= req.params.formId;
         var fieldId= req.params.fieldId;
         var updatedField=req.body;
-        //console.log(formId);
-        //console.log(fieldId);
-        //console.log(updatedField);
         var afterUpdation=fieldModel.updateField(formId,fieldId,updatedField);
         res.json(afterUpdation);
     }

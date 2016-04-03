@@ -6,7 +6,6 @@
 
 
         var model = {
-
             createFieldForForm:createFieldForForm,
             getFieldsForForm:getFieldsForForm,
             getFieldForForm:getFieldForForm,
@@ -18,7 +17,6 @@
 
 
         function createFieldForForm(formId,field){
-            //console.log("am in field service");
             return $http.post("/api/assignment/form/"+formId+"/field",field);
         }
 
@@ -31,14 +29,11 @@
         }
 
         function deleteFieldFromForm(formId,fieldId){
-            console.log("in clien service",formId,fieldId);
             return $http.delete("/api/assignment/form/"+formId+"/field/"+fieldId);
         }
 
         function updateField(formId,fieldId,field){
             formId = formId.toString();
-            console.log("client side",formId);
-
             return $http.put("/api/assignment/form/"+formId+"/field/"+fieldId, field);
         }
     }

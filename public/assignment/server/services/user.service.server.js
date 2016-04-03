@@ -22,12 +22,10 @@ module.exports = function(app,userModel) {
                 },
                 //send error if promise rejected
                 function( err ){
-                    //console.log(err);
                     res.status(400).send(err);
 
                 }
             );
-        //res.json(user);
     }
 
     function register(req,res){
@@ -43,19 +41,12 @@ module.exports = function(app,userModel) {
                 },
                 //send error if promise rejected
                 function( err ){
-                    //console.log(err);
                     res.status(400).send(err);
 
                 }
             );
     }
 
-    //function updateUser(req,res){
-    //    var id=req.params.id;
-    //    var updatedUserDetails = req.body;
-    //    var updatedUser=userModel.updateUser(id,updatedUserDetails);
-    //    res.json(updatedUser);
-    //}
 
     function updateUser(req,res){
         var id=req.params.id;
@@ -72,7 +63,6 @@ module.exports = function(app,userModel) {
                 },
                 //send error if promise rejected
                 function( err ){
-                    //console.log(err);
                     res.status(400).send(err);
                 }
             );

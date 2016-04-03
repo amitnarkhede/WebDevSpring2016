@@ -13,8 +13,6 @@ module.exports = function(app,formModel) {
 
     function findAllFormsForUser(req,res){
         var userId=req.params.id;
-        //var allForms=formModel.findAllFormsForUser(userId);
-        //res.json(allForms);
         formModel
             .findAllFormsForUser(userId)
             .then(

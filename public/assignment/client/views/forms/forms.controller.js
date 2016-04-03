@@ -83,7 +83,6 @@
             var formToDelete=vm.forms[index]._id;
             FormService.deleteForm(formToDelete,userId)
                 .then(function(response){
-                    //console.log("after deletion",response.data);
                     init();
                 })
         }

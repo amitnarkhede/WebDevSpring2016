@@ -48,13 +48,6 @@ module.exports= function(uuid,db,mongoose){
     }
 
     function findAllFormsForUser(userId){
-        //var userForms =[]
-        //for (var u in formMock) {
-        //    if (formMock[u].userId == userId) {
-        //        userForms.push(formMock[u]);
-        //    }
-        //}
-        //return userForms;
 
         var deferred = q.defer();
 

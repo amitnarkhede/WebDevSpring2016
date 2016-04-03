@@ -120,5 +120,3 @@ module.exports= function(uuid,db,mongoose){
         return deferred.promise;
     }
 }
-
-
