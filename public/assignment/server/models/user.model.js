@@ -98,6 +98,7 @@ module.exports= function(uuid,db,mongoose){
             {$set : updatedUserDetails},
             function(err,stats){
                 if(err){
+                    console.log(err);
                     deferred.reject();
                 }
                 else{
