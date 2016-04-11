@@ -75,6 +75,8 @@ module.exports = function(app,userModel) {
         var id=req.params.id;
         var updatedUser = req.body;
 
+        console.log("Debug on server update");
+
         userModel
             .findUserByUsername(updatedUser.username)
             .then(function(user){
