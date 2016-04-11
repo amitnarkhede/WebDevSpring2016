@@ -16,8 +16,8 @@
 
         function init(){
 
-            if(vm.currentUser == null){
-                $location.url("/home");
+            if(!vm.currentUser){
+                $location.url("/login");
             }
             else{
                 FormService.findAllFormsForUser(vm.currentUser._id)

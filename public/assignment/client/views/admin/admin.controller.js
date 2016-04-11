@@ -15,7 +15,8 @@
 
             vm.selected = null;
 
-            if(vm.currentUser.roles.indexOf('admin') < 0){
+
+            if(!vm.currentUser || vm.currentUser.roles.indexOf('admin') < 0){
                 $location.url("/home");
             }
             else{

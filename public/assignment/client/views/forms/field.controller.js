@@ -16,10 +16,14 @@
         var formId=$routeParams.formId;
 
         function init(){
-            FieldService.getFieldsForForm(formId)
-                .then(function(response){
-                    vm.existingFields=response.data;
-                })
+            if(!vm.currentUser){
+                $location.url("/login");
+            }else {
+                FieldService.getFieldsForForm(formId)
+                    .then(function (response) {
+                        vm.existingFields = response.data;
+                    });
+            }
         }
 
         init();
@@ -65,9 +69,6 @@
                 .then(function(res){
                     init();
                 });
-
-
-
         }
 
         function removeField(field){

@@ -3,21 +3,26 @@
     angular.module("FormBuilderApp")
         .controller("ProfileController",ProfileController);
 
-    function ProfileController(UserService,$rootScope){
+    function ProfileController(UserService,$rootScope,$location){
 
         var currentUser= $rootScope.currentUser;
         var vm=this;
 
         function init(){
-            vm.message=null;
-            vm.update=update;
 
-            vm.firstName=currentUser.firstName;
-            vm.lastName=currentUser.lastName;
-            vm.username=currentUser.username;
-            vm.password=currentUser.password;
-            vm.email=currentUser.email;
-            vm.phone=currentUser.phone;
+            if(!vm.currentUser){
+                $location.url("/login");
+            }
+            else{
+                vm.message=null;
+                vm.update=update;
+
+                vm.firstName=currentUser.firstName;
+                vm.lastName=currentUser.lastName;
+                vm.username=currentUser.username;
+                vm.password=currentUser.password;
+                vm.email=currentUser.email;
+                vm.phone=currentUser.phone;}
         }
 
         init();
