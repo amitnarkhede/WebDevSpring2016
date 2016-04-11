@@ -37,7 +37,6 @@ module.exports= function(uuid,db,mongoose){
 
 
     function findUserByUsername(userName){
-        console.log(userName);
         var deferred = q.defer();
         UserModel.find(
             {username: userName},

@@ -75,24 +75,37 @@ module.exports = function(app,userModel) {
         var id=req.params.id;
         var updatedUser = req.body;
 
-        if(!bcrypt.compareSync(password, updatedUser.password)){
-            updatedUser.password = bcrypt.hashSync(updatedUser.password);
-        }
-
         userModel
-            .updateUser(id,updatedUserDetails)
-            .then(
-                //login in promise resolved
-                function( doc ){
-                    //console.log(doc);
-                    req.session.currentUser = doc;
-                    res.json(doc);
+            .findUserByUsername(updatedUser.username)
+            .then(function(user){
+
+                    if(user[0]){
+                        //check if the password was updated by user and handle accordingly
+                        if(user[0].password != updatedUser.password && !bcrypt.compareSync(user[0].password, updatedUser.password)){
+                            updatedUser.password = bcrypt.hashSync(updatedUser.password);
+                        }
+
+                        userModel
+                            .updateUser(id,updatedUser)
+                            .then(
+                                //login in promise resolved
+                                function( doc ){
+                                    //console.log(doc);
+                                    req.session.currentUser = doc;
+                                    res.json(doc);
+                                },
+                                //send error if promise rejected
+                                function( err ){
+                                    res.status(400).send(err);
+                                }
+                            )
+                    }else{
+                        res.status(400).send(err);
+                    }
                 },
-                //send error if promise rejected
-                function( err ){
+                function(err){
                     res.status(400).send(err);
-                }
-            );
+                });
     }
 
     function deleteUser(req,res){

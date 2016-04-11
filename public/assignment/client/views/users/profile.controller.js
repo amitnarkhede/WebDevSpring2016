@@ -25,6 +25,8 @@
 
         function update(username,password,firstName,lastName,email,phone){
 
+            vm.message=null;
+
             //prepare new user object that needs to be sent to remote
             var newDetails= {"_id":currentUser._id, "username" : username, "firstName": firstName,
                 "lastName":lastName , "email" :email ,"password" :password, "phone" : phone};
