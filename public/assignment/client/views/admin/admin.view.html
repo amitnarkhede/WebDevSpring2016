@@ -41,13 +41,13 @@
                 </tr>
 
                 <tr>
-                    <td> <input type="text" placeholder="Username" class="form-control" ng-model="model.selected.username"></td>
-                    <td> <input type="password" placeholder="Password" class="form-control" ng-model="model.selected.password"></td>
+                    <td> <input ng-disabled="model.selectedUser" type="text" placeholder="Username" class="form-control" ng-model="model.selected.username"></td>
+                    <td> <input ng-disabled="model.selectedUser" type="password" placeholder="Password" class="form-control" ng-model="model.selected.password"></td>
                     <td> <input type="text" placeholder="First Name" class="form-control" ng-model="model.selected.firstName"></td>
                     <td> <input type="text" placeholder="Last Name" class="form-control" ng-model="model.selected.lastName"></td>
                     <td> <input type="text" placeholder="role1,role2" class="form-control" ng-model="model.selected.roles"></td>
                     <td class="text-nowrap">
-                        <button type="button" class="btn btn-primary add-right-pad">
+                        <button type="button" class="btn btn-primary add-right-pad" ng-click="model.createUser(model.selected)">
                             <span class="glyphicon glyphicon-plus"></span>
                         </button>
                         <button type="button" class="btn btn-success" ng-click="model.updateUser(model.selected)">

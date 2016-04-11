@@ -43,7 +43,12 @@ module.exports = function(app,userModel) {
 
     function register(req,res){
         var user = req.body;
-        user.roles = ['student'];
+
+        //handle condition for users added by admin panel
+        if(!user.roles){
+            user.roles = ['student'];
+        }
+
         userModel
             .findUserByUsername(user.username)
             .then(function(newUser){

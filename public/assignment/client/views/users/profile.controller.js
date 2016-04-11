@@ -10,7 +10,7 @@
 
         function init(){
 
-            if(!vm.currentUser){
+            if(!currentUser){
                 $location.url("/login");
             }
             else{
