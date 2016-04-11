@@ -98,14 +98,17 @@ module.exports = function(app,userModel) {
                                 },
                                 //send error if promise rejected
                                 function( err ){
+                                    console.log("error1");
                                     res.status(400).send(err);
                                 }
                             )
                     }else{
-                        res.status(400).send(err);
+                        console.log("error2");
+                        res.send(400);
                     }
                 },
                 function(err){
+                    console.log("error3");
                     res.status(400).send(err);
                 });
     }
