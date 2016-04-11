@@ -93,6 +93,7 @@ module.exports= function(uuid,db,mongoose){
             updatedUserDetails.phone = updatedUserDetails.phone.split(",");
         }
 
+        //Remove the id as updating it is not allowed on lower versions of MongoDB
         delete updatedUserDetails._id;
         UserModel.update(
             {_id : userId},

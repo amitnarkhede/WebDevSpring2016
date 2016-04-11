@@ -47,8 +47,9 @@
             return $http.put("/api/assignment/updateUser/"+user._id,user);
         }
 
-        function deleteUser(user){
-            return $http.delete("/api/assignment/deleteUser/"+user._id);
+        function deleteUser(userId){
+            //console.log("DELETE" + user);
+            return $http.delete("/api/assignment/deleteUser/"+userId);
         }
 
         function getAllUsers(){

@@ -75,8 +75,6 @@ module.exports = function(app,userModel) {
         var id=req.params.id;
         var updatedUser = req.body;
 
-        console.log("Debug on server update");
-
         userModel
             .findUserByUsername(updatedUser.username)
             .then(function(user){
@@ -92,34 +90,44 @@ module.exports = function(app,userModel) {
                             .then(
                                 //login in promise resolved
                                 function( doc ){
-                                    //console.log(doc);
                                     req.session.currentUser = doc;
                                     res.json(doc);
                                 },
                                 //send error if promise rejected
                                 function( err ){
-                                    console.log("error1");
                                     res.status(400).send(err);
                                 }
                             )
                     }else{
-                        console.log("error2");
                         res.send(400);
                     }
                 },
                 function(err){
-                    console.log("error3");
                     res.status(400).send(err);
                 });
     }
 
     function deleteUser(req,res){
         var id=req.params.id;
-        userModel.deleteUser(id);
+        userModel
+            .deleteUser(id)
+            .then(function(res){
+                    res.send(200);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
     }
 
     function getAllUsers(req,res){
-        userModel.getAllUsers(id);
+        userModel
+            .getAllUsers()
+            .then(function(users){
+                    res.json(users);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
     }
 
     function getUserByUserName(req,res){

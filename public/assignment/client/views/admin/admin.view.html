@@ -1,13 +1,13 @@
+<html>
 <body>
-
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="AdminController">
     <div class="row">
 
-            <h1>Admin</h1>
-            <h3>Users</h3>
+        <h1>Admin</h1>
+        <h3>Users</h3>
 
-            <div class="table-responsive">
-              <table class="table table-striped table-hover table-bordered table-condensed">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered table-condensed">
 
                 <tr>
                     <th bgcolor="gray">
@@ -21,6 +21,16 @@
                         Password
                     </th>
                     <th bgcolor="gray">
+                        <a href="#"><span class="glyphicon glyphicon-triangle-bottom"></span>
+                        </a>
+                        First Name
+                    </th>
+                    <th bgcolor="gray">
+                        <a href="#"><span class="glyphicon glyphicon-triangle-bottom"></span>
+                        </a>
+                        Last Name
+                    </th>
+                    <th bgcolor="gray">
                         <a href="#"><span class="glyphicon glyphicon-triangle-bottom"></span></a>
                         Role
                     </th>
@@ -31,62 +41,38 @@
                 </tr>
 
                 <tr>
-                    <td> <input type="text" placeholder="username" class="form-control"></td>
-                    <td> <input type="password" placeholder="password" class="form-control"></td>
-                    <td> <input type="text" placeholder="role1,role2" class="form-control"></td>
+                    <td> <input type="text" placeholder="Username" class="form-control" ng-model="model.selected.username"></td>
+                    <td> <input type="password" placeholder="Password" class="form-control" ng-model="model.selected.password"></td>
+                    <td> <input type="text" placeholder="First Name" class="form-control" ng-model="model.selected.firstName"></td>
+                    <td> <input type="text" placeholder="Last Name" class="form-control" ng-model="model.selected.lastName"></td>
+                    <td> <input type="text" placeholder="role1,role2" class="form-control" ng-model="model.selected.roles"></td>
                     <td class="text-nowrap">
                         <button type="button" class="btn btn-primary add-right-pad">
                             <span class="glyphicon glyphicon-plus"></span>
                         </button>
-                        <button type="button" class="btn btn-success">
+                        <button type="button" class="btn btn-success" ng-click="model.updateUser(model.selected)">
                             <span class="glyphicon glyphicon-ok"></span>
                         </button></td>
                 </tr>
 
-                <tr>
-                    <td>alice</td>
+                <tr ng-repeat="user in model.users">
+                    <td>{{user.username}}</td>
                     <td>&nbsp;</td>
-                    <td>student</td>
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>{{user.roles.join()}}</td>
                     <td class="text-nowrap">
-                        <button type="button" class="btn btn-danger add-right-pad">
+                        <button type="button" class="btn btn-danger add-right-pad" ng-click='model.deleteUser(user._id)'>
                             <span class="glyphicon glyphicon-remove"></span>
                         </button>
-                        <button type="button" class="btn btn-info add-right-pad">
+                        <button type="button" class="btn btn-info add-right-pad" ng-click='model.selectUser(user)'>
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
                     </td>
                 </tr>
 
-                  <tr>
-                    <td>bob</td>
-                    <td>&nbsp;</td>
-                    <td> faculty|student</td>
-                    <td class="text-nowrap">
-                        <button type="button" class="btn btn-danger add-right-pad">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </button>
-                        <button type="button" class="btn btn-info add-right-pad">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </button>
-                    </td>
-                </tr>
-
-                  <tr>
-                    <td>charlie</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td class="text-nowrap">
-                        <button type="button" class="btn btn-danger add-right-pad">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </button>
-                        <button type="button" class="btn btn-info add-right-pad">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </button>
-                    </td>
-                </tr>
-
-              </table>
-            </div>
+            </table>
+        </div>
     </div>
 </div>
 
