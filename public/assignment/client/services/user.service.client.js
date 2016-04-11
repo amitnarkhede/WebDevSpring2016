@@ -13,6 +13,7 @@
             //  deleteUserById : deleteUserById,
             findAllUsers : findAllUsers,
             findUserByCredentials:findUserByCredentials,
+            login:login,
             register: register,
             getAllUsers:getAllUsers,
             getUserById:getUserById,
@@ -21,7 +22,7 @@
         return model;
 
         function setCurrentUser(user){
-           // console.log(user);
+
             $rootScope.currentUser=user;
         }
 
@@ -32,6 +33,10 @@
 
         function findUserByCredentials(credentials){
             return $http.get("/api/assignment/user/"+credentials.username+"/"+credentials.password);
+        }
+
+        function login(credentials){
+            return $http.post("/api/assignment/login",credentials);
         }
 
         function register(user){

@@ -3,6 +3,7 @@ var app = express();
 
 var bodyParser = require('body-parser');
 var multer = require('multer');
+var passport = require('passport');
 var uuid = require('node-uuid');
 var mongoose  = require('mongoose');
 var cookieParser = require('cookie-parser');
@@ -23,6 +24,8 @@ app.use(session({
     secret: process.env.PASSPORT_SECRET }));
 
 app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
 
 var connectionString = 'mongodb://127.0.0.1:27017/webdev2016';
 

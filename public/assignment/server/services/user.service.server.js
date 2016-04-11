@@ -1,11 +1,24 @@
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var bcrypt = require("bcrypt-nodejs");
+
 module.exports = function(app,userModel) {
-    app.get("/api/assignment/user/:username/:password", findUserByCredentails);
-    app.post("/api/assignment/register", register);
-    app.put("/api/assignment/updateUser/:id",updateUser);
-    app.delete("/api/assignment/deleteUser/:id",deleteUser);
-    app.get("/api/assignment/getAllUsers/",getAllUsers);
+    var auth = authorized;
+
+    //app.get("/api/assignment/user/:username/:password", findUserByCredentails);
+    app.post("/api/assignment/register",auth, register);
+    app.put("/api/assignment/updateUser/:id",auth,updateUser);
+    app.delete("/api/assignment/deleteUser/:id",auth,deleteUser);
+    app.get("/api/assignment/getAllUsers/",auth,getAllUsers);
     app.get("/api/assignment/getUserByUserName/:username",getUserByUserName);
     app.get("/api/assignment/getUserById/:id",getUserById);
+    app.post('/api/assignment/login', passport.authenticate('local'), login);
+
+
+    passport.use(new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
 
 
     function findUserByCredentails(req,res){
@@ -30,6 +43,7 @@ module.exports = function(app,userModel) {
 
     function register(req,res){
         var user = req.body;
+        user.roles = ['student'];
         userModel
             .createNewUser(user)
             .then(
@@ -84,8 +98,66 @@ module.exports = function(app,userModel) {
     }
 
     function getUserById(req,res){
-        var id=rq.params.id;
+        var id=req.params.id;
         var user=userModel.getUserById(id);
-        return user;
+        res.json(user);
+    }
+
+    //Changes for integrating PassportJS
+
+    function localStrategy(username, password, done) {
+        //console.log(username,password);
+        userModel.findUserByUsername(username)
+            .then(
+                function (user) {
+                    if(user && bcrypt.compareSync(password, user[0].password)) {
+                        return done(null, user[0]);
+                    }else {
+                        return done(null, false);
+                    }
+                } ,
+                function (err) {
+                    if (err) {
+                        return done(err);
+                    }
+                }
+            )
+    }
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        userModel
+            .findUserById(user._id)
+            .then(
+                function(user){
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
+    }
+
+    function login(req, res) {
+        var user = req.user;
+        res.json(user);
+    }
+
+    function isAdmin(user) {
+        if(user.roles.indexOf("admin") > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    function authorized (req, res, next) {
+        if (!req.isAuthenticated()) {
+            res.send(401);
+        } else {
+            next();
+        }
     }
 }
