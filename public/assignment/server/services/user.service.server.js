@@ -6,7 +6,7 @@ module.exports = function(app,userModel) {
     var auth = authorized;
 
     //app.get("/api/assignment/user/:username/:password", findUserByCredentails);
-    app.post("/api/assignment/register",auth, register);
+    app.post("/api/assignment/register", register);
     app.put("/api/assignment/updateUser/:id",auth,updateUser);
     app.delete("/api/assignment/deleteUser/:id",auth,deleteUser);
     app.get("/api/assignment/getAllUsers/",auth,getAllUsers);
@@ -45,26 +45,39 @@ module.exports = function(app,userModel) {
         var user = req.body;
         user.roles = ['student'];
         userModel
-            .createNewUser(user)
-            .then(
-                //login if promise resolved
-                function( doc ){
-                    //console.log(doc);
-                    req.session.currentUser = doc;
-                    res.json(doc);
-                },
-                //send error if promise rejected
-                function( err ){
-                    res.status(400).send(err);
-
+            .findUserByUsername(user.username)
+            .then(function(newUser){
+                if(newUser[0]){
+                    res.json(null);
+                }else{
+                    user.password = bcrypt.hashSync(user.password);
+                    return userModel.createNewUser(user);
                 }
-            );
+            })
+            .then(function(user){
+                    if(user){
+                        req.login(user,function(err){
+                            if(err){
+                                res.status(400).send(err);
+                            }else{
+                                res.json(user);
+                            }
+                        });
+                    }
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
     }
 
 
     function updateUser(req,res){
         var id=req.params.id;
-        var updatedUserDetails = req.body;
+        var updatedUser = req.body;
+
+        if(!bcrypt.compareSync(password, updatedUser.password)){
+            updatedUser.password = bcrypt.hashSync(updatedUser.password);
+        }
 
         userModel
             .updateUser(id,updatedUserDetails)
@@ -106,13 +119,15 @@ module.exports = function(app,userModel) {
     //Changes for integrating PassportJS
 
     function localStrategy(username, password, done) {
-        //console.log(username,password);
+        //console.log(bcrypt.hashSync(password));
         userModel.findUserByUsername(username)
             .then(
                 function (user) {
                     if(user && bcrypt.compareSync(password, user[0].password)) {
+                        //console.log(user[0]);
                         return done(null, user[0]);
                     }else {
+                        //console.log("False");
                         return done(null, false);
                     }
                 } ,
@@ -143,6 +158,7 @@ module.exports = function(app,userModel) {
 
     function login(req, res) {
         var user = req.user;
+        //console.log("This is "+ user);
         res.json(user);
     }
 

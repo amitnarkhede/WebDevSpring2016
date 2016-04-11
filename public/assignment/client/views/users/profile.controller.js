@@ -23,11 +23,11 @@
 
         init();
 
-        function update(username,passwaord,firstName,lastName,email,phone){
+        function update(username,password,firstName,lastName,email,phone){
 
             //prepare new user object that needs to be sent to remote
             var newDetails= {"_id":currentUser._id, "username" : username, "firstName": firstName,
-                "lastName":lastName , "email" :email ,"password" :passwaord, "phone" : phone};
+                "lastName":lastName , "email" :email ,"password" :password, "phone" : phone};
 
             UserService
                 .updateUser(newDetails)

@@ -37,6 +37,7 @@ module.exports= function(uuid,db,mongoose){
 
 
     function findUserByUsername(userName){
+        console.log(userName);
         var deferred = q.defer();
         UserModel.find(
             {username: userName},
@@ -54,7 +55,7 @@ module.exports= function(uuid,db,mongoose){
 
     function findUserById(userId){
         var deferred = q.defer();
-        UserModel.find(
+        UserModel.findOne(
             {_id: userId},
             function(err,doc){
                 if(err){

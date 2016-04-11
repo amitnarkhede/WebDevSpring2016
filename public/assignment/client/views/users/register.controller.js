@@ -46,7 +46,7 @@
             UserService
                 .register(user)
                 .then(function (response){
-                    console.log(response.data);
+                    //console.log(response.data);
 
                     if(response.data) {
                         UserService.setCurrentUser(response.data);
