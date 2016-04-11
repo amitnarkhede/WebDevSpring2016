@@ -93,6 +93,7 @@ module.exports= function(uuid,db,mongoose){
             updatedUserDetails.phone = updatedUserDetails.phone.split(",");
         }
 
+        delete updatedUserDetails._id;
         UserModel.update(
             {_id : userId},
             {$set : updatedUserDetails},
