@@ -9,3 +9,10 @@
     font-size: large;
     padding-bottom: 15px
 }
+.th-admin{
+    white-space: nowrap;
+    background-color: gray;
+}
+.control-label{
+    white-space: nowrap;
+}
