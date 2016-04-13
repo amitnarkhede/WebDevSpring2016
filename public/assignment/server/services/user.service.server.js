@@ -221,6 +221,7 @@ module.exports = function(app,userModel) {
     }
 
     function isAdmin(user) {
+        console.log("Trying admin check for " + user);
         if(user.roles.indexOf("admin") > 0) {
             return true;
         }
