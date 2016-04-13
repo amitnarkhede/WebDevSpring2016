@@ -40,7 +40,7 @@
         }
 
         function register(user){
-            return $http.post("/api/assignment/register", user);
+            return $http.post("/api/assignment/user", user);
         }
 
         function updateUser(user){

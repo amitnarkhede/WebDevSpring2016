@@ -13,6 +13,8 @@ module.exports = function(app,userModel) {
     app.get("/api/assignment/getUserByUserName/:username",getUserByUserName);
     app.get("/api/assignment/getUserById/:id",getUserById);
     app.post('/api/assignment/login', passport.authenticate('local'), login);
+    app.post('/api/assignment/logout',logout);
+    app.get("/api/assignment/loggedin", loggedIn);
 
 
     passport.use(new LocalStrategy(localStrategy));
@@ -124,15 +126,21 @@ module.exports = function(app,userModel) {
                 });
     }
 
-    function getAllUsers(req,res){
-        userModel
-            .getAllUsers()
-            .then(function(users){
-                    res.json(users);
-                },
-                function(err){
-                    res.status(400).send(err);
-                });
+    function getAllUsers(req,res) {
+
+        if(isAdmin(req.user))
+        {
+            userModel
+                .getAllUsers()
+                .then(function (users) {
+                        res.json(users);
+                    },
+                    function (err) {
+                        res.status(400).send(err);
+                    });
+        }else{
+            res.send(403);
+        }
     }
 
     function getUserByUserName(req,res){
@@ -143,8 +151,19 @@ module.exports = function(app,userModel) {
 
     function getUserById(req,res){
         var id=req.params.id;
-        var user=userModel.getUserById(id);
-        res.json(user);
+        if(isAdmin(req.user)){
+            userModel
+                .getUserById(id)
+                .then(function(user){
+                        res.json(user)
+                    },
+                    function(err){
+                        res.status(400).send(err);
+                    });
+        }else{
+            res.send(403);
+
+        }
     }
 
     //Changes for integrating PassportJS
@@ -191,6 +210,15 @@ module.exports = function(app,userModel) {
         var user = req.user;
         //console.log("This is "+ user);
         res.json(user);
+    }
+
+    function logout(req,res){
+        req.logOut();
+        res.send(200);
+    }
+
+    function loggedIn(req,res){
+        res.send(req.isAuthenticated() ? req.user : null);
     }
 
     function isAdmin(user) {
