@@ -41,8 +41,8 @@
             <tr ng-repeat="form in model.forms">
                 <td><a href="#/forms/{{form._id}}/fields">{{form.title}} </a></td>
                 <td>
-                    <a ng-click="model.deleteForm($index)"><span class="glyphicon glyphicon-remove"></span></a>
-                    <a ng-click="model.selectForm($index)"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                    <a class="btn btn-danger add-right-pad" ng-click="model.deleteForm($index)"><span class="glyphicon glyphicon-remove"></span></a>
+                    <a class="btn btn-info add-left-pad" ng-click="model.selectForm($index)"><span class="glyphicon glyphicon-pencil"></span></a></td>
             </tr>
         </table>
 
