@@ -73,6 +73,7 @@ module.exports = function(app,userModel) {
                             });
                         }
                     }else{
+                        console.log("ADMIN TRYING TO ADD USER");
                         res.json(user);
                     }
                 },
@@ -211,8 +212,6 @@ module.exports = function(app,userModel) {
     }
 
     function login(req, res) {
-        console.log("req " + req);
-        console.log("res "+ res);
         var user = req.user;
         //console.log("This is "+ user);
         res.json(user);
@@ -228,7 +227,7 @@ module.exports = function(app,userModel) {
     }
 
     function isAdmin(user) {
-        console.log("Trying admin check for " + user);
+        //console.log("Trying admin check for " + user);
         if(user.roles.indexOf("admin") > 0) {
             return true;
         }
