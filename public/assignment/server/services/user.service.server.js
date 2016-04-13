@@ -16,7 +16,6 @@ module.exports = function(app,userModel) {
     app.post('/api/assignment/logout',logout);
     app.get("/api/assignment/loggedin", loggedIn);
 
-
     passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
