@@ -10,7 +10,8 @@
             createFormForUser:createFormForUser,
             findAllFormsForUser:findAllFormsForUser,
             deleteFormById:deleteFormById,
-            updateFormById:updateFormById
+            updateFormById:updateFormById,
+            checkIfLiked:checkIfLiked
         };
 
         return model;
@@ -35,17 +36,6 @@
             callback(userForms);
         };
 
-        //function deleteFormById(formId,currentUserForms,callback){
-        //    forms = currentUserForms;
-        //    for(var f in forms) {
-        //        if (forms[f].imdbID == formId) {
-        //            forms.splice(f, 1);
-        //            break;
-        //        }
-        //    }
-        //    callback(forms);
-        //};
-
         function deleteFormById(userID,imdbID){
             var details = {"userID" : userID , "imdbID" : imdbID};
             return $http.delete("/api/project/deletemovie/"+ userID + "/" + imdbID);
@@ -58,5 +48,8 @@
             return $http.put("/api/project/updatecomment",updatedObject);
         };
 
+        function checkIfLiked(userID,imdbID){
+            return $http.get("/api/project/checklike/"+userID+"/"+imdbID);
+        };
     }
 })();

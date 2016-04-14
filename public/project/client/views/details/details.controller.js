@@ -6,15 +6,19 @@
         .module("TheFilmDBApp")
         .controller("DetailsController", DetailsController);
 
-    function DetailsController($scope, $rootScope, $routeParams, MovieService,UserService) {
+    function DetailsController($scope, $rootScope, $routeParams, MovieService,UserService,FormService) {
 
         var vm = this;
         $scope.likeMovie = likeMovie;
+        $scope.removeLikeMovie = removeLikeMovie;
 
         var imdbId = $routeParams.imdb_id;
         //console.log(imdbId);
 
+        vm.liked = null;
+
         function init() {
+
             fetchMovie(imdbId);
         }
         init();
@@ -37,18 +41,48 @@
                     }
                 }
             );
+            checkIfLiked();
         }
 
-        function likeMovie(imdbID,poster,title){
+        function likeMovie(){
 
             if($rootScope.user){
-                //console.log(imdbID + poster + title);
-                UserService.addMovieLike(imdbID,poster,title,$rootScope.user._id);
+                console.log(vm.details);
+                UserService.addMovieLike(vm.details.imdbID,vm.details.Poster,vm.details.Title,$rootScope.user._id);
 
             }else {
 
                 $location.url("/login");
             }
+        }
+
+        function removeLikeMovie(){
+
+
+            if($rootScope.user){
+
+                FormService.deleteFormById($rootScope.user._id,vm.details.imdbID);
+
+            }else {
+
+                $location.url("/login");
+            }
+        }
+
+        function checkIfLiked(){
+            FormService
+                .checkIfLiked($rootScope.user._id,vm.details.imdbID)
+                .then(function(response){
+                        if(response.data){
+                            vm.liked = true;
+                        }else{
+                            vm.liked = null;
+                        }
+                    },
+                    function(err){
+                        console.log(err);
+                    });
+
         }
     }
 })();

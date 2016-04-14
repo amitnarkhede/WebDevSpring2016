@@ -9,6 +9,7 @@ module.exports= function(){
     var api = {
         addMovieLike:addMovieLike,
         getMovieLike:getMovieLike,
+        checkIfLiked:checkIfLiked,
         updateMovieLike:updateMovieLike,
         deleteMovieUser:deleteMovieUser
     };
@@ -28,6 +29,15 @@ module.exports= function(){
             }
         }
         return movies;
+    };
+
+    function checkIfLiked(userId,imdbId){
+        for(index = 0; index < mock.length; index++){
+            if(mock[index].user_id == userId && mock[index].imdbID == imdbId){
+                return true;
+            }
+        }
+        return false;
     };
 
     function updateMovieLike(userID,imdbID,comment){

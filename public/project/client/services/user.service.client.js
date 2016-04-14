@@ -60,13 +60,14 @@
                 "comments":""
             };
 
-            $http.post("/api/project/addmovielike",movieLike);
+            return $http.post("/api/project/addmovielike",movieLike);
         };
+
 
         function getMovieLike(userID){
 
             return $http.get("/api/project/getmovielike/"+userID);
 
-        }
+        };
     }
 })();

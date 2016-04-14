@@ -4,6 +4,7 @@
 
 module.exports = function(app,movieModel) {
     app.get("/api/project/getmovielike/:userid", getMovieLike);
+    app.get("/api/project/checklike/:userid/:imdbID",checkIfLiked);
     app.post("/api/project/addmovielike", addMovieLike);
     app.put("/api/project/updatecomment",updateComment);
     app.delete("/api/project/deletemovie/:userid/:imdbid",deleteMovie);
@@ -13,6 +14,15 @@ module.exports = function(app,movieModel) {
         var movies = movieModel.getMovieLike(userId);
         //console.log(movies);
         res.send(movies);
+    };
+
+    function checkIfLiked(req,res){
+        var userId = req.params.userid;
+        var imdbId = req.params.imdbID;
+
+        var check = movieModel.checkIfLiked(userId,imdbId);
+
+        res.send(check);
     };
 
     function addMovieLike(req,res){
