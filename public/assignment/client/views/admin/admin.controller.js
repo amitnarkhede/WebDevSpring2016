@@ -18,18 +18,26 @@
             vm.selectedUser=null;
             vm.selected = null;
 
-            if(!vm.currentUser || vm.currentUser.roles.indexOf('admin') < 0){
-                $location.url("/home");
-            }
-            else{
-                UserService
-                    .getAllUsers()
-                    .then(function(response){
-                        if(response.data) {
-                            vm.users=response.data;
-                        }
-                    });
-            }
+            //if(!vm.currentUser || vm.currentUser.roles.indexOf('admin') < 0){
+            //    $location.url("/home");
+            //}
+            //else{
+            //    UserService
+            //        .getAllUsers()
+            //        .then(function(response){
+            //            if(response.data) {
+            //                vm.users=response.data;
+            //            }
+            //        });
+            //}
+
+            UserService
+                .getAllUsers()
+                .then(function(response){
+                    if(response.data) {
+                        vm.users=response.data;
+                    }
+                });
         }
 
         init();

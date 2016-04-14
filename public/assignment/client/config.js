@@ -76,13 +76,18 @@
 
         $http.get('/api/assignment/loggedin').success(function(user)
         {
-            $rootScope.errorMessage = null;
+            //$rootScope.errorMessage = null;
             // User is Authenticated
             if (user !== '0' && user.roles.indexOf('admin') != -1)
             {
                 $rootScope.currentUser = user;
                 deferred.resolve();
+            }else{
+
+                $location.url("/home");
+                deferred.reject();
             }
+
         });
 
         return deferred.promise;
