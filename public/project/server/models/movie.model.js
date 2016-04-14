@@ -4,7 +4,7 @@
 
 var mock = require("./movie.mock.json");
 
-module.exports= function(){
+module.exports= function(uuid,db,mongoose){
 
     var api = {
         addMovieLike:addMovieLike,

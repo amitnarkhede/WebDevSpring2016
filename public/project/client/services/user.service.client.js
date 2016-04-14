@@ -36,16 +36,16 @@
 
         function setCurrentUser(user){
             if(user){
-                $rootScope.user = user;
+                $rootScope.currentUser = user;
             }
         };
 
         function deleteUserById(userId){
-
             return $http.delete("/api/project/user/"+userId);
         };
 
         function updateUser(userId,updatedUser){
+            //console.log(userId);
             return $http.put("/api/project/updateUser/"+userId,updatedUser);
         };
 

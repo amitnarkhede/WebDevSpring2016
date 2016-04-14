@@ -2,9 +2,13 @@
  * Created by amitv on 24-Mar-16.
  */
 
-var mock = require("./user.mock.json");
+module.exports= function(uuid,db,mongoose){
 
-module.exports= function(){
+    var UserSchema = require("./user.schema.server.js")(mongoose);
+
+    var UserModel = mongoose.model('ProjectUser',UserSchema);
+
+    var q = require("q");
 
     var api = {
         findUserByCredentials: findUserByCredentials,
@@ -12,84 +16,111 @@ module.exports= function(){
         createNewUser :createNewUser,
         updateUser:updateUser,
         deleteUser:deleteUser,
-        getUserByUserName:getUserByUserName,
-        getUserById:getUserById,
         getAllUsers:getAllUsers
     };
 
     return api;
 
     function findUserByCredentials(username,password) {
-        for(var u in mock) {
-            if( mock[u].username == username &&
-                mock[u].password == password) {
-                return mock[u];
+        var deferred = q.defer();
+        UserModel.find(
+            {username: username, password : password},
+            function(err,doc){
+                if(err){
+                    deferred.reject(err);
+                }else{
+                    console.log(doc);
+                    deferred.resolve(doc);
+                }
             }
-        }
-        return null;
-    };
+        );
+
+        return deferred.promise;
+    }
 
     function findUserByUsername(userName){
-        for(var u in mock){
-            if(mock[u].username=== userName){
-                return mock[u];
+        var deferred = q.defer();
+        UserModel.find(
+            {username: userName},
+            function(err,doc){
+                if(err){
+                    deferred.reject(err);
+                }else{
+                    deferred.resolve(doc);
+                }
             }
-            return null;
-        }
-    };
+        );
+
+        return deferred.promise;
+    }
 
     function createNewUser(userDetails){
-        console.log(userDetails.username);
-        var oldUser= findUserByUsername(userDetails.username);
-        if(oldUser== null){
-            userDetails._id =  (new Date()).getTime();
-            mock.push(userDetails);
-            return userDetails;
-        }
-        return null;
-    };
+        var deferred = q.defer();
 
-    function updateUser(id,updatedUserDetails) {
-
-        //we need to check if userName is unique here
-        for (var u in mock) {
-            if (mock[u]._id == id) {
-                mock[u] = updatedUserDetails;
-                mock[u].email = updatedUserDetails.email;
-                return mock[u];
+        UserModel.create(userDetails,function(err,doc){
+            if(err){
+                deferred.reject(err);
             }
-        }
-    };
+            else{
+                deferred.resolve(doc);
 
-    function deleteUser(id) {
-        for (var u in mock) {
-            if (mock[u]._id == id) {
-                mock.splice(u, 1);
             }
-        }
-    };
+        });
+
+        //return a promise
+        return deferred.promise;
+
+    }
+
+    function updateUser(userId,updatedUserDetails){
+        var deferred = q.defer();
+
+        UserModel.update(
+            {_id : userId},
+            {$set : updatedUserDetails},
+            function(err,doc){
+                if(err){
+                    deferred.reject(err);
+                }
+                else{
+                    deferred.resolve(doc);
+                }
+            });
+        //return a promise
+        return deferred.promise;
+    }
+
+    function deleteUser(userId) {
+        var deferred = q.defer();
+
+        UserModel.remove(
+            {_id : userId},
+            function(err,doc){
+                if(err){
+                    deferred.reject(err);
+                }
+                else{
+                    deferred.resolve(doc);
+                }
+            });
+
+        return deferred.promise;
+    }
 
     function getAllUsers(){
-        return mock;
-    };
+        var deferred = q.defer();
 
-    function getUserByUserName(username){
-        for (var u in mock) {
-            if (mock[u].username == username) {
-                return mock[u];
-            }
-        }
-        return null;
-    };
+        UserModel.find(
+            function(err,doc){
+                if(err){
+                    deferred.reject(err);
+                }
+                else{
+                    deferred.resolve(doc);
+                }
+            });
 
-    function getUserById(id){
-        for (var u in mock) {
-            if (mock[u]._id == id) {
-                return mock[u];
-            }
-        }
-        return null;
-    };
-
+        return deferred.promise;
+    }
 
 };

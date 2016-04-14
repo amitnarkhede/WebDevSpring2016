@@ -13,30 +13,73 @@ module.exports = function(app,userModel) {
         var username=req.params.username;
         var password=req.params.password;
 
-        var user = userModel.findUserByCredentials(username,password);
-        res.json(user);
+        userModel
+            .findUserByCredentials(username,password)
+            .then(function(user){
+                    req.session.currentUser = user;
+                    res.json(user);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
     };
 
     function createUser(req,res){
         //console.log(req.body);
-        newUser = userModel.createNewUser(req.body);
-        res.json(newUser);
-    };
+        var user = req.body;
+
+        userModel
+            .createNewUser(user)
+            .then(
+                //login in promise resolved
+                function( doc ){
+                    //console.log(doc);
+                    req.session.currentUser = doc;
+                    res.json(doc);
+                },
+                //send error if promise rejected
+                function( err ){
+                    //console.log(err);
+                    res.status(400).send(err);
+
+                }
+            );
+    }
 
     function updateUser(req,res){
         var id = req.params.id;
         var updatedUserDetails = req.body;
-        var updatedUser = userModel.updateUser(id,updatedUserDetails);
-        res.json(updatedUser);
+        userModel
+            .updateUser(id,updatedUserDetails)
+            .then(function(doc){
+                    req.session.currentUser = doc;
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                });
     };
 
     function getAllUsers(req,res){
-        var users = userModel.getAllUsers();
-        res.json(users);
+        userModel
+            .getAllUsers()
+            .then(function(users){
+                    res.json(users);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
+
     }
 
     function deleteUser(req,res){
-        userModel.deleteUser(req.params.id);
-        res.send(200);
+        userModel
+            .deleteUser(req.params.id)
+            .then(function(success){
+                    res.send(200);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
     }
 }

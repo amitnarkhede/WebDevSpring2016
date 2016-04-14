@@ -9,7 +9,7 @@
         $scope.logout = logout;
 
         function logout(){
-            $rootScope.user = null;
+            $rootScope.currentUser = null;
             //console.log("User has been logged out!");
             $location.url("/home");
         };
