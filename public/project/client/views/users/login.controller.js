@@ -10,7 +10,6 @@
         function login(loginUser){
 
             //console.log($scope.loginUser);
-            console.log("Inside login controller");
 
             if(loginUser != null && loginUser.username != null && loginUser.password !=null){
 
@@ -18,8 +17,8 @@
                     .findUserByCredentials(loginUser.username,loginUser.password)
                     .then(function(response) {
                         if(response){
-                            console.log("This is working");
-                            console.log(response.data[0]);
+                            //console.log("This is working");
+                            //console.log(response.data[0]);
                             UserService.setCurrentUser(response.data[0]);
                             $location.url("/profile");
                         }

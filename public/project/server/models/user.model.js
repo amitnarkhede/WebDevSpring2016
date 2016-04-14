@@ -29,7 +29,7 @@ module.exports= function(uuid,db,mongoose){
                 if(err){
                     deferred.reject(err);
                 }else{
-                    console.log(doc);
+                    //console.log(doc);
                     deferred.resolve(doc);
                 }
             }

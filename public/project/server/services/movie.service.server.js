@@ -20,15 +20,28 @@ module.exports = function(app,movieModel) {
         var userId = req.params.userid;
         var imdbId = req.params.imdbID;
 
-        var check = movieModel.checkIfLiked(userId,imdbId);
+        movieModel
+            .checkIfLiked(userId,imdbId)
+            .then(function(response){
+                    res.send(response);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
 
-        res.send(check);
     };
 
     function addMovieLike(req,res){
         var movieDetails = req.body;
-        movieModel.addMovieLike(movieDetails);
-        res.send(200);
+        movieModel
+            .addMovieLike(movieDetails)
+            .then(function(response){
+                    res.send(200);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
+
     };
 
     function updateComment(req,res){

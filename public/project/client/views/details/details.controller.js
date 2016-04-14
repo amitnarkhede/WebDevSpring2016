@@ -6,7 +6,7 @@
         .module("TheFilmDBApp")
         .controller("DetailsController", DetailsController);
 
-    function DetailsController($scope, $rootScope, $routeParams, MovieService,UserService,FormService) {
+    function DetailsController($scope, $rootScope, $routeParams, MovieService,UserService,FormService,$location) {
 
         var vm = this;
         $scope.likeMovie = likeMovie;
@@ -33,7 +33,7 @@
             vm.details.Poster = POSTER_URL.replace("IMDBID",vm.details.imdbID);
 
             MovieService.findMovieTrailer(imdbId,function(res){
-                    console.log(res);
+                    //console.log(res);
                     if(res['trailers']['youtube'][0]){
                         vm.trailer = "http://www.youtube.com/embed/" + res['trailers']['youtube'][0]['source'].trim()
                     }else{
@@ -46,9 +46,9 @@
 
         function likeMovie(){
 
-            if($rootScope.user){
-                console.log(vm.details);
-                UserService.addMovieLike(vm.details.imdbID,vm.details.Poster,vm.details.Title,$rootScope.user._id);
+            if($rootScope.currentUser){
+                //console.log(vm.details);
+                UserService.addMovieLike(vm.details.imdbID,vm.details.Poster,vm.details.Title,$rootScope.currentUser._id);
 
             }else {
 
@@ -71,11 +71,14 @@
 
         function checkIfLiked(){
             FormService
-                .checkIfLiked($rootScope.user._id,vm.details.imdbID)
+                .checkIfLiked($rootScope.currentUser._id,vm.details.imdbID)
                 .then(function(response){
-                        if(response.data){
+                        //console.log(response.data);
+                        if(response.data[0]){
+                            //console.log("IT was liked");
                             vm.liked = true;
                         }else{
+                            //console.log("IT was not liked");
                             vm.liked = null;
                         }
                     },

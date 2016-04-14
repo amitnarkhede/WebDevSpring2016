@@ -4,7 +4,13 @@
 
 var mock = require("./movie.mock.json");
 
-module.exports= function(uuid,db,mongoose){
+module.exports= function(uuid,db,mongoose,relationModel){
+
+    var MovieSchema = require("./movie.schema.server.js")(mongoose);
+
+    var MovieModel = mongoose.model('ProjectMovie',MovieSchema);
+
+    var q = require("q");
 
     var api = {
         addMovieLike:addMovieLike,
@@ -17,7 +23,37 @@ module.exports= function(uuid,db,mongoose){
     return api;
 
     function addMovieLike(movieDetails){
-        mock.push(movieDetails);
+        //mock.push(movieDetails);
+        //console.log(movieDetails);
+
+        var userID = movieDetails.userID;
+        delete movieDetails.userID;
+
+        var movieRelation = {"imdbID": movieDetails.imdbID,
+            "userID":userID,comment:"","created":(new Date).getTime()};
+
+        //console.log(movieRelation);
+
+        var deferred = q.defer();
+
+        MovieModel.create(movieDetails,function(err,doc){
+            if(err){
+                deferred.reject(err);
+            }
+            else{
+                relationModel.create(movieRelation,function(err,doc){
+                    if(err){
+                        deferred.reject(err);
+                    }
+                    else{
+                        deferred.resolve(doc);
+                    }
+                })
+            }
+        });
+
+        //return a promise
+        return deferred.promise;
     };
 
     function getMovieLike(userId){
@@ -32,12 +68,21 @@ module.exports= function(uuid,db,mongoose){
     };
 
     function checkIfLiked(userId,imdbId){
-        for(index = 0; index < mock.length; index++){
-            if(mock[index].user_id == userId && mock[index].imdbID == imdbId){
-                return true;
+
+        var deferred = q.defer();
+        relationModel.find(
+            {userID: userId, imdbID : imdbId},
+            function(err,doc){
+                if(err){
+                    deferred.reject(err);
+                }else{
+                    //console.log(doc);
+                    deferred.resolve(doc);
+                }
             }
-        }
-        return false;
+        );
+
+        return deferred.promise;
     };
 
     function updateMovieLike(userID,imdbID,comment){

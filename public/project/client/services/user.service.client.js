@@ -53,11 +53,11 @@
         function addMovieLike(imdbID,poster,title,userID){
 
             var movieLike = {
-                "user_id":userID,
-                "movieTitle":title,
+                "userID":userID,
                 "imdbID":imdbID,
-                "poster":poster,
-                "comments":""
+                "title":title,
+                "poster":poster
+                //,"comments":""
             };
 
             return $http.post("/api/project/addmovielike",movieLike);

@@ -3,8 +3,12 @@
  */
 
 module.exports = function(app,uuid,db,mongoose) {
-    var userModel=require("./models/user.model.js")(uuid,db,mongoose);
-    var movieModel=require("./models/movie.model.js")(uuid,db,mongoose);
+    var userMovieSchema=require("./models/user-movie.schema.server")(mongoose);
+    var relationModel = mongoose.model('ProjectRelations',userMovieSchema);
+
+    var userModel=require("./models/user.model.js")(uuid,db,mongoose,relationModel);
+    var movieModel=require("./models/movie.model.js")(uuid,db,mongoose,relationModel);
+
 
     var userService = require("./services/user.service.server.js")(app,userModel);
     var movieService = require("./services/movie.service.server.js")(app,movieModel);

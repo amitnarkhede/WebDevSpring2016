@@ -10,5 +10,8 @@ module.exports = function(mongoose) {
         title: String,
         poster: String
     }, {collection: 'project.movie'});
+
+    ProjectMovieSchema.index({imdbID:1},{unique:true});
+
     return ProjectMovieSchema;
 };
