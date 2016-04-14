@@ -14,6 +14,7 @@
             findAllUsers : findAllUsers,
             findUserByCredentials:findUserByCredentials,
             login:login,
+            logout:logout,
             register: register,
             getAllUsers:getAllUsers,
             getUserById:getUserById,
@@ -37,6 +38,10 @@
 
         function login(credentials){
             return $http.post("/api/assignment/login",credentials);
+        }
+
+        function logout(){
+            return $http.post("/api/assignment/logout");
         }
 
         function register(user){
