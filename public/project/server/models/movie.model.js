@@ -17,7 +17,8 @@ module.exports= function(uuid,db,mongoose,relationModel){
         getMovieLike:getMovieLike,
         checkIfLiked:checkIfLiked,
         updateMovieLike:updateMovieLike,
-        deleteMovieUser:deleteMovieUser
+        deleteMovieUser:deleteMovieUser,
+        getMovieDetails:getMovieDetails
     };
 
     return api;
@@ -25,31 +26,23 @@ module.exports= function(uuid,db,mongoose,relationModel){
     function addMovieLike(movieDetails){
         //mock.push(movieDetails);
         //console.log(movieDetails);
-
-        var userID = movieDetails.userID;
-        delete movieDetails.userID;
-
-        var movieRelation = {"imdbID": movieDetails.imdbID,
-            "userID":userID,comment:"","created":(new Date).getTime()};
+        //var movieRelation = {"imdbID": movieDetails.imdbID,
+        //  "userID":userID,comment:"","created":(new Date).getTime()};
 
         //console.log(movieRelation);
 
         var deferred = q.defer();
 
         MovieModel.create(movieDetails,function(err,doc){
-            if(err){
-                deferred.reject(err);
-            }
-            else{
-                relationModel.create(movieRelation,function(err,doc){
-                    if(err){
-                        deferred.reject(err);
-                    }
-                    else{
-                        deferred.resolve(doc);
-                    }
-                })
-            }
+            relationModel.create(movieDetails,function(err,doc){
+                if(err){
+                    deferred.reject(err);
+                }
+                else{
+                    deferred.resolve(doc);
+                }
+            })
+
         });
 
         //return a promise
@@ -58,13 +51,15 @@ module.exports= function(uuid,db,mongoose,relationModel){
 
     function getMovieLike(userId){
         var movies = [];
+        var deferred = q.defer();
 
-        for(index = 0; index < mock.length; index++){
-            if(mock[index].user_id == userId){
-                movies.push(mock[index]);
-            }
-        }
-        return movies;
+        relationModel
+            .find({userID : userId},
+                function(err,doc){
+                    deferred.resolve(doc);
+                });
+
+        return deferred.promise;
     };
 
     function checkIfLiked(userId,imdbId){
@@ -96,16 +91,34 @@ module.exports= function(uuid,db,mongoose,relationModel){
     }
 
     function deleteMovieUser(userID,imdbID){
-        var removed = -1;
-        for(index = 0; index < mock.length; index++){
-            if(mock[index].user_id == userID && mock[index].imdbID == imdbID){
-                removed = index;
-                break;
-            }
-        }
 
-        if(removed>=0){
-            mock.splice(removed,1);
-        }
+        var deferred = q.defer();
+
+        relationModel.remove({userID : userID , imdbID: imdbID},
+            function(err,doc){
+                if(err){
+                    deferred.reject(err);
+                }else{
+                    //console.log(doc);
+                    deferred.resolve(doc);
+                }
+            });
+
+        return deferred.promise;
+    }
+
+    function getMovieDetails(imdbID){
+        var deferred = q.defer();
+
+        MovieModel.findOne({imdbID : imdbID},
+            function(err,doc){
+                if(err){
+                    deferred.reject(err);
+                }else{
+                    deferred.resolve(doc);
+                }
+            });
+
+        return deferred.promise;
     }
 };

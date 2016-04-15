@@ -37,7 +37,7 @@
         };
 
         function deleteFormById(userID,imdbID){
-            var details = {"userID" : userID , "imdbID" : imdbID};
+            //var details = {"userID" : userID , "imdbID" : imdbID};
             return $http.delete("/api/project/deletemovie/"+ userID + "/" + imdbID);
 
         };

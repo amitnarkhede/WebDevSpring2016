@@ -17,12 +17,13 @@
 
 
         function init(){
-            if($rootScope.user == null) {
+            if($rootScope.currentUser == null) {
                 $location.url("/login");
             }else{
                 UserService
-                    .getMovieLike($rootScope.user._id)
+                    .getMovieLike($rootScope.currentUser._id)
                     .then(function(res){
+                        console.log(res.data);
                         renderMovies(res.data);
                     });
             }

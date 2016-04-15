@@ -50,14 +50,19 @@
         };
 
 
-        function addMovieLike(imdbID,poster,title,userID){
+        function addMovieLike(movieDetals,userDetails){
+
+            console.log(movieDetals);
+            console.log(userDetails);
 
             var movieLike = {
-                "userID":userID,
-                "imdbID":imdbID,
-                "title":title,
-                "poster":poster
-                //,"comments":""
+                "imdbID":movieDetals.imdbID,
+                "movieTitle":movieDetals.Title,
+                "poster":movieDetals.Poster,
+                "userID":userDetails._id,
+                "username":userDetails.username,
+                "comment":"",
+                "created": (new Date()).getTime()
             };
 
             return $http.post("/api/project/addmovielike",movieLike);

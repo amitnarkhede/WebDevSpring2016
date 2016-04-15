@@ -48,8 +48,8 @@
 
             if($rootScope.currentUser){
                 //console.log(vm.details);
-                UserService.addMovieLike(vm.details.imdbID,vm.details.Poster,vm.details.Title,$rootScope.currentUser._id);
-
+                UserService.addMovieLike(vm.details,$rootScope.currentUser);
+                checkIfLiked();
             }else {
 
                 $location.url("/login");
@@ -59,9 +59,10 @@
         function removeLikeMovie(){
 
 
-            if($rootScope.user){
+            if($rootScope.currentUser){
 
-                FormService.deleteFormById($rootScope.user._id,vm.details.imdbID);
+                FormService.deleteFormById($rootScope.currentUser._id,vm.details.imdbID);
+                checkIfLiked();
 
             }else {
 

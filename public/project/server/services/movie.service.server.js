@@ -11,9 +11,13 @@ module.exports = function(app,movieModel) {
 
     function getMovieLike(req,res){
         var userId  = req.params.userid;
-        var movies = movieModel.getMovieLike(userId);
-        //console.log(movies);
-        res.send(movies);
+
+        movieModel.getMovieLike(userId)
+            .then(function(movies){
+                res.send(movies);
+            },function(err){
+                res.status(400).send(err);
+            });
     };
 
     function checkIfLiked(req,res){
@@ -58,7 +62,14 @@ module.exports = function(app,movieModel) {
         var userID  = req.params.userid;
         var imdID = req.params.imdbid;
 
-        movieModel.deleteMovieUser(userID,imdID);
-        res.send(200);
+        movieModel
+            .deleteMovieUser(userID,imdID)
+            .then(function(response){
+                    res.send(200);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
+
     };
 }
