@@ -42,6 +42,7 @@
                 }
             );
             checkIfLiked();
+            fetchComments();
         }
 
         function likeMovie(){
@@ -87,6 +88,18 @@
                         console.log(err);
                     });
 
+        }
+
+        function fetchComments(){
+            FormService
+                .fetchComments(vm.details.imdbID)
+                .then(function(response){
+                        console.log(response);
+                        vm.comments = response.data;
+                    },
+                    function(err){s
+                        console.log(err);
+                    });
         }
     }
 })();

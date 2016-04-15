@@ -11,7 +11,8 @@
             findAllFormsForUser:findAllFormsForUser,
             deleteFormById:deleteFormById,
             updateFormById:updateFormById,
-            checkIfLiked:checkIfLiked
+            checkIfLiked:checkIfLiked,
+            fetchComments:fetchComments
         };
 
         return model;
@@ -50,6 +51,10 @@
 
         function checkIfLiked(userID,imdbID){
             return $http.get("/api/project/checklike/"+userID+"/"+imdbID);
+        };
+
+        function fetchComments(imdbID){
+            return $http.get("/api/project/comments/"+imdbID);
         };
     }
 })();

@@ -4,6 +4,7 @@
 
 module.exports = function(app,movieModel) {
     app.get("/api/project/getmovielike/:userid", getMovieLike);
+    app.get("/api/project/comments/:imdbid", getMovieComments);
     app.get("/api/project/checklike/:userid/:imdbID",checkIfLiked);
     app.post("/api/project/addmovielike", addMovieLike);
     app.put("/api/project/updatecomment",updateComment);
@@ -72,4 +73,20 @@ module.exports = function(app,movieModel) {
                 });
 
     };
+
+    function getMovieComments(req,res){
+        var imdbID = req.params.imdbid;
+        console.log(imdbID);
+
+        movieModel
+            .getMovieComments(imdbID)
+            .then(function(response){
+                    console.log(response);
+                    res.send(response);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                });
+
+    }
 }

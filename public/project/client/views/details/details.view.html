@@ -46,3 +46,16 @@
         <iframe ng-src="{{model.trailer | trusted}}" frameborder="0" allowfullscreen></iframe>
     </div>
 </div>
+
+<div ng-show="model.comments">
+    <br>
+    <h2>Comments : </h2><br>
+    <table>
+        <tr ng-repeat="comment in model.comments">
+            <td>
+                {{comment.username}}<br>
+                {{comment.comment}}
+            </td>
+        </tr>
+    </table>
+</div>
