@@ -47,8 +47,15 @@
     </div>
 </div>
 
+<div>
+    <label>Comment:</label><br>
+    <textarea rows="2">
+
+    </textarea><br>
+    <button>Save</button><button>Cancel</button>
+</div>
+
 <div ng-show="model.comments">
-    <br>
     <h2>Comments : </h2><br>
     <table>
         <tr ng-repeat="comment in model.comments">

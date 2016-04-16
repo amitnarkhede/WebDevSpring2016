@@ -83,12 +83,24 @@ module.exports= function(uuid,db,mongoose,relationModel){
 
     function updateMovieLike(userID,imdbID,comment){
 
-        for(index = 0; index < mock.length; index++){
-            if(mock[index].user_id == userID && mock[index].imdbID == imdbID){
-                //movies.push(mock[index]);
-                mock[index].comments = comment;
-            }
-        }
+        var deferred = q.defer();
+
+        var update = {comment: comment};
+
+        console.log(userID,imdbID,comment);
+        relationModel.update({userID:userID, imdbID:imdbID},
+            {$set : update},
+            function(err,doc){
+                //console.log(doc);
+                if(err){
+                    deferred.reject(err);
+                }else{
+                    //console.log(doc);
+                    deferred.resolve(doc);
+                }
+            });
+
+        return deferred.promise;
     }
 
     function deleteMovieUser(userID,imdbID){

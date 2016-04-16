@@ -55,8 +55,15 @@ module.exports = function(app,movieModel) {
         var imdbID = updated.imdbID;
         var comment = updated.comment;
 
-        movieModel.updateMovieLike(userid,imdbID,comment);
-        res.send(200);
+        movieModel
+            .updateMovieLike(userid,imdbID,comment)
+            .then(function(response){
+                    res.send(200);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
+
     };
 
     function deleteMovie(req,res){

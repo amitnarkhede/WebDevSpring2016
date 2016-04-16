@@ -59,7 +59,7 @@
             if (imdbID != null) {
                 $scope.alertMessage = null;
 
-                FormService.updateFormById($rootScope.user._id,imdbID,comment);
+                FormService.updateFormById($rootScope.currentUser._id,imdbID,comment);
 
                 clearSelection();
                 init();
@@ -90,7 +90,7 @@
             formIndexSelected = index;
             var selected = currentUserForms[index];
             $scope.sMovieTitle = selected.movieTitle;
-            $scope.sComments = selected.comments;
+            $scope.sComments = selected.comment;
             $scope.simdbID = selected.imdbID;
             $scope.sPoster = selected.poster;
 
