@@ -23,5 +23,12 @@
 }
 
 .movie-poster{
-    height : 300px
+    height : 300px;
+}
+
+.navbar-custom{
+    background-color: #3B4C6B;
+}
+.navbar-text{
+    color:#F0FFFF;
 }

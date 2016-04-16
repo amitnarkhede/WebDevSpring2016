@@ -9,9 +9,10 @@
     function DetailsController($scope, $rootScope, $routeParams, MovieService,UserService,FormService,$location) {
 
         var vm = this;
-        $scope.likeMovie = likeMovie;
-        $scope.removeLikeMovie = removeLikeMovie;
+        vm.likeMovie = likeMovie;
+        vm.removeLikeMovie = removeLikeMovie;
 
+        vm.user = $rootScope.currentUser;
         var imdbId = $routeParams.imdb_id;
         //console.log(imdbId);
 
@@ -41,7 +42,11 @@
                     }
                 }
             );
-            checkIfLiked();
+
+            if($rootScope.currentUser){
+                checkIfLiked();
+            }
+
             fetchComments();
         }
 

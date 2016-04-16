@@ -10,7 +10,7 @@
         Search
     </a>
     <table class="table table-striped">
-        <thead>
+        <thead ng-show="data">
         <tr>
             <th>Poster</th>
             <th>Title</th>
@@ -27,9 +27,6 @@
                 <a href="#/details/{{movie.imdbID}}">{{movie.Title}}</a>
             </td>
 
-            <td ng-show="user">
-                <a ng-click="likeMovie(movie.imdbID,movie.Poster,movie.Title)">Bookmark This</a>
-            </td>
         </tr>
         </tbody>
     </table>

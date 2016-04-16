@@ -7,10 +7,10 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../img/form-favicon.ico">
+    <link rel="icon" href="../../img/moviedb-favicon.ico">
     <link href="css/style.css" rel="stylesheet">
 
-    <title>TheFilmDB by Amit Narkhede</title>
+    <title>TheFilmDB</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -39,11 +39,11 @@
 
 <!-- <body ng-controller="MainController"> -->
 <body ng-controller="MainController">
-<div ng-include="'views/header/header.view.html'">
+<div class="navbar-custom" ng-include="'views/header/header.view.html'">
 </div>
 
 <div class="container-fluid">
-    <div ng-include="'views/sidebar/sidebar.view.html'" class="col-sm-3 col-md-2 sidebar">
+    <div ng-show="$location.url()!='/home'" ng-include="'views/sidebar/sidebar.view.html'" class="col-sm-3 col-md-2 sidebar">
 
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-view>
@@ -59,6 +59,18 @@
     $('.carousel').carousel({
         interval: 5000 //changes the speed
     })
+</script>
+
+<script>
+    $("#slider").on('slide.bs.carousel', function(evt) {
+
+        var step = $(evt.relatedTarget).index();
+
+        $('#slider_captions .carousel-caption:not(#caption-'+step+')').fadeOut('fast', function() {
+            $('#caption-'+step).fadeIn();
+        });
+
+    });
 </script>
 </body>
 </html>
