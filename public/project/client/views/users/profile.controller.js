@@ -39,12 +39,15 @@
 
             console.log(updatedUser);
             var userId = currentUser._id;
-            UserService
-                .updateUser(userId,updatedUser)
-                .then(function(user){
-                    UserService.setCurrentUser(user);
-                    $scope.message = "Profile updated successfully!";
-                });
+            UserService.updateUser(userId,updatedUser)
+                .then(function(response){
+                        //console.log(response.data[0]);
+                        UserService.setCurrentUser(response.data[0]);
+                        $scope.message = "Profile updated successfully!";
+                    },
+                    function(err){
+                        console.log(err);
+                    });
         };
     };
 })();

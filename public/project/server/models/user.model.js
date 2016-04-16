@@ -13,6 +13,7 @@ module.exports= function(uuid,db,mongoose){
     var api = {
         findUserByCredentials: findUserByCredentials,
         findUserByUsername:findUserByUsername,
+        findUserById:findUserById,
         createNewUser :createNewUser,
         updateUser:updateUser,
         deleteUser:deleteUser,
@@ -70,6 +71,20 @@ module.exports= function(uuid,db,mongoose){
         //return a promise
         return deferred.promise;
 
+    }
+
+    function findUserById(userId){
+        var deferred = q.defer();
+
+        UserModel.find({_id:userId},function(err,doc){
+            if(err){
+                deferred.reject(err);
+            }else{
+                deferred.resolve(doc);
+            }
+        });
+
+        return deferred.promise;
     }
 
     function updateUser(userId,updatedUserDetails){
