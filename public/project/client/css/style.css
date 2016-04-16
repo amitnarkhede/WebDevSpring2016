@@ -3,7 +3,6 @@
     color: white!important
 }
 
-
 a {
     -webkit-transition: 300ms;
     -moz-transition: 300ms;
@@ -49,4 +48,18 @@ a:hover {
 
 input{
     border-radius: 15px!important;
+}
+
+.borderless td, .borderless th {
+    border: none!important;
+}
+
+.rounded-table{
+    border-radius: 5px;
+    border: 1px solid #999;
+    xborder-collapse: collapse;
+}
+
+.weightless-label {
+    font-weight: normal !important;
 }

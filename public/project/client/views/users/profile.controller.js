@@ -64,7 +64,12 @@
                 .getMovieLike($rootScope.currentUser._id)
                 .then(function(res){
                     console.log(res.data);
-                    vm.movies= res.data;
+                    if(res.data.length==0){
+                        vm.movies = null;
+                    }else{
+                        vm.movies= res.data;
+                    }
+
                 });
         }
     };
