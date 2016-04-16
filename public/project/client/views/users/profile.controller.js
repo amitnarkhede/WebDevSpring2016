@@ -7,6 +7,8 @@
 
         var currentUser= $rootScope.currentUser;
         var vm=this;
+        vm.edit = false;
+        vm.toggleEdit = toggleEdit;
 
         function init(){
 
@@ -22,7 +24,9 @@
                 vm.username=currentUser.username;
                 vm.password=currentUser.password;
                 vm.email=currentUser.email;
-                vm.phone=currentUser.phone;}
+                vm.phone=currentUser.phone;
+                getMovies();
+            }
         }
 
         init();
@@ -37,7 +41,7 @@
                 "password" : vm.password,
                 "phone" : vm.phone};
 
-            console.log(updatedUser);
+            //console.log(updatedUser);
             var userId = currentUser._id;
             UserService.updateUser(userId,updatedUser)
                 .then(function(response){
@@ -48,6 +52,20 @@
                     function(err){
                         console.log(err);
                     });
+            toggleEdit();
         };
+
+        function toggleEdit(){
+            vm.edit = !vm.edit;
+        }
+
+        function getMovies(){
+            UserService
+                .getMovieLike($rootScope.currentUser._id)
+                .then(function(res){
+                    console.log(res.data);
+                    vm.movies= res.data;
+                });
+        }
     };
 })();
