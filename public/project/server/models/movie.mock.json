@@ -1,6 +1,0 @@
-[ {"user_id":123,
-  "movieTitle": "Star Wars",
-  "imdbID" : "tt0076759",
-  "poster" : "http://img.omdbapi.com/?i=tt0076759&apikey=2bf5ee9",
-  "comments" : ""
-}]

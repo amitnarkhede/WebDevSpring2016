@@ -51,7 +51,7 @@
         }
 
         function likeMovie(){
-
+            console.log("Liked Movie");
             if($rootScope.currentUser){
                 //console.log(vm.details);
                 UserService.addMovieLike(vm.details,$rootScope.currentUser);

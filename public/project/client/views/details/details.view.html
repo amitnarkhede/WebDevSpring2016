@@ -31,14 +31,29 @@
     </div>
 </div>
 
-<div ng-show="user">
-<div ng-hide="model.liked">
-    <a ng-click="likeMovie()">Bookmark This</a>
-</div>
+<div ng-show="model.user">
 
-<div ng-show="model.liked">
-    <a ng-click="removeLikeMovie()">Remove Bookmark</a>
-</div>
+    <!--
+    <div ng-hide="model.liked">
+        <a ng-click="model.likeMovie()">Bookmark This</a>
+    </div>
+
+    <div ng-show="model.liked">
+        <a ng-click="model.removeLikeMovie()">Remove Bookmark</a>
+    </div>
+
+    !-->
+
+    <button ng-show="model.liked" class="btn btn-danger"
+            ng-click="model.removeLikeMovie()">
+        <span class="fa fa-star"></span>
+    </button>
+
+    <button ng-hide="model.liked" class="btn btn-secondary"
+            ng-click="model.likeMovie()">
+        <span class="fa fa-star-o"></span>
+    </button>
+
 </div>
 
 <div ng-show="model.trailer">
@@ -49,7 +64,7 @@
     </div>
 </div>
 
-<div ng-show="user">
+<div ng-show="model.user">
     <label>Comment:</label><br>
     <textarea rows="2">
 

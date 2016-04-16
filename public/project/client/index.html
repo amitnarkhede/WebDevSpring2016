@@ -14,6 +14,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular-route.js"></script>
     <script src="app.js"></script>
@@ -43,7 +44,7 @@
 </div>
 
 <div class="container-fluid">
-    <div ng-show="$location.url()!='/home'" ng-include="'views/sidebar/sidebar.view.html'" class="col-sm-3 col-md-2 sidebar">
+    <div ng-show="currentUser" ng-include="'views/sidebar/sidebar.view.html'" class="col-sm-3 col-md-2 sidebar">
 
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-view>

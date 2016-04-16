@@ -2,8 +2,6 @@
  * Created by amitv on 25-Mar-16.
  */
 
-var mock = require("./movie.mock.json");
-
 module.exports= function(uuid,db,mongoose,relationModel){
 
     var MovieSchema = require("./movie.schema.server.js")(mongoose);
@@ -25,12 +23,6 @@ module.exports= function(uuid,db,mongoose,relationModel){
     return api;
 
     function addMovieLike(movieDetails){
-        //mock.push(movieDetails);
-        //console.log(movieDetails);
-        //var movieRelation = {"imdbID": movieDetails.imdbID,
-        //  "userID":userID,comment:"","created":(new Date).getTime()};
-
-        //console.log(movieRelation);
 
         var deferred = q.defer();
 
@@ -51,7 +43,6 @@ module.exports= function(uuid,db,mongoose,relationModel){
     };
 
     function getMovieLike(userId){
-        var movies = [];
         var deferred = q.defer();
 
         relationModel
@@ -87,7 +78,6 @@ module.exports= function(uuid,db,mongoose,relationModel){
 
         var update = {comment: comment};
 
-        console.log(userID,imdbID,comment);
         relationModel.update({userID:userID, imdbID:imdbID},
             {$set : update},
             function(err,doc){

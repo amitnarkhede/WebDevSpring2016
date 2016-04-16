@@ -52,9 +52,6 @@
 
         function addMovieLike(movieDetals,userDetails){
 
-            console.log(movieDetals);
-            console.log(userDetails);
-
             var movieLike = {
                 "imdbID":movieDetals.imdbID,
                 "movieTitle":movieDetals.Title,
