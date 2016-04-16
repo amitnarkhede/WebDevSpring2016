@@ -14,8 +14,10 @@
                 UserService
                     .createUser(newUser)
                     .then(function(user){
-                        UserService.setCurrentUser(user);
+                        UserService.setCurrentUser(user.data);
                         $location.url("/profile");
+                    }, function (err) {
+                        console.log(err);
                     });
 
 
