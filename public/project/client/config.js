@@ -19,11 +19,13 @@
             })
             .when("/search",{
                 templateUrl:"views/search/search.view.html",
-                controller:"SearchController"
+                controller:"SearchController",
+                controllerAs:"model"
             })
             .when("/search/:title",{
                 templateUrl:"views/search/search.view.html",
-                controller:"SearchController"
+                controller:"SearchController",
+                controllerAs:"model"
             })
             .when("/details/:imdb_id", {
                 templateUrl: "views/details/details.view.html",

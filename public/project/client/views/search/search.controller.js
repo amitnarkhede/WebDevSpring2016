@@ -6,10 +6,11 @@
         .module("TheFilmDBApp")
         .controller("SearchController", SearchController);
 
-    function SearchController($scope, $rootScope, $routeParams, $location, MovieService,UserService) {
+    function SearchController($scope,$routeParams,MovieService) {
+        vm = this;
+        vm.movie=null;
 
         //$scope.movieTitle = "Star Wars";
-        $scope.likeMovie = likeMovie;
 
         function init() {
             var movieTitle = $routeParams.title;
@@ -20,6 +21,7 @@
         init();
 
         function fetchMovie(movieTitle) {
+            vm.movie=movieTitle;
             MovieService.findMoviesByTitle(movieTitle, renderMovies)
         }
 
@@ -34,18 +36,6 @@
             //console.log(response);
 
             $scope.data = response;
-        }
-
-        function likeMovie(imdbID,poster,title){
-
-            if($rootScope.user){
-                //console.log(imdbID + poster + title);
-                UserService.addMovieLike(imdbID,poster,title,$rootScope.user._id);
-
-            }else {
-
-                $location.url("/login");
-            }
         }
     }
 })();

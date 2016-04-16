@@ -1,37 +1,52 @@
-.custom-alert-red{
-    color:red;
-    font-size: large;
-    padding-bottom: 15px
-}
-
-.custom-alert-green{
-    color: green;
-    font-size: large;
-    padding-bottom: 15px
-}
-
-.carousel-caption-white{
-    color:#2e6da4;
-}
-
-.botton-margin-10{
-    margin-bottom: 10px;
-}
-
-.custom-blockquote{
-    background-color: rgba(216, 215, 213, 0.30)
-}
-
-.movie-poster{
-    height : 300px;
-}
-
 .navbar-custom{
-    background-color: #3B4C6B;
+    background-color: #1B7B98!important;
+    color: white!important
 }
-.navbar-text{
-    color:#F0FFFF;
+
+
+a {
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -o-transition: 300ms;
+    transition: 300ms;
 }
-.borderless td, .borderless th {
-    border: none;
+
+a:focus,
+a:hover {
+    text-decoration: none;
+    outline: none
+}
+
+.navbar-right {
+    background-color: #1B7B98;
+    padding:0 0 0 0;
+    opacity: .9
+}
+
+.navbar-right li a {
+    font-size: 22px;
+    color: white!important;
+    font-family: 'Yanone Kaffeesatz', 'sans-serif';
+    font-weight: 300;
+}
+
+.navbar-right li a:hover,
+.navbar-right li a:focus,
+.navbar-right .active a {
+    background-color: #fff!important;
+    color: #1B7B98!important;
+}
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #1B7B98!important;
+    border-color: #285e8e;
+    border-radius: 15px!important;
+}
+.btn-primary:hover {
+    background-color: #13556C!important;
+}
+
+input{
+    border-radius: 15px!important;
 }

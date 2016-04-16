@@ -1,14 +1,20 @@
 <div class="row">
-    <h1 class="text-center">Search For the movie</h1>
+    <h1 ng-hide="model.movie" class="text-center">Search For the movie</h1>
+    <h1 ng-show="model.movie" class="text-center">Showing searches for {{model.movie}}</h1>
     <h2>Search</h2>
 </div>
 
 <div class="container-fluid">
-    <input ng-model="movieTitle" class="form-control"/>
-
-    <a href="#/search/{{movieTitle}}" class="btn btn-primary btn-block">
-        Search
-    </a>
+    <table class="table" style="border: 0">
+        <tr>
+            <td>
+                <input ng-model="movieTitle" class="form-control"/><br>
+                <a href="#/search/{{movieTitle}}" class="btn btn-primary btn-block">
+                    Search
+                </a>
+            </td>
+        </tr>
+    </table>
     <table class="table table-striped">
         <thead ng-show="data">
         <tr>
@@ -18,7 +24,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-click="selectMovie(movie)" ng-repeat="movie in data.Search">
+        <tr ng-click="model.selectMovie(movie)" ng-repeat="movie in data.Search">
             <td>
                 <img height="100px" ng-src="{{movie.Poster}}"/>
             </td>
