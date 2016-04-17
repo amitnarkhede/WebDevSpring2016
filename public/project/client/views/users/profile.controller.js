@@ -36,6 +36,7 @@
                     vm.email = currentUser.email;
                     vm.phone = currentUser.phone;
                     getMovies(profileUserId);
+                    getFollowing(profileUserId);
                 }
                 else{
                     vm.readonly=true;
@@ -58,6 +59,7 @@
                         });
 
                     getMovies(profileUserId);
+                    getFollowing(profileUserId);
                 }
 
             }
@@ -159,6 +161,21 @@
                     },function(err){
                         console.log(err);
                     });
+        }
+
+        function getFollowing(userid){
+            UserService
+                .getFollowing(userid)
+                .then(function(res){
+                    console.log("Following");
+                    console.log(res.data);
+                    if(res.data.length==0){
+                        vm.following = null;
+                    }else{
+                        vm.following = res.data;
+                    }
+
+                });
         }
     };
 })();

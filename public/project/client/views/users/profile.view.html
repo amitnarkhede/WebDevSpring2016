@@ -101,4 +101,16 @@
             </tr>
         </table>
     </div>
+    <div>
+        <h3>Following : </h3>
+        <h4 ng-hide="model.following">None!</h4>
+        <table class="table table-bordered table-responsive rounded-table" ng-show="model.following">
+            <thead>
+            <th>Users</th>
+            </thead>
+            <tr ng-repeat="user in model.following">
+                <td><a href="#/profile/{{user.following_id}}">{{user.following_username}}</a></td>
+            </tr>
+        </table>
+    </div>
 </form>

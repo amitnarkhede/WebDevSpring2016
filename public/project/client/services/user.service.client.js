@@ -17,7 +17,8 @@
             getMovieLike:getMovieLike,
             followUser:followUser,
             unFollowUser:unFollowUser,
-            checkIfFollowed:checkIfFollowed
+            checkIfFollowed:checkIfFollowed,
+            getFollowing:getFollowing
         };
 
         return service;
@@ -100,5 +101,9 @@
 
             return $http.get("/api/project/following/"+userId+"/"+followingId);
         };
+
+        function getFollowing(userID){
+            return $http.get("/api/project/getfollowing/"+userID);
+        }
     }
 })();

@@ -26,7 +26,8 @@ module.exports= function(uuid,db,mongoose){
         addFollowing:addFollowing,
         removeFollowing:removeFollowing,
         getFollowing:getFollowing,
-        checkIfFollowed:checkIfFollowed
+        checkIfFollowed:checkIfFollowed,
+        getFollowing:getFollowing
     };
 
     return api;
@@ -151,6 +152,8 @@ module.exports= function(uuid,db,mongoose){
 
             }
         });
+
+        return deferred.promise;
     }
 
     function findUserById(userId){

@@ -12,6 +12,7 @@ module.exports = function(app,userModel) {
     app.put("/api/project/updateUser/:id",updateUser);
     app.get("/api/project/alluser", getAllUsers);
     app.delete("/api/project/user/:id",deleteUser);
+    app.get("/api/project/getfollowing/:userID",getFollowing);
 
     function findUserByCredentials(req,res){
         var username=req.params.username;
@@ -122,6 +123,19 @@ module.exports = function(app,userModel) {
                     res.status(400).send(err);
                 });
 
+    }
+
+    function getFollowing(req,res){
+        var userID = req.params.userID;
+
+        userModel
+            .getFollowing(userID)
+            .then(function(users){
+                    res.json(users);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
     }
 
 
