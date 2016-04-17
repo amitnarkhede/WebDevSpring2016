@@ -29,7 +29,6 @@
         }
 
         function renderDetails(response) {
-            //console.log(response);
             vm.details = response;
             vm.details.Poster = POSTER_URL.replace("IMDBID",vm.details.imdbID);
 
