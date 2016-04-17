@@ -11,10 +11,13 @@
         var vm = this;
         vm.likeMovie = likeMovie;
         vm.removeLikeMovie = removeLikeMovie;
+        vm.updateComment = updateComment;
 
         vm.user = $rootScope.currentUser;
         var imdbId = $routeParams.imdb_id;
         //console.log(imdbId);
+        vm.isNewComment = true;
+        vm.commentFlag = false;
 
         vm.liked = null;
 
@@ -56,7 +59,6 @@
                 UserService.addMovieLike(vm.details,$rootScope.currentUser);
                 checkIfLiked();
             }else {
-
                 $location.url("/login");
             }
         }
@@ -100,8 +102,18 @@
                 .then(function(response){
                         console.log("Comments");
                         console.log(response.data);
-                        if(response.data){
+                        if(response.data.length!=0){
                             vm.comments = response.data;
+                            if(vm.user){
+
+                                response.data.forEach(function(comment){
+                                    if(comment.userID == vm.user._id){
+                                        vm.userComment = comment.comment;
+                                        vm.isNewComment = false;
+                                    }
+                                });
+                            }
+
                         }else{
                             vm.comments = null;
                         }
@@ -110,6 +122,20 @@
                     function(err){s
                         console.log(err);
                     });
+        }
+
+        function updateComment() {
+            console.log("Update was called");
+            if(vm.isNewComment){
+                console.log("This is a new comment");
+                likeMovie();
+            }
+
+            FormService.updateFormById($rootScope.currentUser._id,imdbId,vm.userComment);
+
+            vm.commentFlag = false;
+
+            init();
         }
     }
 })();

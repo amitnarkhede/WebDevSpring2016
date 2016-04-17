@@ -76,7 +76,7 @@
 
         function deleteForm(imdbID){
             $scope.alertMessage = null;
-            FormService.deleteFormById($rootScope.user._id,imdbID);
+            FormService.deleteFormById($rootScope.currentUser._id,imdbID);
             init();
         }
 
