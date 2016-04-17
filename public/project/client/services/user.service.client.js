@@ -18,7 +18,8 @@
             followUser:followUser,
             unFollowUser:unFollowUser,
             checkIfFollowed:checkIfFollowed,
-            getFollowing:getFollowing
+            getFollowing:getFollowing,
+            getFollowers:getFollowers
         };
 
         return service;
@@ -104,6 +105,10 @@
 
         function getFollowing(userID){
             return $http.get("/api/project/getfollowing/"+userID);
+        }
+
+        function getFollowers(userID){
+            return $http.get("/api/project/getfollowers/"+userID);
         }
     }
 })();

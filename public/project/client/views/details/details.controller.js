@@ -99,8 +99,14 @@
             FormService
                 .fetchComments(vm.details.imdbID)
                 .then(function(response){
-                        console.log(response);
-                        vm.comments = response.data;
+                        console.log("Comments");
+                        console.log(response.data);
+                        if(response.data){
+                            vm.comments = response.data;
+                        }else{
+                            vm.comments = null;
+                        }
+
                     },
                     function(err){s
                         console.log(err);

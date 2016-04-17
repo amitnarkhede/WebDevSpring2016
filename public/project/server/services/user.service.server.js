@@ -13,6 +13,7 @@ module.exports = function(app,userModel) {
     app.get("/api/project/alluser", getAllUsers);
     app.delete("/api/project/user/:id",deleteUser);
     app.get("/api/project/getfollowing/:userID",getFollowing);
+    app.get("/api/project/getfollowers/:userID",getFollowers);
 
     function findUserByCredentials(req,res){
         var username=req.params.username;
@@ -130,6 +131,19 @@ module.exports = function(app,userModel) {
 
         userModel
             .getFollowing(userID)
+            .then(function(users){
+                    res.json(users);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
+    }
+
+    function getFollowers(req,res){
+        var userID = req.params.userID;
+
+        userModel
+            .getFollowers(userID)
             .then(function(users){
                     res.json(users);
                 },

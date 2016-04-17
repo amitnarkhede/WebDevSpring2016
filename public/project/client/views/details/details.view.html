@@ -54,16 +54,18 @@
 </div>
 
 <div ng-show="model.user">
-    <label>Comment:</label><br>
-    <textarea rows="2">
-
+    <br><label for="userComment">Comment:</label><br>
+    <textarea id="userComment"class="form-control" value="" rows="2">
     </textarea><br>
-    <button>Save</button><button>Cancel</button>
+    <button class="btn btn-primary">Save</button><button class="btn btn-danger">Cancel</button>
 </div>
 
-<div ng-show="model.comments">
-    <h2>Comments : </h2><br>
-    <table class="table table-bordered table-responsive rounded-table">
+<h2>Comments : </h2>
+<div class="chat">
+    <h3 ng-hide="model.comments">None!</h3>
+
+    <!--
+    <table ng-show="model.comments" class="table table-bordered table-responsive rounded-table">
         <thead>
         <th>User</th>
         <th>Comment</th>
@@ -77,4 +79,11 @@
             </td>
         </tr>
     </table>
+    !-->
+
+    <div ng-show="model.comments" >
+        <div class="bubble me" ng-repeat="comment in model.comments">
+            <a href="#/profile/{{comment.userID}}">{{comment.username}} : </a> {{comment.comment}}
+        </div>
+    </div>
 </div>

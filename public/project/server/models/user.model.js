@@ -27,7 +27,7 @@ module.exports= function(uuid,db,mongoose){
         removeFollowing:removeFollowing,
         getFollowing:getFollowing,
         checkIfFollowed:checkIfFollowed,
-        getFollowing:getFollowing
+        getFollowers:getFollowers
     };
 
     return api;
@@ -115,7 +115,7 @@ module.exports= function(uuid,db,mongoose){
                 else{
                     console.log(doc);
                     deferred.resolve(doc);
-                                    }
+                }
             });
 
         //return a promise
@@ -144,6 +144,22 @@ module.exports= function(uuid,db,mongoose){
         var deferred = q.defer();
 
         User2UserModel.find({follower_id:userId},function(err,doc){
+            if(err){
+                deferred.reject(err);
+            }
+            else{
+                deferred.resolve(doc);
+
+            }
+        });
+
+        return deferred.promise;
+    }
+
+    function getFollowers(userId){
+        var deferred = q.defer();
+
+        User2UserModel.find({following_id:userId},function(err,doc){
             if(err){
                 deferred.reject(err);
             }

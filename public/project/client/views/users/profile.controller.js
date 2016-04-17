@@ -37,6 +37,7 @@
                     vm.phone = currentUser.phone;
                     getMovies(profileUserId);
                     getFollowing(profileUserId);
+                    getFollers(profileUserId);
                 }
                 else{
                     vm.readonly=true;
@@ -60,6 +61,7 @@
 
                     getMovies(profileUserId);
                     getFollowing(profileUserId);
+                    getFollers(profileUserId);
                 }
 
             }
@@ -173,6 +175,21 @@
                         vm.following = null;
                     }else{
                         vm.following = res.data;
+                    }
+
+                });
+        }
+
+        function getFollers(userid){
+            UserService
+                .getFollowers(userid)
+                .then(function(res){
+                    console.log("Followers");
+                    console.log(res.data);
+                    if(res.data.length==0){
+                        vm.followers = null;
+                    }else{
+                        vm.followers = res.data;
                     }
 
                 });
