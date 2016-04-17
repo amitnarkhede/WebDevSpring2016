@@ -22,7 +22,11 @@ module.exports= function(uuid,db,mongoose){
         createNewUser :createNewUser,
         updateUser:updateUser,
         deleteUser:deleteUser,
-        getAllUsers:getAllUsers
+        getAllUsers:getAllUsers,
+        addFollowing:addFollowing,
+        removeFollowing:removeFollowing,
+        getFollowing:getFollowing,
+        checkIfFollowed:checkIfFollowed
     };
 
     return api;
@@ -77,6 +81,76 @@ module.exports= function(uuid,db,mongoose){
         //return a promise
         return deferred.promise;
 
+    }
+
+    function addFollowing(details){
+        var deferred = q.defer();
+
+        User2UserModel.create(details,function(err,doc){
+            if(err){
+                deferred.reject(err);
+            }
+            else{
+                deferred.resolve(doc);
+
+            }
+        });
+
+        //return a promise
+        return deferred.promise;
+    }
+
+    function checkIfFollowed(userID,followingID){
+        var deferred = q.defer();
+
+        console.log(userID);
+        console.log(followingID);
+
+        User2UserModel.find({follower_id:userID,following_id:followingID},
+            function(err,doc){
+                if(err){
+                    deferred.reject(err);
+                }
+                else{
+                    console.log(doc);
+                    deferred.resolve(doc);
+                                    }
+            });
+
+        //return a promise
+        return deferred.promise;
+    }
+
+    function removeFollowing(userId,followingId){
+        var deferred = q.defer();
+
+        User2UserModel.remove({follower_id:userId,following_id:followingId},
+            function(err,doc){
+                if(err){
+                    deferred.reject(err);
+                }
+                else{
+                    deferred.resolve(doc);
+
+                }
+            });
+
+        //return a promise
+        return deferred.promise;
+    }
+
+    function getFollowing(userId){
+        var deferred = q.defer();
+
+        User2UserModel.find({follower_id:userId},function(err,doc){
+            if(err){
+                deferred.reject(err);
+            }
+            else{
+                deferred.resolve(doc);
+
+            }
+        });
     }
 
     function findUserById(userId){

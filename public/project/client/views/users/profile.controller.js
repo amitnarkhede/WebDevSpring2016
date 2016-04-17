@@ -6,10 +6,16 @@
     function ProfileController($rootScope,$scope,UserService,$location,$routeParams){
 
         var currentUser= $rootScope.currentUser;
+        var profileUserId = $routeParams.userid;
+
         var vm=this;
         vm.edit = false;
+        vm.readonly=false;
+        vm.self=false;
         vm.toggleEdit = toggleEdit;
-        var profileUserId = $routeParams.userid;
+        vm.followUser = followUser;
+        vm.unfollowUser = unfollowUser;
+
 
         function init(){
 
@@ -18,6 +24,7 @@
             }
             else{
                 if(profileUserId == $rootScope.currentUser._id) {
+                    vm.self=true;
                     console.log("UserID with logged in matched!");
                     vm.message = null;
                     vm.update = update;
@@ -31,8 +38,9 @@
                     getMovies(profileUserId);
                 }
                 else{
-                    vm.edit=false;
+                    vm.readonly=true;
                     console.log("UserID with logged in did not matched!");
+                    ifFollowed();
                     UserService
                         .findUserById(profileUserId)
                         .then(function(response){
@@ -97,6 +105,60 @@
                     }
 
                 });
+        }
+
+        function followUser(){
+
+            var loggedinUser = $rootScope.currentUser;
+            var profileUserName = vm.username;
+
+            console.log(loggedinUser._id ,loggedinUser.username,profileUserId,profileUserName)
+            UserService
+                .followUser(loggedinUser._id ,loggedinUser.username,profileUserId,profileUserName)
+                .then(
+                    function(res){
+                        console.log(res);
+                        ifFollowed();
+                    },function(err){
+                        console.log(err);
+                    });
+        }
+
+        function unfollowUser(){
+
+            var loggedinUser = $rootScope.currentUser;
+
+            console.log(loggedinUser._id ,profileUserId)
+            UserService
+                .unFollowUser(loggedinUser._id,profileUserId)
+                .then(
+                    function(res){
+                        console.log(res);
+                        ifFollowed();
+                    },function(err){
+                        console.log(err);
+                    });
+        }
+
+        function ifFollowed(){
+            var loggedinUser = $rootScope.currentUser;
+
+            console.log(loggedinUser._id ,profileUserId);
+            UserService
+                .checkIfFollowed(loggedinUser._id,profileUserId)
+                .then(
+                    function(res){
+                        console.log("CheckIfFollowed");
+                        console.log(res.data[0]);
+                        if(res.data[0]){
+                            vm.followed = true;
+                        }else{
+                            vm.followed = false;
+                        }
+
+                    },function(err){
+                        console.log(err);
+                    });
         }
     };
 })();

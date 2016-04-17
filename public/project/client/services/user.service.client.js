@@ -14,7 +14,10 @@
             deleteUserById:deleteUserById,
             updateUser:updateUser,
             addMovieLike:addMovieLike,
-            getMovieLike:getMovieLike
+            getMovieLike:getMovieLike,
+            followUser:followUser,
+            unFollowUser:unFollowUser,
+            checkIfFollowed:checkIfFollowed
         };
 
         return service;
@@ -76,6 +79,26 @@
 
             return $http.get("/api/project/getmovielike/"+userID);
 
+        };
+
+        function followUser(userID,username,follow_userID,follow_username){
+            var follow = {"follower_id" : userID,
+                "follower_username" : username,
+                "following_id" : follow_userID,
+                "following_username" : follow_username
+            };
+
+            return $http.post("/api/project/addfollowing",follow);
+        };
+
+        function unFollowUser(userID,follow_userID){
+
+            return $http.delete("/api/project/removefollowing/"+userID+"/"+follow_userID);
+        };
+
+        function checkIfFollowed(userId,followingId){
+
+            return $http.get("/api/project/following/"+userId+"/"+followingId);
         };
     }
 })();

@@ -4,8 +4,14 @@
         <div class="col-sm-6">
             <h1>Profile</h1>
         </div>
-        <div class="col-sm-6">
+        <div ng-hide="model.readonly" class="col-sm-6">
             <a ng-hide="model.edit" class="btn btn-primary" ng-click="model.toggleEdit()">Edit Profile</a>
+        </div>
+        <div ng-hide="model.self" ng-show="!model.followed" class="col-sm-6">
+            <a ng-hide="model.edit" class="btn btn-primary" ng-click="model.followUser()">Follow</a>
+        </div>
+        <div ng-hide="model.self" ng-show="model.followed" class="col-sm-6">
+            <a ng-hide="model.edit" class="btn btn-primary" ng-click="model.unfollowUser()">Unfollow</a>
         </div>
     </div>
 

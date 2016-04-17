@@ -6,6 +6,9 @@ module.exports = function(app,userModel) {
     app.get("/api/project/user/:username/:password", findUserByCredentials);
     app.get("/api/project/user/:userid", findUserById);
     app.post("/api/project/register", createUser);
+    app.post("/api/project/addfollowing",addFollowing);
+    app.delete("/api/project/removefollowing/:userID/:followingID",removeFollowing);
+    app.get("/api/project/following/:userID/:followingID",checkIfFollowed);
     app.put("/api/project/updateUser/:id",updateUser);
     app.get("/api/project/alluser", getAllUsers);
     app.delete("/api/project/user/:id",deleteUser);
@@ -60,6 +63,68 @@ module.exports = function(app,userModel) {
                 }
             );
     }
+
+    function addFollowing(req,res){
+        //console.log(req.body);
+        var details = req.body;
+
+        //console.log(details);
+
+        userModel
+            .addFollowing(details)
+            .then(
+                //login in promise resolved
+                function( doc ){
+                    //console.log(doc);
+                    res.json(doc);
+                },
+                //send error if promise rejected
+                function( err ){
+                    //console.log(err);
+                    res.status(400).send(err);
+
+                }
+            );
+    }
+
+    function removeFollowing(req,res){
+
+        var userID = req.params.userID;
+        var followingID = req.params.followingID;
+
+        userModel
+            .removeFollowing(userID,followingID)
+            .then(
+                //login in promise resolved
+                function( doc ){
+                    //console.log(doc);
+                    res.json(doc);
+                },
+                //send error if promise rejected
+                function( err ){
+                    //console.log(err);
+                    res.status(400).send(err);
+
+                }
+            );
+    }
+
+    function checkIfFollowed(req,res){
+        var userID = req.params.userID;
+        var followingID = req.params.followingID;
+
+        userModel
+            .checkIfFollowed(userID,followingID)
+            .then(function(users){
+                    res.json(users);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
+
+    }
+
+
 
     function updateUser(req,res){
         var id = req.params.id;
