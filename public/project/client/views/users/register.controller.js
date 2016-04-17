@@ -11,7 +11,6 @@
         function register(){
             var newUser = {username : vm.username , password : vm.password , email : vm.email};
             if(vm.username !="" && vm.email !="" && vm.password !="" && vm.verifyPassword !=""){
-                console.log("Empty data accepted");
 
                 if(vm.password == vm.verifyPassword){
 
@@ -19,11 +18,10 @@
                         .createUser(newUser)
                         .then(function(user){
                             UserService.setCurrentUser(user.data);
-                            $location.url("/profile");
+                            $location.url("/profile/"+user.data._id);
                         }, function (err) {
 
                             vm.message = "Username already taken!";
-                            //console.log(err);
                         });
                 }else{
                     vm.message = "Password and Verify Password should match!";
