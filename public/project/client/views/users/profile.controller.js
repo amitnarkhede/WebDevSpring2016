@@ -3,12 +3,13 @@
         .module("TheFilmDBApp")
         .controller("ProfileController",ProfileController);
 
-    function ProfileController($rootScope,$scope,UserService,$location){
+    function ProfileController($rootScope,$scope,UserService,$location,$routeParams){
 
         var currentUser= $rootScope.currentUser;
         var vm=this;
         vm.edit = false;
         vm.toggleEdit = toggleEdit;
+        var profileUserId = $routeParams.userid;
 
         function init(){
 
@@ -16,16 +17,41 @@
                 $location.url("/login");
             }
             else{
-                vm.message=null;
-                vm.update=update;
+                if(profileUserId == $rootScope.currentUser._id) {
+                    console.log("UserID with logged in matched!");
+                    vm.message = null;
+                    vm.update = update;
 
-                vm.firstname=currentUser.firstname;
-                vm.lastname=currentUser.lastname;
-                vm.username=currentUser.username;
-                vm.password=currentUser.password;
-                vm.email=currentUser.email;
-                vm.phone=currentUser.phone;
-                getMovies();
+                    vm.firstname = currentUser.firstname;
+                    vm.lastname = currentUser.lastname;
+                    vm.username = currentUser.username;
+                    vm.password = currentUser.password;
+                    vm.email = currentUser.email;
+                    vm.phone = currentUser.phone;
+                    getMovies(profileUserId);
+                }
+                else{
+                    vm.edit=false;
+                    console.log("UserID with logged in did not matched!");
+                    UserService
+                        .findUserById(profileUserId)
+                        .then(function(response){
+                            console.log(response);
+                            currentUser = response.data[0];
+
+                            vm.firstname = currentUser.firstname;
+                            vm.lastname = currentUser.lastname;
+                            vm.username = currentUser.username;
+                            vm.password = currentUser.password;
+                            vm.email = currentUser.email;
+                            vm.phone = currentUser.phone;
+                        },function(err){
+                            console.log(err);
+                        });
+
+                    getMovies(profileUserId);
+                }
+
             }
         }
 
@@ -59,9 +85,9 @@
             vm.edit = !vm.edit;
         }
 
-        function getMovies(){
+        function getMovies(userid){
             UserService
-                .getMovieLike($rootScope.currentUser._id)
+                .getMovieLike(userid)
                 .then(function(res){
                     console.log(res.data);
                     if(res.data.length==0){

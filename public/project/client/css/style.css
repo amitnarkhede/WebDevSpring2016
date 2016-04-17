@@ -1,3 +1,15 @@
+.custom-alert-red{
+    color:red;
+    font-size: large;
+    padding-bottom: 15px
+}
+
+.custom-alert-green{
+    color: green;
+    font-size: large;
+    padding-bottom: 15px
+}
+
 .navbar-custom{
     background-color: #1B7B98!important;
     color: white!important
@@ -62,4 +74,8 @@ input{
 
 .weightless-label {
     font-weight: normal !important;
+}
+
+.username{
+    cursor: pointer;
 }

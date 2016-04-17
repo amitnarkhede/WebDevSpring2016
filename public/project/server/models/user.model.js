@@ -8,12 +8,17 @@ module.exports= function(uuid,db,mongoose){
 
     var UserModel = mongoose.model('ProjectUser',UserSchema);
 
+    var User2UserSchema = require("./user-user.schema.server.js")(mongoose);
+
+    var User2UserModel = mongoose.model('ProjectUser2User',User2UserSchema);
+
     var q = require("q");
 
     var api = {
         findUserByCredentials: findUserByCredentials,
+        findUserById: findUserById,
         findUserByUsername:findUserByUsername,
-        findUserById:findUserById,
+        findUserById : findUserById,
         createNewUser :createNewUser,
         updateUser:updateUser,
         deleteUser:deleteUser,
@@ -38,6 +43,7 @@ module.exports= function(uuid,db,mongoose){
 
         return deferred.promise;
     }
+
 
     function findUserByUsername(userName){
         var deferred = q.defer();
@@ -76,13 +82,14 @@ module.exports= function(uuid,db,mongoose){
     function findUserById(userId){
         var deferred = q.defer();
 
-        UserModel.find({_id:userId},function(err,doc){
-            if(err){
-                deferred.reject(err);
-            }else{
-                deferred.resolve(doc);
-            }
-        });
+        UserModel.find({_id:userId},
+            function(err,doc){
+                if(err){
+                    deferred.reject(err);
+                }else{
+                    deferred.resolve(doc);
+                }
+            });
 
         return deferred.promise;
     }

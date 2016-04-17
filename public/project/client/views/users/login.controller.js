@@ -17,10 +17,8 @@
                     .findUserByCredentials(loginUser.username,loginUser.password)
                     .then(function(response) {
                         if(response){
-                            //console.log("This is working");
-                            //console.log(response.data[0]);
                             UserService.setCurrentUser(response.data[0]);
-                            $location.url("/profile");
+                            $location.url("/profile/"+response.data[0]._id);
                         }
                         else{
                             $scope.message = "Username/password do not match!";

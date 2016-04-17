@@ -6,7 +6,7 @@
         .module("TheFilmDBApp")
         .controller("DetailsController", DetailsController);
 
-    function DetailsController($scope, $rootScope, $routeParams, MovieService,UserService,FormService,$location) {
+    function DetailsController($rootScope, $routeParams, MovieService,UserService,FormService,$location) {
 
         var vm = this;
         vm.likeMovie = likeMovie;

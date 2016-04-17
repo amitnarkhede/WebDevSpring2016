@@ -17,7 +17,7 @@
                 <li ng-hide="currentUser" ng-class="{'active': $location.url()=='/register'}"><a href="#/register">Register</a></li>
                 <li ng-hide="currentUser" class="navbar-custom" ng-class="{'active': $location.url()=='/login'}"><a href="#/login">Login</a></li>
                 <li ng-show="currentUser" ng-class="{'active': $location.url()=='/bookmarks'}"><a href="#/bookmarks">Bookmarks</a></li>
-                <li ng-show="currentUser" ng-class="{'active': $location.url()=='/profile'}"><a href="#/profile">{{currentUser.username}}</a></li>
+                <li ng-show="currentUser" class="username" ng-class="{'active': $location.url()=='/profile'}"><a ng-click="visitProfile()">{{currentUser.username}}</a></li>
                 <li ng-show="currentUser.roles == 'admin'" ng-class="{'active': $location.url()=='/admin'}"><a href="#/admin">Admin</a></li>
                 <li ng-show="currentUser" class="navbar-custom" ng-class="{'active': $location.url()=='/logout'}"><a href="#/logout" ng-click="logout()">Logout</a></li>
             </ul>
