@@ -8,12 +8,15 @@
         $scope.alertMessage = null;
         var formIndexSelected;
         var currentUserForms = [];
-        var user;
+        $scope.username = $rootScope.currentUser.username;
+
 
         $scope.addForm = addForm;
         $scope.updateForm = updateForm;
         $scope.deleteForm = deleteForm;
         $scope.selectForm = selectForm;
+        $scope.isHidden = isHidden;
+        $scope.isEditing = isEditing;
 
 
         function init(){
@@ -23,8 +26,9 @@
                 UserService
                     .getMovieLike($rootScope.currentUser._id)
                     .then(function(res){
-                        console.log(res.data);
                         renderMovies(res.data);
+                        $scope.selected = -1;
+                        $scope.editing = -1;
                     });
             }
         };
@@ -85,6 +89,7 @@
         }
 
         function selectForm(index){
+            $scope.selected = index;
 
             $scope.alertMessage = null;
             formIndexSelected = index;
@@ -94,6 +99,23 @@
             $scope.simdbID = selected.imdbID;
             $scope.sPoster = selected.poster;
 
+        }
+
+        function isHidden(index,selectedIndex){
+            if(index == selectedIndex){
+                $scope.editing = index;
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        function isEditing(index,editingIndex){
+            if(index == editingIndex){
+                return true;
+            }else{
+                return false;
+            }
         }
     }
 

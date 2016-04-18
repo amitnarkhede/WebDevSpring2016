@@ -1,38 +1,38 @@
 <div>
-    <h1>Bookmarked Movies by {{user.username}}</h1>
+    <h1>Bookmarked Movies by {{username}}</h1>
 </div>
 
 <div class="col-sm-10"><center class="custom-alert-red">{{alertMessage}}</center></div>
 
-<table class="table table-responsive top-buffer">
-    <tr class="row">
-        <th colspan="2"><b>Movie Title</b></th>
-        <th><b>Comments</b></th>
-        <th><b>Action</b></th>
-    </tr>
-    <tr class="row">
-        <td colspan="2"><input type="text" disabled ng-model="sMovieTitle"/></td>
-        <td><input type="text" class="form-control" id="inputFormName" placeholder="Comments" ng-model="sComments"></td>
-        <td class="nowrap-button">
-            <a ng-click="updateForm(simdbID,sComments)" class="btn btn-success"><span class="glyphicon glyphicon-ok"/></a>
-        </td>
-    </tr>
+<div>
     <br>
-    <tr class="row">
-        <th><b>Poster</b></th>
-        <th><b>Movie Title</b></th>
-        <th><b>Comments</b></th>
-        <th><b>Action</b></th>
-    </tr>
-    <tr ng-repeat="movie in forms" class="row">
-        <td>
-            <img height="100px" ng-src="{{movie.poster}}"/>
-        </td>
-        <td><a class="clickable-td" href="#/details/{{movie.imdbID}}">{{movie.movieTitle}}</a></td>
-        <td>{{movie.comment}}</td>
-        <td class="nowrap-button">
+    <div class="hidden-xs">
+        <label class="col-sm-offset-1 col-sm-1"><b>Poster</b></label>
+        <label class="col-sm-offset-1 col-sm-2"><b>Movie Title</b></label>
+        <label class="col-sm-offset-1 col-sm-3"><b>Comment</b></label>
+        <label class="col-sm-offset-1 col-sm-2"><b>Action</b></label>
+    </div>
+    <div class="row" ng-repeat="movie in forms">
+        <br>
+        <div class="col-xs-12 col-sm-offset-1 col-sm-1"><img class="bookmark-poster" ng-src="{{movie.poster}}"/></div>
+        <div class="visible-xs col-xs-12">
+            <h4>Title: </h4>
+        </div>
+        <div class="col-xs-12 col-sm-offset-1 col-sm-3"><a class="clickable-td" href="#/details/{{movie.imdbID}}">{{movie.movieTitle}}</a></div>
+        <div class="visible-xs col-xs-12">
+            <h4>Comment: </h4>
+        </div>
+        <div class="col-xs-12 col-sm-4" ng-hide="isEditing($index,editing)">
+            <i>{{movie.comment}}</i>
+        </div>
+        <div class="col-xs-12 col-sm-4" ng-show = isHidden($index,selected)>
+            <input class="form-control" type="text" ng-model="movie.comment">
+        </div>
+        <div class="col-xs-12 col-sm-2">
             <a ng-click='deleteForm(movie.imdbID)' class="btn btn-danger"><span class="glyphicon glyphicon-remove"/></a>
-            <a ng-click="selectForm($index)" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"/></a>
-        </td>
-    </tr>
-</table>
+            <a ng-hide = isHidden($index,selected) ng-click="selectForm($index)" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"/></a>
+            <a ng-show = isHidden($index,selected) ng-click="updateForm(movie.imdbID,movie.comment)" class="btn btn-success"><span class="glyphicon glyphicon-ok"/></a>
+        </div>
+
+    </div>
+</div>
