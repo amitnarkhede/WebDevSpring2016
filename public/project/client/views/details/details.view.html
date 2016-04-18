@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <h2 class="col-sm-offset-1 col-lg-11">{{model.details.Title}} ({{model.details.Year}})</h2>
+        <h2 class="col-sm-offset-1 col-sm-11">{{model.details.Title}} ({{model.details.Year}})</h2>
     </div>
 </div>
 <br>
@@ -21,8 +21,9 @@
                         ng-click="model.likeMovie()">
                     <span class="fa fa-star-o"></span>
                 </button>
-
-            </div></div><br>
+            </div>
+        </div>
+        <br>
         <b><div>IMDB Rating : {{model.details.imdbRating}}</div></b><br>
         <b><div>Rotten Tomato Rating : {{model.details.tomatoRating}}</div></b>
     </div>
@@ -37,47 +38,45 @@
                 {{actorName}}
             </li>
         </ul>
-    </div>
 
-    <div ng-show="model.trailer" class="col-xs-12 col-md-offset-1">
-        <br>
-        <h3 class="col-xs-12 trailer-div">Trailer : </h3><br>
-        <div class="col-md-offset-3 col-md-6 col-xs-12">
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe ng-src="{{model.trailer | trusted}}" frameborder="0" allowfullscreen></iframe>
+        <div ng-show="model.trailer">
+            <br>
+            <h2 class="trailer-div">Trailer : </h2><br>
+            <div>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe ng-src="{{model.trailer | trusted}}" frameborder="0" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div ng-show="model.user"  class="col-lg-offset-1 col-lg-11">
-        <div ng-show="model.isNewComment" >
-            <button ng-hide="model.commentFlag" class="btn btn-primary comment-div" ng-click="model.commentFlag = !model.commentFlag">Add Comment</button>
+        <div ng-show="model.user">
+            <div ng-show="model.isNewComment">
+                <button ng-hide="model.commentFlag" class="btn btn-primary comment-div" ng-click="model.commentFlag = !model.commentFlag">Add Comment</button>
+            </div>
+            <div ng-show="!model.isNewComment">
+                <button ng-hide="model.commentFlag" class="btn btn-primary comment-div" ng-click="model.commentFlag = !model.commentFlag">Update Comment</button>
+            </div>
         </div>
-        <div ng-show="!model.isNewComment" >
-            <button ng-hide="model.commentFlag" class="btn btn-primary comment-div" ng-click="model.commentFlag = !model.commentFlag">Update Comment</button>
-        </div>
-    </div>
 
-    <div ng-show="model.commentFlag" class="col-lg-offset-1 col-lg-6">
-        <br>
-        <label for="userComment">Comment:</label><br>
+        <div ng-show="model.commentFlag">
+            <br>
+            <label for="userComment">Comment:</label><br>
     <textarea id="userComment"class="form-control" value="" rows="2" ng-model="model.userComment">
     </textarea><br>
-        <button ng-show="model.isNewComment" class="btn btn-primary" ng-click="model.updateComment()">Save</button>
-        <button ng-show="!model.isNewComment" class="btn btn-primary" ng-click="model.updateComment()">Update</button>
-        <button class="btn btn-danger" ng-click="model.commentFlag = !model.commentFlag">Cancel</button>
-    </div>
+            <button ng-show="model.isNewComment" class="btn btn-primary" ng-click="model.updateComment()">Save</button>
+            <button ng-show="!model.isNewComment" class="btn btn-primary" ng-click="model.updateComment()">Update</button>
+            <button class="btn btn-danger" ng-click="model.commentFlag = !model.commentFlag">Cancel</button>
+        </div>
 
+        <div class="chat">
+            <h3 class="comment-div">Comments : </h3>
+            <h4 ng-hide="model.comments">None!</h4>
 
-    <div class="chat col-md-offset-1 col-xs-12">
-        <h3 class="comment-div">Comments : </h3>
-        <h4 ng-hide="model.comments">None!</h4>
-
-        <div ng-show="model.comments" >
-            <div class="bubble me" ng-repeat="comment in model.comments">
-                <a href="#/profile/{{comment.userID}}">{{comment.username}} : </a> {{comment.comment}}
+            <div ng-show="model.comments">
+                <div class="bubble me" ng-repeat="comment in model.comments">
+                    <a href="#/profile/{{comment.userID}}">{{comment.username}} : </a> {{comment.comment}}
+                </div>
             </div>
         </div>
     </div>
 </div>
-

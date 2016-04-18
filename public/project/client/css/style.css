@@ -103,7 +103,7 @@ input{
 }
 
 .chat {
-    width: 400px;
+    /*width: 400px;*/
 }
 
 .bubble{
@@ -178,16 +178,6 @@ li {
     .like-button {
         margin-top: -30px;
     }
-}
-
-@media(max-width:767px){
-    .trailer-div {
-        margin-left: -15px;
-    }
-}
-
-.comment-div {
-    margin-left: 15px;
 }
 
 
