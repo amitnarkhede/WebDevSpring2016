@@ -1,38 +1,44 @@
 <div class="row">
-    <h1 ng-hide="model.movie" class="text-center">Search For the movie</h1>
+    <h1 ng-hide="model.movie" class="text-center">Search for any movie</h1>
     <h1 ng-show="model.movie" class="text-center">Showing searches for {{model.movie}}</h1>
-    <h2>Search</h2>
 </div>
 
 <div class="container-fluid">
     <table class="table" style="border: 0">
-        <tr>
-            <td>
-                <input ng-model="movieTitle" class="form-control"/><br>
-                <a href="#/search/{{movieTitle}}" class="btn btn-primary btn-block">
+        <tr class="row">
+            <td class="col-xs-12 col-md-offset-1 col-md-6">
+                <input ng-model="movieTitle" class="form-control"/>
+            </td>
+            <td class="col-xs-12 col-md-1">
+                <a href="#/search/{{movieTitle}}" class="btn btn-primary">
                     Search
                 </a>
             </td>
         </tr>
     </table>
-    <table class="table table-responsive">
-        <thead ng-show="data">
-        <tr>
-            <th>Poster</th>
-            <th>Title</th>
-            <th ng-show="user">Bookmark</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-click="model.selectMovie(movie)" ng-repeat="movie in data.Search">
-            <td>
-                <img height="100px" ng-src="{{movie.Poster}}"/>
-            </td>
-            <td>
-                <a href="#/details/{{movie.imdbID}}">{{movie.Title}} ({{movie.Year}})</a>
-            </td>
+    <div class="col-lg-offset-3 col-lg-6">
+        <table class="table table-responsive">
+            <thead ng-show="data">
+            <tr>
+                <th>Poster</th>
+                <th>Title</th>
+                <th ng-show="user">Bookmark</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-click="model.selectMovie(movie)" ng-repeat="movie in data.Search">
+                <td>
+                    <img height="100px" ng-src="{{movie.Poster}}"/>
+                </td>
+                <td>
+                    <a href="#/details/{{movie.imdbID}}">{{movie.Title}} ({{movie.Year}})</a>
+                </td>
 
-        </tr>
-        </tbody>
-    </table>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-3">
+
+    </div>
 </div>

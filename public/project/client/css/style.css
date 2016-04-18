@@ -180,4 +180,14 @@ li {
     }
 }
 
+@media(max-width:767px){
+    .trailer-div {
+        margin-left: -15px;
+    }
+}
+
+.comment-div {
+    margin-left: 15px;
+}
+
 
