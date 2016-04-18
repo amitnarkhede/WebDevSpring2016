@@ -71,7 +71,7 @@
 
         function update(){
 
-            var updatedUser= {"_id":currentUser._id,
+            var updatedUser= {
                 "username" : vm.username,
                 "firstname": vm.firstname,
                 "lastname": vm.lastname,
