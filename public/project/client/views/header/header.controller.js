@@ -19,9 +19,8 @@
         };
 
         function visitProfile(){
-            //console.log("Inside profile visit");
-            $location.url("/profile/"+$rootScope.currentUser._id);
             vm.isCollapsed = !vm.isCollapsed;
+            $location.url("/profile/"+$rootScope.currentUser._id);
         };
 
         function checkCollapsed(){
