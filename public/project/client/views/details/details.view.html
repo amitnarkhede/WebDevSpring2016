@@ -1,57 +1,56 @@
 <div class="container-fluid">
-
     <div class="row">
-        <h2 class="col-lg-6">{{model.details.Title}} ({{model.details.Year}})</h2>
+        <h2 class="col-lg-12">{{model.details.Title}} ({{model.details.Year}})</h2>
     </div>
-    <div class="row">
-        <div class="col-sm-4">Director : <strong>{{model.details.Director}}</strong></div>
-        <b><div class="col-sm-4">IMDB Rating : {{model.details.imdbRating}}</div></b>
-        <b><div class="col-sm-4">Rotten Tomato Rating : {{model.details.tomatoRating}}</div></b>
+</div>
+<br>
+<div class="container-fluid">
+    <img ng-src="{{model.details.Poster}}" class="pull-left col-xs-12 col-sm-3 movie-poster"/>
+    <div class="col-sm-8 col-xs-12">
+        <br>
+        <div class="row">
+            <div class="col-sm-10 col-xs-12">Director : <strong>{{model.details.Director}}</strong></div>
+            <div ng-show="model.user" class="col-sm-2 col-xs-12 like-button">
+                <br>
+                <button ng-show="model.liked" class="btn btn-danger"
+                        ng-click="model.removeLikeMovie()">
+                    <span class="fa fa-star"></span>
+                </button>
+
+                <button ng-hide="model.liked" class="btn btn-secondary"
+                        ng-click="model.likeMovie()">
+                    <span class="fa fa-star-o"></span>
+                </button>
+
+            </div></div><br>
+        <b><div>IMDB Rating : {{model.details.imdbRating}}</div></b><br>
+        <b><div>Rotten Tomato Rating : {{model.details.tomatoRating}}</div></b>
+    </div>
+    <div class="col-sm-8 col-xs-12">
+        <h2>Plot</h2>
+        <p>
+            {{model.details.Plot}}
+        </p><br>
+        <h3>Actors</h3>
+        <ul class="custom-list">
+            <li class="custom-ul" ng-repeat="actorName in model.details.Actors.split(',')">
+                {{actorName}}
+            </li>
+        </ul>
     </div>
 </div>
 
-<div class="container-fluid">
-    <div class="row">
-        <img ng-src="{{model.details.Poster}}" class="pull-left col-lg-2 movie-poster"/>
-        <div class="col-lg-8">
-            <h3>Plot</h3>
-            <p>
-                {{model.details.Plot}}
-            </p><br>
-            <h3>Actors</h3>
-            <ul>
-                <li ng-repeat="actorName in model.details.Actors.split(',')">
-                    {{actorName}}
-                </li>
-            </ul>
+<div ng-show="model.trailer" class="col-lg-12">
+    <br>
+    <h2 class="col-lg-12">Trailer : </h2><br>
+    <div class="col-lg-offset-3 col-lg-6 col-xs-offset-0 col-xs-12">
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe ng-src="{{model.trailer | trusted}}" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
-    <div class="row">
-
-    </div>
-</div>
-<div ng-show="model.user">
-    <br>
-    <button ng-show="model.liked" class="btn btn-danger"
-            ng-click="model.removeLikeMovie()">
-        <span class="fa fa-star"></span>
-    </button>
-
-    <button ng-hide="model.liked" class="btn btn-secondary"
-            ng-click="model.likeMovie()">
-        <span class="fa fa-star-o"></span>
-    </button>
-
 </div>
 
-<div ng-show="model.trailer">
-    <br>
-    <h2>Trailer : </h2><br>
-    <div class="embed-responsive embed-responsive-16by9">
-        <iframe ng-src="{{model.trailer | trusted}}" frameborder="0" allowfullscreen></iframe>
-    </div>
-</div>
-<div ng-show="model.user">
+<div ng-show="model.user"  class="col-lg-offset-1 col-lg-11">
     <div ng-show="model.isNewComment" >
         <button ng-hide="model.commentFlag" class="btn btn-primary" ng-click="model.commentFlag = !model.commentFlag">Add Comment</button>
     </div>
@@ -59,8 +58,9 @@
         <button ng-hide="model.commentFlag" class="btn btn-primary" ng-click="model.commentFlag = !model.commentFlag">Update Comment</button>
     </div>
 </div>
-<div ng-show="model.commentFlag">
-    <br><label for="userComment">Comment:</label><br>
+<div ng-show="model.commentFlag" class="col-lg-offset-1 col-lg-6">
+    <br>
+    <label for="userComment">Comment:</label><br>
     <textarea id="userComment"class="form-control" value="" rows="2" ng-model="model.userComment">
     </textarea><br>
     <button ng-show="model.isNewComment" class="btn btn-primary" ng-click="model.updateComment()">Save</button>
@@ -68,8 +68,9 @@
     <button class="btn btn-danger" ng-click="model.commentFlag = !model.commentFlag">Cancel</button>
 </div>
 
-<h2>Comments : </h2>
-<div class="chat">
+
+<div class="chat col-lg-offset-1">
+    <h2>Comments : </h2>
     <h3 ng-hide="model.comments">None!</h3>
 
     <div ng-show="model.comments" >

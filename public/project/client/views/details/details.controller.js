@@ -1,6 +1,5 @@
 (function(){
-    var DETAILS_URL = "http://www.omdbapi.com/?i=IMDBID&type=movie&plot=full&tomatoes=true";
-    var POSTER_URL = "http://img.omdbapi.com/?i=IMDBID&apikey=2bf5ee9"
+    var POSTER_URL = "http://img.omdbapi.com/?i=IMDBID&apikey=2bf5ee9";
 
     angular
         .module("TheFilmDBApp")
@@ -113,7 +112,6 @@
                                     }
                                 });
                             }
-
                         }else{
                             vm.comments = null;
                         }
@@ -126,6 +124,7 @@
 
         function updateComment() {
             console.log("Update was called");
+
             if(vm.isNewComment){
                 console.log("This is a new comment");
                 likeMovie();

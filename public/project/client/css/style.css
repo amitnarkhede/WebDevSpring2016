@@ -150,3 +150,34 @@ input{
     box-shadow: 2px -2px 2px 0 rgba( 178, 178, 178, .4 );
     right: -9px;
 }
+
+li {
+    display: block;
+}
+
+.custom-list li:before {
+    /*Using a Bootstrap glyphicon as the bullet point*/
+    content: "\e092";
+    font-family: 'Glyphicons Halflings';
+    font-size: 9px;
+    float: left;
+    margin-top: 4px;
+    margin-left: -17px;
+    color: #CCCCCC;
+}
+
+.custom-ul{
+    padding-left: 15px;
+}
+
+.movie-poster{
+    margin-right: 50px;
+}
+
+@media(min-width:767px){
+    .like-button {
+        margin-top: -30px;
+    }
+}
+
+
