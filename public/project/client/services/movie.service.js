@@ -1,14 +1,25 @@
 (function(){
-    var SEARCH_URL = "http://www.omdbapi.com/?s=TITLE&page=PAGE&type=movie";
-    var DETAILS_URL = "http://www.omdbapi.com/?i=IMDBID&type=movie&plot=full&tomatoes=true";
-    var theMovieDBKey = '38db9c61e5f770798c875d5f6dca6a2a';
-    var TRAILER_SEARCH_URL = "http://api.themoviedb.org/3/movie/IMDBID?api_key=" + theMovieDBKey + "&append_to_response=trailers";
-
     angular
         .module("TheFilmDBApp")
         .factory("MovieService", MovieService);
 
     function MovieService($http) {
+
+        var SEARCH_URL = "http://www.omdbapi.com/?s=TITLE&page=PAGE&type=movie";
+        var DETAILS_URL = "http://www.omdbapi.com/?i=IMDBID&type=movie&plot=full&tomatoes=true";
+        var TRAILER_SEARCH_URL = "";
+        var tmdbKey = "";
+
+        function init(){
+            $http.get("/api/project/getKey").then(
+                function (response) {
+                    tmdbKey = response.data;
+                    TRAILER_SEARCH_URL = "http://api.themoviedb.org/3/movie/IMDBID?api_key=" + tmdbKey + "&append_to_response=trailers";
+                });
+        }
+
+        init();
+
         var api = {
             findMoviesByTitle: findMoviesByTitle,
             findMovieByImdbId: findMovieByImdbId,

@@ -2,13 +2,14 @@
  * Created by amitv on 25-Mar-16.
  */
 
-module.exports = function(app,movieModel) {
+module.exports = function(app,movieModel,tmdbKey) {
     app.get("/api/project/getmovielike/:userid", getMovieLike);
     app.get("/api/project/comments/:imdbid", getMovieComments);
     app.get("/api/project/checklike/:userid/:imdbID",checkIfLiked);
     app.post("/api/project/addmovielike", addMovieLike);
     app.put("/api/project/updatecomment",updateComment);
     app.delete("/api/project/deletemovie/:userid/:imdbid",deleteMovie);
+    app.get("/api/project/getkey",getTMDBKey);
 
     function getMovieLike(req,res){
         var userId  = req.params.userid;
@@ -93,5 +94,9 @@ module.exports = function(app,movieModel) {
                     res.status(400).send(err);
                 });
 
-    }
+    };
+
+    function getTMDBKey(req,res){
+        res.send(tmdbKey);
+    };
 }

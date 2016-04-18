@@ -41,9 +41,9 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 
 // connect to the database
 var db = mongoose.connect(connectionString);
-
+var tmdbKey = process.env.TMDB_SECRET;
 require("./public/assignment/server/app.js")(app,uuid,db,mongoose);
-require("./public/project/server/app.js")(app,uuid,db,mongoose);
+require("./public/project/server/app.js")(app,uuid,db,mongoose,tmdbKey);
 
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
