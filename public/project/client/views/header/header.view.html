@@ -1,22 +1,22 @@
 <nav ng-controller="HeaderController as model" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header navbar-custom">
-            <button type="button" class="navbar-toggle navbar-custom collapsed" ng-init="model.isCollapsed = true" ng-click="model.isCollapsed = !model.isCollapsed" aria-expanded="false" aria-controls="navbar">
+    <div class="container">
+        <div class="navbar-header footer-div">
+            <button type="button" class="navbar-toggle" ng-init="model.isCollapsed = true" ng-click="model.isCollapsed = !model.isCollapsed">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="#/home" class="navbar-brand navbar-custom">TheFilmDB</a>
+            <a class="navbar-brand" href="#/home"><img src="img/Drawing.png" alt="company logo" /></a>
         </div>
-        <div id="navbar" class="navbar-collapse navbar-custom" ng-class="{collapse : model.isCollapsed}">
-            <ul class="nav navbar-nav navbar-right navbar-custom">
+        <div class="collapse navbar-collapse footer-div" id="bs-example-navbar-collapse-1" ng-class="{collapse : model.isCollapsed}">
+            <ul class="nav navbar-nav navbar-right custom-menu">
                 <li ng-class="{'active': $location.url()=='/home'}" ng-click="model.isCollapsed = !model.isCollapsed"><a href="#/home">Home</a></li>
                 <li ng-class="{'active': $location.url()=='/search'}" ng-click="model.isCollapsed = !model.isCollapsed"><a href="#/search">Search</a></li>
                 <li ng-hide="currentUser" ng-class="{'active': $location.url()=='/register'}" ng-click="model.isCollapsed = !model.isCollapsed"><a href="#/register">Register</a></li>
                 <li ng-hide="currentUser" class="navbar-custom" ng-class="{'active': $location.url()=='/login'}" ng-click="model.isCollapsed = !model.isCollapsed"><a href="#/login">Login</a></li>
                 <li ng-show="currentUser" ng-class="{'active': $location.url()=='/bookmarks'}" ng-click="model.isCollapsed = !model.isCollapsed"><a href="#/bookmarks">Bookmarks</a></li>
-                <li ng-show="currentUser" class="username" ng-class="{'active': $location.url()=='/profile'}" ng-click="model.isCollapsed = !model.isCollapsed"><a ng-click="model.visitProfile()">{{currentUser.username}}</a></li>
+                <li ng-show="currentUser" class="username" ng-class="{'active': $location.url()=='/profile'}" ng-click="model.isCollapsed = !model.isCollapsed"><a class="username" ng-click="model.visitProfile()">{{currentUser.username}}</a></li>
                 <li ng-show="currentUser.roles == 'admin'" ng-class="{'active': $location.url()=='/admin'}" ng-click="model.isCollapsed = !model.isCollapsed"><a href="#/admin">Admin</a></li>
                 <li ng-show="currentUser" class="navbar-custom" ng-class="{'active': $location.url()=='/logout'}" ng-click="model.isCollapsed = !model.isCollapsed"><a href="#/logout" ng-click="model.logout()">Logout</a></li>
             </ul>

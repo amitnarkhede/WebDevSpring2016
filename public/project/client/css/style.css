@@ -1,105 +1,76 @@
-* {
-    -ms-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    border: 0;
-}
-html,
-body {
-    width: 100%;
-    height: 100%;
-    background: url("../img/cream_pixels.png") repeat fixed;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 200;
+.include-view{
+    /*padding-top: 80px;*/
+    padding-bottom: 50px;
 }
 
-.custom-alert-red{
-    color:red;
-    font-size: large;
-    padding-bottom: 15px
+/* Mobile */
+@media (max-width: 767px) {
+    .slider-size {
+        height: auto;
+    }
+    .slider-size > img {
+        width: 100%;
+    }
 }
 
-.custom-alert-green{
-    color: green;
-    font-size: large;
-    padding-bottom: 15px
+/* tablets */
+@media (max-width: 991px) and (min-width: 768px) {
+    .slider-size {
+        height: auto;
+    }
+    .slider-size > img {
+        width: 100%;
+    }
 }
 
-.navbar-custom{
-    background-color: #1B7B98!important;
-    color: white!important
+/* laptops */
+@media (max-width: 1023px) and (min-width: 992px) {
+    .slider-size {
+        height: 400px;
+    }
+    .slider-size > img {
+        width: 100%;
+    }
 }
 
-a {
-    -webkit-transition: 300ms;
-    -moz-transition: 300ms;
-    -o-transition: 300ms;
-    transition: 300ms;
+/* desktops */
+@media (min-width: 1024px) {
+    .slider-size {
+        height: 600px;
+    }
+    .slider-size > img {
+        width: 100%;
+    }
 }
 
-a:focus,
-a:hover {
-    text-decoration: none;
-    outline: none
+.carousel-img{
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-.navbar-right {
-    background-color: #1B7B98;
-    padding:0 0 0 0;
-    opacity: .9
+.a-btn{
+    color: #FFFFFF;
+}
+.a-btn:hover {
+    background-color:transparent;
+    border:1px solid #E96840;
+    color:#fff;
 }
 
-.navbar-right li a {
-    font-size: 22px;
-    color: white!important;
-    font-family: 'Yanone Kaffeesatz', 'sans-serif';
-    font-weight: 300;
-}
-
-.navbar-right li a:hover,
-.navbar-right li a:focus,
-.navbar-right .active a {
-    background-color: #fff!important;
-    color: #1B7B98!important;
-}
-
-.btn-primary {
-    color: #ffffff;
-    background-color: #1B7B98!important;
-    border-color: #285e8e;
-    border-radius: 15px!important;
-}
-.btn-primary:hover {
-    background-color: #13556C!important;
-}
-
-.btn-danger {
-    border-radius: 15px!important;
-}
-
-input{
-    border-radius: 15px!important;
-}
-
-.borderless td, .borderless th {
-    border: none!important;
-}
-
-.rounded-table{
-    border-radius: 5px;
-    border: 1px solid #999;
-    xborder-collapse: collapse;
-}
-
-.weightless-label {
-    font-weight: normal !important;
+.form-control{
+    color: #000000;
 }
 
 .username{
-    cursor: pointer;
+    text-transform: none!important;
+}
+
+.verticle-middle{
+    vertical-align: middle!important;
+}
+
+a:hover{
+    color: #9C452A!important;
 }
 
 .chat {
@@ -107,7 +78,6 @@ input{
 }
 
 .bubble{
-    background-color: #F2F2F2;
     border-radius: 5px;
     box-shadow: 0 0 6px #B2B2B2;
     display: inline-block;
@@ -118,7 +88,7 @@ input{
 
 .bubble::before {
     background-color: #F2F2F2;
-    content: "\00a0";
+    /*content: "\e251";*/
     display: block;
     height: 16px;
     position: absolute;
@@ -151,37 +121,34 @@ input{
     right: -9px;
 }
 
-li {
-    display: block;
-}
-
 .custom-list li:before {
     /*Using a Bootstrap glyphicon as the bullet point*/
     content: "\e092";
-    font-family: 'Glyphicons Halflings';
+
     font-size: 9px;
     float: left;
     margin-top: 4px;
     margin-left: -17px;
-    color: #CCCCCC;
 }
 
-.custom-ul{
-    padding-left: 15px;
+.col {
+    float: left;
 }
 
-.movie-poster{
-    margin-right: 50px;
+div + div {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-@media(min-width:767px){
-    .like-button {
-        margin-top: -30px;
-    }
+.bookmark-cmnt-lbl{
+    background-color: #2D2D2D!important;
+    color: white!important;
+    overflow: hidden;
+    width: 80%!important;
+    height: 100%!important;
 }
 
-.bookmark-poster{
-    height : 120px;
-    width : 100px;
+.footer-div{
+    margin-top: auto!important;
+    margin-bottom: auto!important;
 }
-

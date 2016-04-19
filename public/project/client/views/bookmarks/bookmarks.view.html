@@ -4,34 +4,26 @@
 
 <div class="col-sm-10"><center class="custom-alert-red">{{alertMessage}}</center></div>
 
-<div>
-    <br>
-    <div class="hidden-xs">
-        <label class="col-sm-offset-1 col-sm-1"><b>Poster</b></label>
-        <label class="col-sm-offset-1 col-sm-2"><b>Movie Title</b></label>
-        <label class="col-sm-offset-1 col-sm-3"><b>Comment</b></label>
-        <label class="col-sm-offset-1 col-sm-2"><b>Action</b></label>
-    </div>
-    <div class="row" ng-repeat="movie in forms">
-        <br>
-        <div class="col-xs-12 col-sm-offset-1 col-sm-1"><img class="bookmark-poster" ng-src="{{movie.poster}}"/></div>
-        <div class="visible-xs col-xs-12">
-            <h4>Title: </h4>
-        </div>
-        <div class="col-xs-12 col-sm-offset-1 col-sm-3"><a class="clickable-td" href="#/details/{{movie.imdbID}}">{{movie.movieTitle}}</a></div>
-        <div class="visible-xs col-xs-12">
-            <h4>Comment: </h4>
-        </div>
-        <div class="col-xs-12 col-sm-4" ng-hide="isEditing($index,editing)">
-            <i>{{movie.comment}}</i>
-        </div>
-        <div class="col-xs-12 col-sm-4" ng-show = isHidden($index,selected)>
-            <input class="form-control" type="text" ng-model="movie.comment">
-        </div>
-        <div class="col-xs-12 col-sm-2">
-            <a ng-click='deleteForm(movie.imdbID)' class="btn btn-danger"><span class="glyphicon glyphicon-remove"/></a>
-            <a ng-hide = isHidden($index,selected) ng-click="selectForm($index)" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"/></a>
-            <a ng-show = isHidden($index,selected) ng-click="updateForm(movie.imdbID,movie.comment)" class="btn btn-success"><span class="glyphicon glyphicon-ok"/></a>
+<div class="col-sm-offset-1 col-xs-offset-2">
+    <div ng-repeat="movie in forms">
+        <div class="col-lg-3 col" style="height: 500px">
+            <div>
+                <img class="bookmark-poster" ng-src="{{movie.poster}}"/>
+            </div>
+            <div>
+                <a class="clickable-td" href="#/details/{{movie.imdbID}}">{{movie.movieTitle}}</a>
+            </div>
+            <div ng-show="{{movie.comment}}" ng-hide="isEditing($index,editing)">
+                <label class="bookmark-cmnt-lbl">{{movie.comment}}</label>
+            </div>
+            <div ng-show = isHidden($index,selected)>
+                <input class="form-control bookmark-cmnt-lbl" type="text" ng-model="movie.comment">
+            </div>
+            <div>
+                <a ng-hide = isHidden($index,selected) ng-click="selectForm($index)" class="btn btn-warning col-sm-offset-1 a-btn"><span class="glyphicon glyphicon-pencil"/></a>
+                <a ng-show = isHidden($index,selected) ng-click="updateForm(movie.imdbID,movie.comment)" class="btn btn-success col-sm-offset-1 a-btn"><span class="glyphicon glyphicon-ok"/></a>
+                <a ng-click='deleteForm(movie.imdbID)' class="btn btn-danger col-sm-offset-1 a-btn"><span class="glyphicon glyphicon-remove"/></a>
+            </div>
         </div>
     </div>
 </div>

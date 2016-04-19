@@ -4,16 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../img/moviedb-favicon.ico">
-
     <title>TheFilmDB</title>
-
-    <!-- Bootstrap core CSS -->
+    <!-- Bootstrap Core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular-route.js"></script>
     <script src="app.js"></script>
@@ -32,44 +30,90 @@
     <script src="views/admin/admin.controller.js"></script>
     <script src="views/bookmarks/bookmarks.controller.js"></script>
 
-    <!-- Custom styles for this template -->
-    <link href="../../css/dashboard.css" rel="stylesheet">
-    <link href="../../css/style.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/patros.css" >
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
-<!-- <body ng-controller="MainController"> -->
-<body ng-controller="MainController">
-<div class="navbar-custom" ng-include="'views/header/header.view.html'">
+<body id="contact" ng-controller="MainController">
+<!-- Navigation -->
+<div ng-include="'views/header/header.view.html'">
+
 </div>
 
-<div class="container-fluid">
-    <div class="col-sm-11 col-sm-offset-1 col-md-11 col-md-offset-1 main" ng-view>
+<div class="include-view" ng-view>
+</div>
+
+
+<footer id="footer" class="navbar navbar-fixed-bottom">
+    <div class="container">
+        <div class="row myfooter">
+            <div class="col-sm-6 footer-div hidden-xs"><div class="pull-left">
+                © Copyright TheFilmDB 2016 | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
+            </div></div>
+            <div class="col-sm-6 footer-div">
+                <div class="pull-right">Designed by <a href="http://www.atis.al">Amit Narkhede</a></div>
+            </div>
+        </div>
     </div>
-</div>
+</footer>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>!-->
+<!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+<!-- Portfolio -->
+<script src="https://cdn.jsdelivr.net/quicksand/1.4/jquery.quicksand.min.js"></script>
+
+
+<!--Jquery Smooth Scrolling-->
 <script>
-    $('.carousel').carousel({
-        interval: 5000 //changes the speed
-    })
-</script>
+    $(document).ready(function(){
+        $('.custom-menu a[href^="#"], .intro-scroller .inner-link').on('click',function (e) {
+            e.preventDefault();
 
-<script>
-    $("#slider").on('slide.bs.carousel', function(evt) {
+            var target = this.hash;
+            var $target = $(target);
 
-        var step = $(evt.relatedTarget).index();
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top
+            }, 900, 'swing', function () {
+                window.location.hash = target;
+            });
+        });
 
-        $('#slider_captions .carousel-caption:not(#caption-'+step+')').fadeOut('fast', function() {
-            $('#caption-'+step).fadeIn();
+        $('a.page-scroll').bind('click', function(event) {
+            var $anchor = $(this);
+            $('html, body').stop().animate({
+                scrollTop: $($anchor.attr('href')).offset().top
+            }, 1500, 'easeInOutExpo');
+            event.preventDefault();
+        });
+
+        $(".nav a").on("click", function(){
+            $(".nav").find(".active").removeClass("active");
+            $(this).parent().addClass("active");
+        });
+
+        $('body').append('<div id="toTop" class="btn btn-primary color1"><span class="glyphicon glyphicon-chevron-up"></span></div>');
+        $(window).scroll(function () {
+            if ($(this).scrollTop() != 0) {
+                $('#toTop').fadeIn();
+            } else {
+                $('#toTop').fadeOut();
+            }
+        });
+        $('#toTop').click(function(){
+            $("html, body").animate({ scrollTop: 0 }, 700);
+            return false;
         });
 
     });
+
 </script>
+
+
 </body>
 </html>

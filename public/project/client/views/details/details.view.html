@@ -51,10 +51,10 @@
 
         <div ng-show="model.user">
             <div ng-show="model.isNewComment">
-                <button ng-hide="model.commentFlag" class="btn btn-primary comment-div" ng-click="model.commentFlag = !model.commentFlag">Add Comment</button>
+                <button ng-hide="model.commentFlag" class="btn btn-primary a-btn comment-div" ng-click="model.commentFlag = !model.commentFlag">Add Comment</button>
             </div>
             <div ng-show="!model.isNewComment">
-                <button ng-hide="model.commentFlag" class="btn btn-primary comment-div" ng-click="model.commentFlag = !model.commentFlag">Update Comment</button>
+                <button ng-hide="model.commentFlag" class="btn btn-primary a-btn comment-div" ng-click="model.commentFlag = !model.commentFlag">Update Comment</button>
             </div>
         </div>
 
@@ -63,9 +63,9 @@
             <label for="userComment">Comment:</label><br>
     <textarea id="userComment"class="form-control" value="" rows="2" ng-model="model.userComment">
     </textarea><br>
-            <button ng-show="model.isNewComment" class="btn btn-primary" ng-click="model.updateComment()">Save</button>
-            <button ng-show="!model.isNewComment" class="btn btn-primary" ng-click="model.updateComment()">Update</button>
-            <button class="btn btn-danger" ng-click="model.commentFlag = !model.commentFlag">Cancel</button>
+            <button ng-show="model.isNewComment" class="btn btn-primary a-btn" ng-click="model.updateComment()">Save</button>
+            <button ng-show="!model.isNewComment" class="btn btn-primary a-btn" ng-click="model.updateComment()">Update</button>
+            <button class="btn btn-danger a-btn" ng-click="model.commentFlag = !model.commentFlag">Cancel</button>
         </div>
 
         <div class="chat">
