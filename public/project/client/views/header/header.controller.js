@@ -8,7 +8,6 @@
         vm = this;
         vm.logout = logout;
         vm.visitProfile = visitProfile;
-        vm.checkCollapsed = checkCollapsed;
 
         //$scope.logout = logout;
         //$scope.visitProfile = visitProfile;
@@ -23,10 +22,5 @@
             $location.url("/profile/"+$rootScope.currentUser._id);
         };
 
-        function checkCollapsed(){
-            vm.isCollapsed = !vm.isCollapsed;
-            console.log(vm.isCollapsed);
-            return vm.isCollapsed;
-        }
     };
 })();

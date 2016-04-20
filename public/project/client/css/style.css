@@ -1,6 +1,6 @@
 .include-view{
-    /*padding-top: 80px;*/
-    padding-bottom: 50px;
+    padding-bottom: 50px!important;
+    margin-bottom: 50px!important;
 }
 
 /* Mobile */
