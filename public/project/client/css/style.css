@@ -6,7 +6,7 @@
 /* Mobile */
 @media (max-width: 767px) {
     .slider-size {
-        height: auto;
+        height: auto!important;
     }
     .slider-size > img {
         width: 100%;
@@ -16,7 +16,7 @@
 /* tablets */
 @media (max-width: 991px) and (min-width: 768px) {
     .slider-size {
-        height: auto;
+        height: auto!important;
     }
     .slider-size > img {
         width: 100%;
@@ -26,7 +26,7 @@
 /* laptops */
 @media (max-width: 1023px) and (min-width: 992px) {
     .slider-size {
-        height: 400px;
+        height: 400px!important;
     }
     .slider-size > img {
         width: 100%;
@@ -36,7 +36,7 @@
 /* desktops */
 @media (min-width: 1024px) {
     .slider-size {
-        height: 600px;
+        height: 600px!important;
     }
     .slider-size > img {
         width: 100%;
@@ -199,4 +199,9 @@ div + div {
 
 .bookmark-min-div{
     height: 500px;
+}
+
+.like-button{
+    width: 40px;
+    color:antiquewhite!important;
 }

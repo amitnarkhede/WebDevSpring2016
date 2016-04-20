@@ -7,7 +7,7 @@
 
         var service = {
             findUserByCredentials:findUserByCredentials,
-            findAllUsers:findAllUsers,
+            getAllUsers:getAllUsers,
             findUserById:findUserById,
             createUser:createUser,
             setCurrentUser : setCurrentUser,
@@ -34,11 +34,9 @@
             return $http.get("/api/project/user/" + userId);
         }
 
-        function findAllUsers(callback){
+        function getAllUsers(){
 
-            var users = $http("/api/project/alluser");
-            callback(users);
-
+            return $http.get("/api/project/alluser");
         };
 
         function createUser(user){
@@ -55,8 +53,10 @@
             return $http.delete("/api/project/user/"+userId);
         };
 
-        function updateUser(userId,updatedUser){
-            //console.log(userId);
+        function updateUser(updatedUser){
+            userId = updatedUser._id;
+            console.log(userId);
+            console.log(updatedUser);
             return $http.put("/api/project/updateUser/"+userId,updatedUser);
         };
 

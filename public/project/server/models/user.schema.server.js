@@ -14,5 +14,8 @@ module.exports = function(mongoose) {
         phone:String,
         roles: [String]
     }, {collection: 'project.user'});
+
+    ProjectUserSchema.index({username:1},{unique:true});
+
     return ProjectUserSchema;
 };

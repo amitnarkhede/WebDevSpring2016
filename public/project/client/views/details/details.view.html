@@ -12,13 +12,13 @@
             <div class="col-sm-10 col-xs-12">Director : <strong>{{model.details.Director}}</strong></div>
             <div ng-show="model.user" class="col-sm-2 col-xs-12 like-button">
                 <br>
-                <button ng-show="model.liked" class="btn btn-danger"
-                        ng-click="model.removeLikeMovie()">
+                <button ng-show="model.liked" class="btn btn-danger like-button"
+                        ng-click="model.removeLikeMovie()" title="Unlike">
                     <span class="fa fa-star"></span>
                 </button>
 
-                <button ng-hide="model.liked" class="btn btn-secondary"
-                        ng-click="model.likeMovie()">
+                <button ng-hide="model.liked" class="btn btn-secondary like-button"
+                        ng-click="model.likeMovie()" title="Like">
                     <span class="fa fa-star-o"></span>
                 </button>
             </div>
@@ -27,7 +27,7 @@
         <b><div>IMDB Rating : {{model.details.imdbRating}}</div></b><br>
         <b><div>Rotten Tomato Rating : {{model.details.tomatoRating}}</div></b>
     </div>
-    <div class="col-sm-6 col-xs-12">
+    <div class="col-sm-6 col-xs-12 include-view">
         <h2>Plot</h2>
         <p>
             {{model.details.Plot}}

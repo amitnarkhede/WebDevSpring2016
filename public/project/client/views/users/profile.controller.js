@@ -72,6 +72,7 @@
         function update(){
 
             var updatedUser= {
+                "_id" : $rootScope.currentUser._id,
                 "username" : vm.username,
                 "firstname": vm.firstname,
                 "lastname": vm.lastname,
@@ -80,8 +81,7 @@
                 "phone" : vm.phone};
 
             //console.log(updatedUser);
-            var userId = currentUser._id;
-            UserService.updateUser(userId,updatedUser)
+            UserService.updateUser(updatedUser)
                 .then(function(response){
                         //console.log(response.data[0]);
                         UserService.setCurrentUser(response.data[0]);

@@ -190,6 +190,11 @@ module.exports= function(uuid,db,mongoose){
     function updateUser(userId,updatedUserDetails){
         var deferred = q.defer();
 
+        delete updatedUserDetails._id;
+
+        console.log(userId);
+        console.log(updatedUserDetails);
+
         UserModel.update(
             {_id : userId},
             {$set : updatedUserDetails},

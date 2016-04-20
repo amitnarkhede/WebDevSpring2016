@@ -157,6 +157,10 @@ module.exports = function(app,userModel) {
     function updateUser(req,res){
         var id = req.params.id;
         var updatedUserDetails = req.body;
+
+        //console.log(id);
+        //console.log(updatedUserDetails);
+
         userModel
             .updateUser(id,updatedUserDetails)
             .then(function(doc){

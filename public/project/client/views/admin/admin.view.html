@@ -1,48 +1,73 @@
-<div>
-    <h1>Admin</h1>
-    <h3>Users</h3>
+<div class="col-xs-offset-1 col-xs-10 container-fluid" ng-controller="AdminController">
+    <div class="row">
+
+        <div class="text-center color-elements">
+            <h1>Admin</h1>
+        </div>
+        <div class="text-center color-elements">
+            <h3>Users</h3>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed">
+
+                <tr>
+                    <th class="th-admin">
+                        Username
+                    </th>
+
+                    <th class="th-admin">
+                        </a>
+                        Password
+                    </th>
+                    <th class="th-admin">
+                        </a>
+                        First Name
+                    </th>
+                    <th class="th-admin">
+                        </a>
+                        Last Name
+                    </th>
+                    <th class="th-admin">
+                        Role
+                    </th>
+                    <th class="th-admin">
+                        Action
+                    </th>
+                </tr>
+
+                <tr>
+                    <td> <input ng-disabled="model.selectedUser" type="text" placeholder="Username" class="form-control" ng-model="model.selected.username"></td>
+                    <td> <input ng-disabled="model.selectedUser" type="password" placeholder="Password" class="form-control" ng-model="model.selected.password"></td>
+                    <td> <input type="text" placeholder="First Name" class="form-control" ng-model="model.selected.firstname"></td>
+                    <td> <input type="text" placeholder="Last Name" class="form-control" ng-model="model.selected.lastname"></td>
+                    <td> <input type="text" placeholder="role1,role2" class="form-control" ng-model="model.selected.roles"></td>
+                    <td class="text-nowrap">
+                        <button type="button" class="btn btn-primary btn-noborder-radius add-right-pad" ng-click="model.createUser(model.selected)">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                        <button type="button" class="btn btn-success" ng-click="model.updateUser(model.selected)">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </button></td>
+                </tr>
+
+                <tr ng-repeat="user in model.users">
+                    <td>{{user.username}}</td>
+                    <td>&nbsp;</td>
+                    <td>{{user.firstname}}</td>
+                    <td>{{user.lastname}}</td>
+                    <td>{{user.roles.join()}}</td>
+                    <td class="text-nowrap">
+                        <button type="button" class="btn btn-danger add-right-pad" ng-click='model.deleteUser(user._id)'>
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                        <button type="button" class="btn btn-info add-right-pad" ng-click='model.selectUser(user)'>
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
 </div>
-<table class="table table-striped">
-    <tr>
-        <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"/></a><b>Username</b></th>
-        <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"/></a><b>Password</b></th>
-        <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"/></a><b>Role</b></th>
-        <th><a href="#"><span class="glyphicon glyphicon-triangle-bottom"/></a><b>Action</b></th>
-    </tr>
-    <tr>
-        <td><input type="text" class="form-control" id="inputUsername" placeholder="username"></td>
-        <td><input type="text" class="form-control" id="inputPassword" placeholder="password"></td>
-        <td><input type="text" class="form-control" id="inputRole" placeholder="role1, role2"></td>
-        <td class="nowrap-button">
-            <a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-plus"/></a>
-            <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-ok"/></a>
-        </td>
-    </tr>
-    <tr>
-        <td>alice</td>
-        <td></td>
-        <td>student</td>
-        <td class="nowrap-button">
-            <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"/></a>
-            <a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"/></a>
-        </td>
-    </tr>
-    <tr>
-        <td>bob</td>
-        <td></td>
-        <td>faculty | admin</td>
-        <td class="nowrap-button">
-            <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"/></a>
-            <a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"/></a>
-        </td>
-    </tr>
-    <tr>
-        <td>charlie</td>
-        <td></td>
-        <td></td>
-        <td class="nowrap-button">
-            <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"/></a>
-            <a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"/></a>
-        </td>
-    </tr>
-</table>
