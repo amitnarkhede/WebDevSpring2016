@@ -11,7 +11,7 @@
     <table class="table" style="border: 0">
         <tr class="row">
             <td class="col-xs-12 col-md-offset-1 col-md-6">
-                <input ng-model="movieTitle" class="form-control"/>
+                <input ng-model="movieTitle" class="form-control" placeholder="e.g. Terminator"/>
             </td>
             <td class="col-xs-12 col-md-1">
                 <a href="#/search/{{movieTitle}}" class="btn btn-md btn-custom btn-noborder-radius a-btn">
@@ -21,15 +21,17 @@
         </tr>
     </table>
 
-    <div ng-repeat="movie in data.Search">
-        <div class="col-lg-offset-1 col-lg-3 col" style="height: 500px">
-            <div>
-                <img height="350px" width="270px" ng-src="{{movie.Poster}}"/>
-            </div>
-            <div>
-                <a href="#/details/{{movie.imdbID}}">{{movie.Title}} ({{movie.Year}})</a>
-            </div>
+    <div class="search-results">
+        <div ng-repeat="movie in data.Search">
+            <div class="col-lg-offset-1 col-lg-3 col bookmark-div">
+                <div>
+                    <img height="350px" width="200px" ng-src="{{movie.Poster}}"/>
+                </div>
+                <div>
+                    <a href="#/details/{{movie.imdbID}}">{{movie.Title}} ({{movie.Year}})</a>
+                </div>
 
+            </div>
         </div>
     </div>
 </div>

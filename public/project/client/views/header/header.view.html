@@ -9,7 +9,7 @@
             </button>
             <a class="navbar-brand" href="#/home"><img src="img/Drawing.png" alt="company logo" /></a>
         </div>
-        <div class="collapse navbar-collapse footer-div" id="bs-example-navbar-collapse-1" ng-class="{collapse : model.isCollapsed}">
+        <div class="navbar-collapse footer-div collapse" id="bs-example-navbar-collapse-1" ng-class="{collapse : model.isCollapsed}">
             <ul class="nav navbar-nav navbar-right custom-menu">
                 <li ng-class="{'active': $location.url()=='/home'}" ng-click="model.isCollapsed = !model.isCollapsed"><a href="#/home">Home</a></li>
                 <li ng-class="{'active': $location.url()=='/search'}" ng-click="model.isCollapsed = !model.isCollapsed"><a href="#/search">Search</a></li>

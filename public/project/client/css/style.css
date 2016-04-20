@@ -144,11 +144,59 @@ div + div {
     background-color: #2D2D2D!important;
     color: white!important;
     overflow: hidden;
-    width: 80%!important;
-    height: 100%!important;
+    height: 40px;
+    max-width: 235px;
+    word-wrap: break-word;
 }
 
 .footer-div{
     margin-top: auto!important;
     margin-bottom: auto!important;
+}
+
+.form-control{
+    color: #E96840!important;
+}
+
+.control-label{
+    white-space: nowrap!important;
+}
+
+.search-results{
+    margin:auto;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+/*.bookmark-div{*/
+    /*height: 500px;*/
+/*}*/
+
+.no-transform{
+    text-transform: none!important;
+}
+
+.bookmark-div
+{
+    width:250px!important; /* or whatever width you want. */
+    max-width:250px!important; /* or whatever width you want. */
+    height: 500px!important;
+    max-height: 500px!important;
+    display: inline-block;
+}
+
+.bookmark-poster{
+    height: 250px;
+}
+
+.profile-label{
+    background-color: #2D2D2D!important;
+    color: white!important;
+    overflow: hidden;
+    width: 80%!important;
+    height: 100%!important;
+}
+
+.bookmark-min-div{
+    height: 500px;
 }

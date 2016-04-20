@@ -1,12 +1,12 @@
-<div>
-    <h1>Bookmarked Movies by {{username}}</h1>
+<div class="text-center color-elements no-transform">
+    <h2>Bookmarked Movies by {{username}}</h2>
 </div>
 
 <div class="col-sm-10"><center class="custom-alert-red">{{alertMessage}}</center></div>
 
 <div class="col-sm-offset-1 col-xs-offset-2">
     <div ng-repeat="movie in forms">
-        <div class="col-lg-3 col" style="height: 500px">
+        <div class="col-lg-3 col bookmark-min-div">
             <div>
                 <img class="bookmark-poster" ng-src="{{movie.poster}}"/>
             </div>
@@ -20,9 +20,9 @@
                 <input class="form-control bookmark-cmnt-lbl" type="text" ng-model="movie.comment">
             </div>
             <div>
-                <a ng-hide = isHidden($index,selected) ng-click="selectForm($index)" class="btn btn-warning col-sm-offset-1 a-btn"><span class="glyphicon glyphicon-pencil"/></a>
-                <a ng-show = isHidden($index,selected) ng-click="updateForm(movie.imdbID,movie.comment)" class="btn btn-success col-sm-offset-1 a-btn"><span class="glyphicon glyphicon-ok"/></a>
-                <a ng-click='deleteForm(movie.imdbID)' class="btn btn-danger col-sm-offset-1 a-btn"><span class="glyphicon glyphicon-remove"/></a>
+                <a ng-hide = isHidden($index,selected) ng-click="selectForm($index)" class="btn btn-warning col-xs-offset-1 col-xs-3 col-sm-2 col-sm-offset-0 a-btn"><span class="glyphicon glyphicon-pencil"/></a>
+                <a ng-show = isHidden($index,selected) ng-click="updateForm(movie.imdbID,movie.comment)" class="btn btn-success col-xs-offset-1 col-sm-2 col-sm-offset-0 col-xs-3 col-sm-offset-1 a-btn"><span class="glyphicon glyphicon-ok"/></a>
+                <a ng-click='deleteForm(movie.imdbID)' class="btn btn-danger col-xs-offset-1 col-xs-3 col-sm-2 col-sm-offset-1 a-btn"><span class="glyphicon glyphicon-remove"/></a>
             </div>
         </div>
     </div>
