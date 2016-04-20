@@ -43,40 +43,40 @@
     </div>
     <div ng-hide="!model.edit" class="col-xs-offset-1">
         <div class="form-group">
-            <label for="inputUsername" class="col-xs-2 col-lg-offset-3 col-lg-1 control-label">Username</label>
-            <div class="col-xs-8 col-lg-4">
+            <label for="inputUsername" class="col-xs-offset-1 col-xs-11 col-md-offset-2 col-md-1 col-sm-offset-0 col-sm-1 col-lg-offset-3 col-lg-1 control-label">Username</label>
+            <div class="col-xs-8 col-xs-offset-1 col-lg-offset-0 col-lg-4 col-md-4">
                 <input type="text" class="form-control" id="inputUsername" placeholder="Username" ng-model="model.username">
             </div>
         </div>
         <div class="form-group">
-            <label for="inputPassword" class="col-xs-2 col-lg-offset-3 col-lg-1 control-label">Password</label>
-            <div class="col-xs-8 col-lg-4">
+            <label for="inputPassword" class="col-xs-offset-1 col-xs-11 col-md-offset-2 col-md-1 col-sm-offset-0 col-sm-1 col-lg-offset-3 col-lg-1 control-label">Password</label>
+            <div class="col-xs-8 col-xs-offset-1  col-lg-offset-0 col-lg-4 col-md-4">
                 <input type="text" class="form-control" id="inputPassword" placeholder="Password" ng-model="model.password">
             </div>
         </div>
         <div class="form-group">
-            <label for="inputFirstName" class="col-xs-2 col-lg-offset-3 col-lg-1 control-label">First Name</label>
-            <div class="col-xs-8 col-lg-4">
+            <label for="inputFirstName" class="col-xs-offset-1 col-xs-11 col-md-offset-2 col-md-1 col-sm-offset-0 col-sm-1 col-lg-offset-3 col-lg-1 control-label">First Name</label>
+            <div class="col-xs-8 col-xs-offset-1  col-lg-offset-0 col-lg-4 col-md-4">
                 <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" ng-model="model.firstname">
             </div>
         </div>
         <div class="form-group">
-            <label for="inputLastName" class="col-xs-2 col-lg-offset-3 col-lg-1 control-label">Last Name</label>
-            <div class="col-xs-8 col-lg-4">
+            <label for="inputLastName" class="col-xs-offset-1 col-xs-11 col-md-offset-2 col-md-1 col-sm-offset-0 col-sm-1 col-lg-offset-3 col-lg-1 control-label">Last Name</label>
+            <div class="col-xs-8 col-xs-offset-1  col-lg-offset-0 col-lg-4 col-md-4">
                 <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" ng-model="model.lastname">
             </div>
         </div>
         <div class="form-group">
-            <label for="inputLastName" class="col-xs-2 col-lg-offset-3 col-lg-1 control-label">Email</label>
-            <div class="col-xs-8 col-lg-4">
+            <label for="inputLastName" class="col-xs-offset-1 col-xs-11 col-md-offset-2 col-md-1 col-sm-offset-0 col-sm-1 col-lg-offset-3 col-lg-1 control-label">Email</label>
+            <div class="col-xs-8 col-xs-offset-1  col-lg-offset-0 col-lg-4 col-md-4">
                 <input type="email" class="form-control" id="inputEmail" placeholder="alice@wonderland.com" ng-model="model.email">
             </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-offset-4 col-sm-5 col-xs-5 col-md-2 col-lg-2 footer-div">
+            <div class="col-sm-offset-4 col-sm-5 col-xs-offset-2 col-xs-3 col-sm-2 col-md-2 col-lg-2 footer-div">
                 <button ng-show="model.edit" type="submit" class="btn btn-md btn-custom btn-noborder-radius" ng-click="model.update()">Update</button>
             </div>
-            <div class="col-sm-5 col-lg-2 col-xs-5 col-md-2 footer-div">
+            <div class="col-sm-5 col-lg-2 col-xs-3 col-sm-2 col-md-2 footer-div">
                 <button ng-show="model.edit" type="submit" class="btn btn-primary btn-block btn-noborder-radius" ng-click="model.toggleEdit()">Cancel</button>
             </div>
         </div>
