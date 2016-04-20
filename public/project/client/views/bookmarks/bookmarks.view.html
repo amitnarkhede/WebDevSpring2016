@@ -13,7 +13,7 @@
             <div>
                 <a class="clickable-td" href="#/details/{{movie.imdbID}}">{{movie.movieTitle}}</a>
             </div>
-            <div ng-show="{{movie.comment}}" ng-hide="isEditing($index,editing)">
+            <div ng-show="movie.comment" ng-hide="isEditing($index,editing)">
                 <label class="bookmark-cmnt-lbl">{{movie.comment}}</label>
             </div>
             <div ng-show = isHidden($index,selected)>

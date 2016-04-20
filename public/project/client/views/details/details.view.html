@@ -61,7 +61,7 @@
         <div ng-show="model.commentFlag">
             <br>
             <label for="userComment">Comment:</label><br>
-    <textarea id="userComment"class="form-control" value="" rows="2" ng-model="model.userComment">
+    <textarea id="userComment"class="form-control" value="" rows="4" ng-model="model.userComment">
     </textarea><br>
             <button ng-show="model.isNewComment" class="btn btn-primary a-btn" ng-click="model.updateComment()">Save</button>
             <button ng-show="!model.isNewComment" class="btn btn-primary a-btn" ng-click="model.updateComment()">Update</button>
@@ -73,7 +73,7 @@
             <h4 ng-hide="model.comments">None!</h4>
 
             <div ng-show="model.comments">
-                <div class="bubble me" ng-repeat="comment in model.comments">
+                <div class="bubble me col-xs-11" ng-repeat="comment in model.comments">
                     <a href="#/profile/{{comment.userID}}">{{comment.username}} : </a> {{comment.comment}}
                 </div>
             </div>

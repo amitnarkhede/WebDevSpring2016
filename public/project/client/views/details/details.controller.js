@@ -55,8 +55,14 @@
             console.log("Liked Movie");
             if($rootScope.currentUser){
                 //console.log(vm.details);
-                UserService.addMovieLike(vm.details,$rootScope.currentUser);
-                checkIfLiked();
+                UserService
+                    .addMovieLike(vm.details,$rootScope.currentUser)
+                    .success(function(res){
+                        checkIfLiked();
+                    },function(err){
+                        console.log(err);
+                    });
+
             }else {
                 $location.url("/login");
             }
