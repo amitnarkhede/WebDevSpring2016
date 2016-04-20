@@ -204,9 +204,11 @@ div + div {
 {
     width:250px!important; /* or whatever width you want. */
     max-width:250px!important; /* or whatever width you want. */
-    height: 500px!important;
-    max-height: 500px!important;
+    height: 350px!important;
+    max-height: 400px!important;
     display: inline-block;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 .bookmark-poster{
@@ -237,6 +239,8 @@ div + div {
     height: 350px!important;
     max-height: 340px!important;
     display: inline-block;
+    margin-left: 4%;
+    margin-right: 4%;
 }
 
 .popular-view{
