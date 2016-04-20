@@ -15,56 +15,74 @@
     </blockquote>
 </div>
 !-->
+<div ng-controller="HomeController">
+    <div class="wrapper">
+        <div id="carousel">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <div class="carousel slide" data-ride="carousel">
 
-<div class="wrapper">
-    <div id="carousel">
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-            <div class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    </ol>
 
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                </ol>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item slider-size active">
+                            <img class="carousel-img" src="img/batman-vs-superman.jpg" alt="Awesome Image">
+                        </div>
+                        <div class="item slider-size">
+                            <img class="carousel-img" src="img/interstellar.jpg" alt="Awesome Image">
+                        </div>
+                        <div class="item slider-size">
+                            <img class="carousel-img" src="img/inside-out.jpg" alt="Awesome Image">
+                        </div>
+                    </div>
 
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner">
-                    <div class="item slider-size active">
-                        <img class="carousel-img" src="img/batman-vs-superman.jpg" alt="Awesome Image">
-                    </div>
-                    <div class="item slider-size">
-                        <img class="carousel-img" src="img/interstellar.jpg" alt="Awesome Image">
-                    </div>
-                    <div class="item slider-size">
-                        <img class="carousel-img" src="img/inside-out.jpg" alt="Awesome Image">
-                    </div>
                 </div>
-
             </div>
         </div>
     </div>
-</div>
 
-<!-- Page Content -->
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-offset-1 col-md-10">
-                <div class="text-center">
-                    <h2>About Us</h2>
-                    <img class="img-responsive displayed" src="img/short.png" alt="Company about"/>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p>
-                                Taking a movie break from our busy life is a common tradition amongst most of us and having a reliable single source of information is important part of the same.
-                                What a normal user would do is go to google to search a movie to be watched.
-                                But I would like to build a solution to users which will build a single website that can act as source of new movies and recommend movies that they might enjoy based on their history of bookmarking activity on the site.
-                            </p>
+    <!-- Page Content -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-1 col-md-10">
+                    <div class="text-center">
+                        <h2>About Us</h2>
+                        <img class="img-responsive displayed" src="img/short.png" alt="Company about"/>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>
+                                    Taking a movie break from our busy life is a common tradition amongst most of us and having a reliable single source of information is important part of the same.
+                                    What a normal user would do is go to google to search a movie to be watched.
+                                    But I would like to build a solution to users which will build a single website that can act as source of new movies and recommend movies that they might enjoy based on their history of bookmarking activity on the site.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
+    <div class="text-center color-elements">
+        <h2>Most Popular Movies Over the Internet</h2>
     </div>
-</section>
+    <br>
+    <div>
+        <div ng-repeat="movie in movies">
+            <div class="col-xs-offset-3 col-md-offset-2 col-sm-offset-2 col-lg-offset-1 col-lg-2 col pupular-div popular-view">
+                <div>
+                    <img class="pop-img" ng-src="http://image.tmdb.org/t/p/original{{movie.poster_path}}"/>
+                </div>
+                <div class="home-popular-title">
+                    <a href="#/search/{{movie.title}}">{{movie.title}}</a><br>
+                    <a> <strong>Release Date:</strong> {{movie.release_date}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

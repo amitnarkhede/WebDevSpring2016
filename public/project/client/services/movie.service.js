@@ -23,7 +23,8 @@
         var api = {
             findMoviesByTitle: findMoviesByTitle,
             findMovieByImdbId: findMovieByImdbId,
-            findMovieTrailer: findMovieTrailer
+            findMovieTrailer: findMovieTrailer,
+            fetchTopMovies:fetchTopMovies
         };
 
         return api;
@@ -47,6 +48,12 @@
             var url = TRAILER_SEARCH_URL.replace("IMDBID",imdbId);
             $http.get(url)
                 .success(callback);
+        }
+
+        function fetchTopMovies(callback){
+            $http.get("/api/project/popular").success(function(res){
+                $http.get(res).success(callback)
+            });
         }
     }
 })();
