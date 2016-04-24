@@ -2,22 +2,25 @@
     <div class="text-center color-elements">
         <h2>Login</h2>
     </div>
-    <div class="col-sm-offset-2 col-lg-offset-2 col-sm-10"><center class="custom-alert-red">{{model.message}}</center></div>
+    <div class="text-center color-elements">
+        <h5>{{model.message}}</h5>
+    </div>
+    <div class="col-sm-offset-2 col-lg-offset-2 col-sm-10"></div>
     <div class="form-group">
         <label for="inputUsername" class="col-sm-2 col-lg-offset-3 col-lg-1 control-label">Username</label>
         <div class="col-sm-10 col-lg-4">
-            <input type="text" class="form-control" id="inputUsername" placeholder="Username" ng-model="model.username">
+            <input type="text" class="form-control" id="inputUsername" placeholder="Username" ng-model="model.user.username">
         </div>
     </div>
     <div class="form-group">
         <label for="inputPassword" class="col-sm-2 col-lg-offset-3 col-lg-1 control-label">Password</label>
         <div class="col-sm-10 col-lg-4">
-            <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="model.password">
+            <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="model.user.password">
         </div>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-lg-offset-4 col-sm-10 col-lg-4">
-            <button type="submit" class="btn btn-md btn-custom btn-noborder-radius" ng-click="model.login()">Login</button>
+            <button type="submit" class="btn btn-md btn-custom btn-noborder-radius" ng-click="model.login(model.user)">Login</button>
         </div>
     </div>
 </form>

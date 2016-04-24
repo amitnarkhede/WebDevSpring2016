@@ -3,7 +3,7 @@
         .module("TheFilmDBApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($scope,$rootScope,$location){
+    function HeaderController($rootScope,$location,UserService){
 
         vm = this;
         vm.logout = logout;
@@ -13,7 +13,18 @@
         //$scope.visitProfile = visitProfile;
 
         function logout(){
-            $rootScope.currentUser = null;
+            UserService
+                .logout()
+                .then(
+                    function(){
+                        UserService.setCurrentUser(null);
+                        $location.url("/home");
+                    },
+                    function(err){
+                        console.log(err);
+                    }
+                )
+
             $location.url("/home");
         };
 

@@ -82,6 +82,7 @@
 
 .username{
     text-transform: none!important;
+    cursor: pointer!important;
 }
 
 .verticle-middle{
