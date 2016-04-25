@@ -95,23 +95,36 @@ module.exports= function(uuid,db,mongoose,relationModel){
         return deferred.promise;
     };
 
-    function updateMovieLike(userID,imdbID,comment){
+    function updateMovieLike(details){
 
         var deferred = q.defer();
 
-        var update = {comment: comment};
+        //console.log(details);
 
-        relationModel.update({userID:userID, imdbID:imdbID},
-            {$set : update},
-            function(err,doc){
-                //console.log(doc);
-                if(err){
-                    deferred.reject(err);
-                }else{
-                    //console.log(doc);
-                    deferred.resolve(doc);
-                }
-            });
+        relationModel.find({ imdbID: details.imdbID , userID : details.userID},function(err,doc){
+
+            if(!doc[0]){
+                details.isLiked = false;
+                relationModel.create(details,function(err,doc){
+                    if(err){
+                        deferred.reject(err);
+                    }
+                    else{
+                        deferred.resolve(doc);
+                    }
+                });
+            }else{
+
+                relationModel.update({imdbID : details.imdbID , userID : details.userID},{$set : details},function(err,doc){
+                    if(err){
+                        deferred.reject(err);
+                    }
+                    else{
+                        deferred.resolve(doc);
+                    }
+                })
+            }
+        });
 
         return deferred.promise;
     }

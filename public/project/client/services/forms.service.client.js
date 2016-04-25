@@ -43,9 +43,9 @@
 
         };
 
-        function updateFormById(userid,imdbId, comment){
+        function updateFormById(userid,username,comment,details){
 
-            var updatedObject = {"userid" : userid, "imdbID" : imdbId , "comment" : comment};
+            var updatedObject = {"userid" : userid, username : username , "comment":comment, "details" : details};
             return $http.put("/api/project/updatecomment",updatedObject);
         };
 

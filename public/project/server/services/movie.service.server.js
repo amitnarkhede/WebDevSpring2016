@@ -53,12 +53,20 @@ module.exports = function(app,movieModel,tmdbKey,$http) {
 
     function updateComment(req,res){
         var updated = req.body;
-        var userid = updated.userid;
-        var imdbID = updated.imdbID;
-        var comment = updated.comment;
+
+        //console.log(updated);
+
+        var detail = {imdbID: updated.details.imdbID,
+            movieTitle:updated.details.Title,
+            poster:updated.details.Poster,
+            userID: updated.userid,
+            username: updated.username,
+            comment: updated.comment,
+            created: (new Date).getTime()};
+
 
         movieModel
-            .updateMovieLike(userid,imdbID,comment)
+            .updateMovieLike(detail)
             .then(function(response){
                     res.send(200);
                 },

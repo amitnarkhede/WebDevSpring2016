@@ -131,12 +131,12 @@
         function updateComment() {
             console.log("Update was called");
 
-            if(vm.isNewComment){
-                console.log("This is a new comment");
-                likeMovie();
-            }
+            //if(vm.isNewComment){
+            //    console.log("This is a new comment");
+            //    likeMovie();
+            //}
 
-            FormService.updateFormById($rootScope.currentUser._id,imdbId,vm.userComment);
+            FormService.updateFormById($rootScope.currentUser._id,$rootScope.currentUser.username,vm.userComment,vm.details);
 
             vm.commentFlag = false;
 
