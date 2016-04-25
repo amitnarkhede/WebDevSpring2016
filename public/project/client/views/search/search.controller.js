@@ -10,9 +10,11 @@
         vm = this;
         vm.movie=null;
 
+
         //$scope.movieTitle = "Star Wars";
 
         function init() {
+            vm.message = null;
             var movieTitle = $routeParams.title;
             if(movieTitle) {
                 fetchMovie(movieTitle);
@@ -26,13 +28,15 @@
         }
 
         function renderMovies(response) {
-            console.log(response);
-            for(index = 0; index < response.Search.length; index++){
-                //console.log(response.Search[index]);
-                response.Search[index]["Poster"] = POSTER_URL.replace("IMDBID",response.Search[index]["imdbID"]);
-            }
+            if(response.Response != "False") {
 
-            //console.log(response);
+                for (index = 0; index < response.Search.length; index++) {
+                    //console.log(response.Search[index]);
+                    response.Search[index]["Poster"] = POSTER_URL.replace("IMDBID", response.Search[index]["imdbID"]);
+                }
+            }else{
+                vm.message = "No movies found for " + $routeParams.title;
+            }
 
             $scope.data = response;
         }

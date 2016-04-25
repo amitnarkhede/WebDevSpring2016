@@ -9,8 +9,8 @@
         vm.login = login;
 
         function login(user) {
-            if(!user) {
-                return;
+            if(!user.username || !user.password) {
+                vm.message="Enter the credentials to login";
             }
             UserService
                 .login({
@@ -25,10 +25,10 @@
                         $location.url("/profile/"+response.data._id);
                     }
                     else {
-                        vm.message="Username and password doesnot match";
+                        vm.message="Username and password does not match";
                     }
                 },function(err){
-                    vm.message="Username and password doesnot match";;
+                    vm.message="Username and password does not match";;
                 });
         }
     };

@@ -8,9 +8,18 @@
         vm.register = register;
         vm.message = null;
 
+        function init(){
+            vm.username = null;
+            vm.email = null;
+            vm.password = null;
+            vm.verifyPassword = null;
+        }
+
+        init();
+
         function register(){
             var newUser = {username : vm.username , password : vm.password , email : vm.email};
-            if(vm.username !="" && vm.email !="" && vm.password !="" && vm.verifyPassword !=""){
+            if(vm.username && vm.email && vm.password && vm.verifyPassword){
 
                 if(vm.password == vm.verifyPassword){
 

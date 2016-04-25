@@ -24,13 +24,18 @@
     {
         width:250px!important; /* or whatever width you want. */
         max-width:250px!important; /* or whatever width you want. */
-        height: 500px!important;
+        height: 300px!important;
         max-height: 500px!important;
-        padding-left: 15%!important;
-        padding-right: 15%!important;
+        margin-left: 15%!important;
+        margin-right: 15%!important;
         /*display: table;*/
         /*margin-left: auto!important;*/
         /*margin-right: auto!important;*/
+    }
+
+    .pop-img{
+        height: 250px;;
+        width: 200px;
     }
 }
 
@@ -46,6 +51,22 @@
         width: 100%;
     }
 
+    .pupular-div
+    {
+        width:250px!important; /* or whatever width you want. */
+        max-width:250px!important; /* or whatever width you want. */
+        height: 500px!important;
+        max-height: 500px!important;
+        /*display: table;*/
+        margin-left: 7%!important;
+        margin-right: 5%!important;
+    }
+
+    .pop-img{
+        height: 300px;;
+        width: 230px;
+    }
+
 }
 
 /* laptops */
@@ -57,6 +78,24 @@
     }
     .slider-size > img {
         width: 100%;
+    }
+
+    .pupular-div
+    {
+        width:250px!important; /* or whatever width you want. */
+        max-width:250px!important; /* or whatever width you want. */
+        height: 500px!important;
+        max-height: 500px!important;
+        padding-left: 15%!important;
+        padding-right: 15%!important;
+        /*display: table;*/
+        /*margin-left: auto!important;*/
+        /*margin-right: auto!important;*/
+    }
+
+    .pop-img{
+        height: 300px;;
+        width: 230px;
     }
 }
 
@@ -77,9 +116,16 @@
         max-width:250px!important; /* or whatever width you want. */
         height: 500px!important;
         max-height: 500px!important;
-        display: table;
-        margin-left: auto!important;
-        margin-right: auto!important;
+        /*display: table;*/
+        margin-left: 4%!important;
+        margin-right: 4%!important;
+    }
+
+
+
+    .pop-img{
+        height: 300px;;
+        width: 230px;
     }
 }
 
@@ -176,10 +222,10 @@ a:hover{
     float: left;
 }
 
-div + div {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
+/*div + div {*/
+    /*margin-top: 20px;*/
+    /*margin-bottom: 20px;*/
+/*}*/
 
 .bookmark-cmnt-lbl{
     background-color: #2D2D2D!important;
@@ -222,16 +268,6 @@ div + div {
     text-transform: none!important;
 }
 
-.bookmark-div
-{
-    width:250px!important; /* or whatever width you want. */
-    max-width:250px!important; /* or whatever width you want. */
-    height: 350px!important;
-    max-height: 400px!important;
-    display: inline-block;
-    margin-left: 2%;
-    margin-right: 2%;
-}
 
 .bookmark-poster{
     height: 250px;
@@ -277,10 +313,10 @@ div + div {
     width: 250px!important;
 }
 
-.pop-img{
-    height: 260px;;
-    width: 200px;
-}
+/*.pop-img{*/
+    /*height: 260px;;*/
+    /*width: 200px;*/
+/*}*/
 
 .carousel-control {
     background-color: #EB5E28;
@@ -347,10 +383,13 @@ div + div {
 .carousel-indicators > li {
     background-color: #FFFFFF;
     border: 0 none;
+    border-radius: 0px;
+    margin-left: 10px;
 }
 
 .carousel-indicators .active {
     background-color: #EB5E28;
+    margin-left: 10px;
 }
 .wrapper {
     -webkit-transform: translate3d(0px, 0, 0);
@@ -382,4 +421,9 @@ div + div {
     -o-transform: translate3d(-230px, 0, 0);
     -ms-transform: translate3d(-230px, 0, 0);
     transform: translate3d(-230px, 0, 0);
+}
+
+.error-red{
+    color: red;
+    text-transform: none!important;
 }
