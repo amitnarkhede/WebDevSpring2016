@@ -192,9 +192,6 @@ module.exports= function(uuid,db,mongoose){
 
         delete updatedUserDetails._id;
 
-        console.log(userId);
-        console.log(updatedUserDetails);
-
         UserModel.update(
             {_id : userId},
             {$set : updatedUserDetails},

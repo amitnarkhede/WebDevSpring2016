@@ -58,28 +58,6 @@ module.exports = function(app,userModel) {
                 });
     };
 
-    function createUser(req,res){
-        //console.log(req.body);
-        var user = req.body;
-        user.roles = ['endUser'];
-
-        userModel
-            .createNewUser(user)
-            .then(
-                //login in promise resolved
-                function( doc ){
-                    //console.log(doc);
-                    req.session.currentUser = doc;
-                    res.json(doc);
-                },
-                //send error if promise rejected
-                function( err ){
-                    //console.log(err);
-                    res.status(400).send(err);
-
-                }
-            );
-    }
 
     function register(req,res){
         var user = req.body;
@@ -197,29 +175,42 @@ module.exports = function(app,userModel) {
     }
 
 
-
     function updateUser(req,res){
-        var id = req.params.id;
-        var updatedUserDetails = req.body;
-
-        //console.log(id);
-        //console.log(updatedUserDetails);
+        var id=req.params.id;
+        var updatedUser = req.body;
 
         userModel
-            .updateUser(id,updatedUserDetails)
-            .then(function(doc){
-                    userModel
-                        .findUserById(id)
-                        .then(function(user){
-                            //console.log(user);
-                            req.session.currentUser = user;
-                            res.send(user);
-                        })
+            .findUserByUsername(updatedUser.username)
+            .then(function(user){
+
+                    if(user[0]){
+                        //check if the password was updated by user and handle accordingly
+                        if(user[0].password != updatedUser.password){
+                            updatedUser.password = bcrypt.hashSync(updatedUser.password);
+                        }
+
+                        userModel
+                            .updateUser(id,updatedUser)
+                            .then(
+                                //login in promise resolved
+                                function( doc ){
+                                    //console.log(doc);
+                                    req.session.currentUser = doc;
+                                    res.json(doc);
+                                },
+                                //send error if promise rejected
+                                function( err ){
+                                    res.status(400).send(err);
+                                }
+                            )
+                    }else{
+                        res.status(400).send(err);
+                    }
                 },
-                function (err) {
+                function(err){
                     res.status(400).send(err);
                 });
-    };
+    }
 
     function getAllUsers(req,res){
         userModel

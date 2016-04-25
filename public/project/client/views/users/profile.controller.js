@@ -3,7 +3,7 @@
         .module("TheFilmDBApp")
         .controller("ProfileController",ProfileController);
 
-    function ProfileController($rootScope,$scope,UserService,$location,$routeParams){
+    function ProfileController($rootScope,UserService,$location,$routeParams){
 
         var currentUser= $rootScope.currentUser;
         var profileUserId = $routeParams.userid;
@@ -25,7 +25,7 @@
             else{
                 if(profileUserId == $rootScope.currentUser._id) {
                     vm.self=true;
-                    console.log("UserID with logged in matched!");
+                    //console.log("UserID with logged in matched!");
                     vm.message = null;
                     vm.update = update;
 
@@ -85,7 +85,7 @@
                 .then(function(response){
                         //console.log(response.data[0]);
                         UserService.setCurrentUser(response.data[0]);
-                        $scope.message = "Profile updated successfully!";
+                        vm.message = "Profile updated successfully!";
                     },
                     function(err){
                         console.log(err);
@@ -95,13 +95,14 @@
 
         function toggleEdit(){
             vm.edit = !vm.edit;
+            vm.message = null;
         }
 
         function getMovies(userid){
             UserService
                 .getMovieLike(userid)
                 .then(function(res){
-                    console.log(res.data);
+                    //console.log(res.data);
                     if(res.data.length==0){
                         vm.movies = null;
                     }else{
@@ -116,7 +117,7 @@
             var loggedinUser = $rootScope.currentUser;
             var profileUserName = vm.username;
 
-            console.log(loggedinUser._id ,loggedinUser.username,profileUserId,profileUserName)
+            //console.log(loggedinUser._id ,loggedinUser.username,profileUserId,profileUserName)
             UserService
                 .followUser(loggedinUser._id ,loggedinUser.username,profileUserId,profileUserName)
                 .then(
@@ -132,7 +133,7 @@
 
             var loggedinUser = $rootScope.currentUser;
 
-            console.log(loggedinUser._id ,profileUserId)
+            //console.log(loggedinUser._id ,profileUserId)
             UserService
                 .unFollowUser(loggedinUser._id,profileUserId)
                 .then(
@@ -147,13 +148,13 @@
         function ifFollowed(){
             var loggedinUser = $rootScope.currentUser;
 
-            console.log(loggedinUser._id ,profileUserId);
+            //console.log(loggedinUser._id ,profileUserId);
             UserService
                 .checkIfFollowed(loggedinUser._id,profileUserId)
                 .then(
                     function(res){
-                        console.log("CheckIfFollowed");
-                        console.log(res.data[0]);
+                        //console.log("CheckIfFollowed");
+                        //console.log(res.data[0]);
                         if(res.data[0]){
                             vm.followed = true;
                         }else{
@@ -169,8 +170,8 @@
             UserService
                 .getFollowing(userid)
                 .then(function(res){
-                    console.log("Following");
-                    console.log(res.data);
+                    //console.log("Following");
+                    //console.log(res.data);
                     if(res.data.length==0){
                         vm.following = null;
                     }else{
@@ -184,8 +185,8 @@
             UserService
                 .getFollowers(userid)
                 .then(function(res){
-                    console.log("Followers");
-                    console.log(res.data);
+                    //console.log("Followers");
+                    //console.log(res.data);
                     if(res.data.length==0){
                         vm.followers = null;
                     }else{

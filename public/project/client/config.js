@@ -105,7 +105,7 @@
         var deferred = $q.defer();
         $http.get('/api/project/loggedin').success(function(user)
         {
-            console.log("LOGIN CONFIG"+user);
+            //console.log("LOGIN CONFIG"+user);
             $rootScope.errorMessage = null;
             // User is Authenticated
             if (user !== '0')

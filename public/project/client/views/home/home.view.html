@@ -23,21 +23,13 @@
 
                     <!-- Indicators -->
                     <ol class="carousel-indicators">
-                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        <li ng-repeat="movie in model.movies" data-target="#carousel-example-generic" data-slide-to= "{{$index}}" ng-class="{{!$index}} ? 'active' : 'none'"></li>
                     </ol>
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
-                        <div class="item slider-size active">
-                            <img class="carousel-img" src="img/batman-vs-superman.jpg" alt="Awesome Image">
-                        </div>
-                        <div class="item slider-size">
-                            <img class="carousel-img" src="img/interstellar.jpg" alt="Awesome Image">
-                        </div>
-                        <div class="item slider-size">
-                            <img class="carousel-img" src="img/inside-out.jpg" alt="Awesome Image">
+                        <div class="item slider-size" ng-class="{{!$index}} ? 'active' : 'none'" ng-repeat="movie in model.movies">
+                            <img class="carousel-img" ng-src="http://image.tmdb.org/t/p/original{{movie.backdrop_path}}" alt="Awesome Image">
                         </div>
                     </div>
 
@@ -74,7 +66,7 @@
     </div>
     <br>
     <div>
-        <div ng-repeat="movie in movies">
+        <div ng-repeat="movie in model.movies">
             <div class="col-xs-offset-2 col-md-offset-1 col-sm-offset-1 col-lg-offset-1 col-lg-2 col pupular-div popular-view">
                 <div>
                     <img class="pop-img" ng-src="http://image.tmdb.org/t/p/original{{movie.poster_path}}"/>
