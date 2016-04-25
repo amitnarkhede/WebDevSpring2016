@@ -44,6 +44,7 @@ module.exports= function(uuid,db,mongoose,relationModel){
                 });
             }else{
 
+                delete movieDetails.comment;
                 relationModel.update({imdbID : imdbID , userID : userID},{$set : movieDetails},function(err,doc){
                     if(err){
                         deferred.reject(err);
