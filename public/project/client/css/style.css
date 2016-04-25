@@ -117,8 +117,8 @@
         /*height: 500px!important;*/
         /*max-height: 500px!important;*/
         /*display: table;*/
-        margin-left: 2%!important;
-        margin-right: 2%!important;
+        margin-left: 1%!important;
+        margin-right: 1%!important;
     }
 
 
@@ -305,12 +305,13 @@ a:hover{
 /*}*/
 
 .popular-view{
-    padding-bottom: 40px!important;
-    margin-bottom: 60px!important;
+    /*padding-bottom: 40px!important;*/
+    margin-bottom: 50px!important;
 }
 
 .home-popular-title{
     width: 250px!important;
+    white-space: nowrap;
 }
 
 /*.pop-img{*/
