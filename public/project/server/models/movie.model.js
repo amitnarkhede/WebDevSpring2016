@@ -15,7 +15,7 @@ module.exports= function(uuid,db,mongoose,relationModel){
         getMovieLike:getMovieLike,
         checkIfLiked:checkIfLiked,
         updateMovieLike:updateMovieLike,
-        deleteMovieUser:deleteMovieUser,
+        deleteMovieUser:deleteMovieLike,
         getMovieDetails:getMovieDetails,
         getMovieComments:getMovieComments
     };
@@ -26,17 +26,36 @@ module.exports= function(uuid,db,mongoose,relationModel){
 
         var deferred = q.defer();
 
-        MovieModel.create(movieDetails,function(err,doc){
-            relationModel.create(movieDetails,function(err,doc){
-                if(err){
-                    deferred.reject(err);
-                }
-                else{
-                    deferred.resolve(doc);
-                }
-            })
+        movieDetails.isLiked = true;
 
+        var imdbID = movieDetails.imdbID;
+        var userID = movieDetails.userID;
+
+        relationModel.find({ imdbID: imdbID , userID : userID},function(err,doc){
+
+            if(!doc[0]){
+                relationModel.create(movieDetails,function(err,doc){
+                    if(err){
+                        deferred.reject(err);
+                    }
+                    else{
+                        deferred.resolve(doc);
+                    }
+                });
+            }else{
+
+                relationModel.update({imdbID : imdbID , userID : userID},{$set : movieDetails},function(err,doc){
+                    if(err){
+                        deferred.reject(err);
+                    }
+                    else{
+                        deferred.resolve(doc);
+                    }
+                })
+            }
         });
+
+
 
         //return a promise
         return deferred.promise;
@@ -46,7 +65,11 @@ module.exports= function(uuid,db,mongoose,relationModel){
         var deferred = q.defer();
 
         relationModel
-            .find({userID : userId},
+            .find({
+                    $and:[{userID : userId},
+                        {$or: [{isLiked: true},{comment:{'$ne':""}}]}
+                    ]
+                },
                 function(err,doc){
                     deferred.resolve(doc);
                 });
@@ -58,7 +81,7 @@ module.exports= function(uuid,db,mongoose,relationModel){
 
         var deferred = q.defer();
         relationModel.find(
-            {userID: userId, imdbID : imdbId},
+            {userID: userId, imdbID : imdbId, isLiked : true},
             function(err,doc){
                 if(err){
                     deferred.reject(err);
@@ -93,11 +116,11 @@ module.exports= function(uuid,db,mongoose,relationModel){
         return deferred.promise;
     }
 
-    function deleteMovieUser(userID,imdbID){
+    function deleteMovieLike(userID,imdbID){
 
         var deferred = q.defer();
 
-        relationModel.remove({userID : userID , imdbID: imdbID},
+        relationModel.update({userID : userID , imdbID: imdbID},{$set : {isLiked : false}},
             function(err,doc){
                 if(err){
                     deferred.reject(err);
@@ -128,7 +151,7 @@ module.exports= function(uuid,db,mongoose,relationModel){
     function getMovieComments(imdbID){
         var deferred = q.defer();
 
-        relationModel.find({imdbID:imdbID},
+        relationModel.find({imdbID:imdbID,comment:{'$ne':""}},
             function(err,doc){
                 if(err){
                     deferred.reject(err);

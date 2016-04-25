@@ -11,6 +11,7 @@ module.exports = function(mongoose) {
         poster:String,
         userID: String,
         username: String,
+        isLiked: Boolean,
         comment: String,
         created: Date
     }, {collection: 'project.user2movie'});
