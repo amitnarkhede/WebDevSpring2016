@@ -24,8 +24,8 @@
     {
         width:250px!important; /* or whatever width you want. */
         max-width:250px!important; /* or whatever width you want. */
-        height: 300px!important;
-        max-height: 500px!important;
+        /*height: 300px!important;*/
+        /*max-height: 500px!important;*/
         margin-left: 15%!important;
         margin-right: 15%!important;
         /*display: table;*/
@@ -55,10 +55,10 @@
     {
         width:250px!important; /* or whatever width you want. */
         max-width:250px!important; /* or whatever width you want. */
-        height: 500px!important;
-        max-height: 500px!important;
+        /*height: 500px!important;*/
+        /*max-height: 500px!important;*/
         /*display: table;*/
-        margin-left: 7%!important;
+        margin-left: 5%!important;
         margin-right: 5%!important;
     }
 
@@ -114,11 +114,11 @@
     {
         width:250px!important; /* or whatever width you want. */
         max-width:250px!important; /* or whatever width you want. */
-        height: 500px!important;
-        max-height: 500px!important;
+        /*height: 500px!important;*/
+        /*max-height: 500px!important;*/
         /*display: table;*/
-        margin-left: 4%!important;
-        margin-right: 4%!important;
+        margin-left: 2%!important;
+        margin-right: 2%!important;
     }
 
 
@@ -290,19 +290,19 @@ a:hover{
     color:antiquewhite!important;
 }
 
-.pupular-div
-{
-    width:250px!important; /* or whatever width you want. */
-    max-width:250px!important; /* or whatever width you want. */
-    height: 350px!important;
-    max-height: 340px!important;
-    display: inline-block;
-    margin-left: 4%;
-    margin-right: 4%;
-    /*overflow: inherit;*/
-    word-wrap: break-word;
-    /*display:table-cell;*/
-}
+/*.pupular-div*/
+/*{*/
+    /*width:250px!important; !* or whatever width you want. *!*/
+    /*max-width:250px!important; !* or whatever width you want. *!*/
+    /*height: 350px!important;*/
+    /*max-height: 340px!important;*/
+    /*display: inline-block;*/
+    /*margin-left: 4%;*/
+    /*margin-right: 4%;*/
+    /*!*overflow: inherit;*!*/
+    /*word-wrap: break-word;*/
+    /*!*display:table-cell;*!*/
+/*}*/
 
 .popular-view{
     padding-bottom: 40px!important;
