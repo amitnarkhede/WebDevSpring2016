@@ -54,7 +54,7 @@
 /* desktops */
 @media (min-width: 1024px) {
     .slider-size {
-        height: 800px!important;
+        height: 600px!important;
         margin-top: 0px!important;
         margin-bottom: 0px!important;
     }
