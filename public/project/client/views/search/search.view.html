@@ -1,19 +1,17 @@
-<div class="row">
-    <div ng-hide="model.movie" class="text-center color-elements">
-        <h2>Search for any movie</h2>
-    </div>
-    <div ng-show="model.movie" class="text-center color-elements">
-        <h2>Showing searches for {{model.movie}}</h2>
-    </div>
+<div ng-hide="model.movie" class="text-center color-elements">
+    <h2>Search for any movie</h2>
+</div>
+<div ng-show="model.movie" class="text-center color-elements">
+    <h2>Showing searches for {{model.movie}}</h2>
 </div>
 
 <div class="container-fluid">
-    <table class="table" style="border: 0">
+    <table class="table table-responsive" style="border: 0">
         <tr class="row">
-            <td class="col-xs-12 col-md-offset-1 col-md-6">
+            <td class="col-xs-10 col-md-offset-1 col-md-6">
                 <input ng-model="movieTitle" class="form-control" placeholder="e.g. Terminator"/>
             </td>
-            <td class="col-xs-12 col-md-1">
+            <td class="col-xs-10 col-md-1 col-md-5">
                 <a href="#/search/{{movieTitle}}" class="btn btn-md btn-custom btn-noborder-radius a-btn">
                     Search
                 </a>

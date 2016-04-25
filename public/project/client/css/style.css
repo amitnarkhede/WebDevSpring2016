@@ -19,10 +19,19 @@
         height:auto;
         width:200px;
     }
-    /*.pop-img{*/
-    /*height:250px;*/
-    /*width:200px;*/
-    /*}*/
+
+    .pupular-div
+    {
+        width:250px!important; /* or whatever width you want. */
+        max-width:250px!important; /* or whatever width you want. */
+        height: 500px!important;
+        max-height: 500px!important;
+        padding-left: 15%!important;
+        padding-right: 15%!important;
+        /*display: table;*/
+        /*margin-left: auto!important;*/
+        /*margin-right: auto!important;*/
+    }
 }
 
 /* tablets */
@@ -54,7 +63,7 @@
 /* desktops */
 @media (min-width: 1024px) {
     .slider-size {
-        height: 600px!important;
+        height: 650px!important;
         margin-top: 0px!important;
         margin-bottom: 0px!important;
     }
@@ -68,7 +77,9 @@
         max-width:250px!important; /* or whatever width you want. */
         height: 500px!important;
         max-height: 500px!important;
-        display: inline-block;
+        display: table;
+        margin-left: auto!important;
+        margin-right: auto!important;
     }
 }
 
@@ -245,18 +256,21 @@ div + div {
 
 .pupular-div
 {
-    width:170px!important; /* or whatever width you want. */
+    width:250px!important; /* or whatever width you want. */
     max-width:250px!important; /* or whatever width you want. */
     height: 350px!important;
     max-height: 340px!important;
     display: inline-block;
     margin-left: 4%;
     margin-right: 4%;
+    /*overflow: inherit;*/
+    word-wrap: break-word;
+    /*display:table-cell;*/
 }
 
 .popular-view{
     padding-bottom: 40px!important;
-    margin-bottom: 40px!important;
+    margin-bottom: 60px!important;
 }
 
 .home-popular-title{

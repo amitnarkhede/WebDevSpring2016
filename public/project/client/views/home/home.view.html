@@ -66,16 +66,15 @@
     </div>
     <br>
     <div>
-        <div ng-repeat="movie in model.movies">
-            <div class="col-xs-offset-2 col-md-offset-1 col-sm-offset-1 col-lg-offset-1 col-lg-2 col pupular-div popular-view">
-                <div>
-                    <img class="pop-img" ng-src="http://image.tmdb.org/t/p/original{{movie.poster_path}}"/>
-                </div>
-                <div class="home-popular-title">
-                    <a href="#/search/{{movie.title}}">{{movie.title}}</a><br>
-                    <a> <strong>Release Date:</strong> {{movie.release_date}}</a>
-                </div>
+        <div class="col-xs-offset-2 col-md-offset-1 col-sm-offset-1 col-lg-offset-1 col-lg-2 col pupular-div popular-view" ng-repeat="movie in model.movies">
+            <div>
+                <img class="pop-img" ng-src="http://image.tmdb.org/t/p/original{{movie.poster_path}}"/>
+            </div>
+            <div class="home-popular-title">
+                <a href="#/search/{{movie.title}}">{{movie.title}}</a><br>
+                <a> <strong>Release Date:</strong> {{movie.release_date}}</a>
             </div>
         </div>
+
     </div>
 </div>
