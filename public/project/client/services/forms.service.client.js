@@ -10,6 +10,7 @@
             createFormForUser:createFormForUser,
             findAllFormsForUser:findAllFormsForUser,
             deleteFormById:deleteFormById,
+            deleteMovieBookmark:deleteMovieBookmark,
             updateFormById:updateFormById,
             checkIfLiked:checkIfLiked,
             fetchComments:fetchComments
@@ -42,6 +43,10 @@
             return $http.delete("/api/project/deletemovie/"+ userID + "/" + imdbID);
 
         };
+
+        function deleteMovieBookmark(userID,imdbID){
+            return $http.delete("/api/project/deletemovieactivity/"+ userID + "/" + imdbID);
+        }
 
         function updateFormById(userid,username,comment,details){
 

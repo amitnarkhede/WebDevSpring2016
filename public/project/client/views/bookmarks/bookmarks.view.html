@@ -13,7 +13,7 @@
             <div>
                 <a class="clickable-td" href="#/details/{{movie.imdbID}}">{{movie.movieTitle}}</a>
             </div>
-            <div ng-show="movie.comment" ng-hide="isEditing($index,editing)">
+            <div ng-hide="isEditing($index,editing)">
                 <label class="bookmark-cmnt-lbl">{{movie.comment}}</label>
             </div>
             <div ng-show = isHidden($index,selected)>
@@ -21,7 +21,7 @@
             </div>
             <div>
                 <a ng-hide = isHidden($index,selected) ng-click="selectForm($index)" class="btn btn-warning col-xs-offset-1 col-xs-3 col-sm-2 col-sm-offset-0 a-btn"><span class="glyphicon glyphicon-pencil"/></a>
-                <a ng-show = isHidden($index,selected) ng-click="updateForm(movie.imdbID,movie.comment)" class="btn btn-success col-xs-offset-1 col-sm-2 col-sm-offset-0 col-xs-3 col-sm-offset-1 a-btn"><span class="glyphicon glyphicon-ok"/></a>
+                <a ng-show = isHidden($index,selected) ng-click="updateForm(movie.imdbID,movie.comment,movie)" class="btn btn-success col-xs-offset-1 col-sm-2 col-sm-offset-0 col-xs-3 col-sm-offset-1 a-btn"><span class="glyphicon glyphicon-ok"/></a>
                 <a ng-click='deleteForm(movie.imdbID)' class="btn btn-danger col-xs-offset-1 col-xs-3 col-sm-2 col-sm-offset-1 a-btn"><span class="glyphicon glyphicon-remove"/></a>
             </div>
         </div>

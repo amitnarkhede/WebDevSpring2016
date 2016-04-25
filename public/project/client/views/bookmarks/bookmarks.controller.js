@@ -37,6 +37,7 @@
 
         function renderMovies(movies){
             $scope.forms = movies;
+            //console.log(movies);
             currentUserForms = movies;
         }
 
@@ -59,14 +60,27 @@
             $scope.forms = currentUserForms;
         }
 
-        function updateForm(imdbID,comment) {
+        function updateForm(imdbID,comment,movie) {
             if (imdbID != null) {
                 $scope.alertMessage = null;
+                //console.log(imdbID,comment,movie);
+                var details = {
+                    Title : movie.movieTitle,
+                    Poster : movie.poster,
+                    isLiked : movie.isLiked,
+                    imdbID : movie.imdbID
+                };
 
-                FormService.updateFormById($rootScope.currentUser._id,imdbID,comment);
+                //FormService.updateFormById($rootScope.currentUser._id,imdbID,comment);
+                FormService
+                    .updateFormById($rootScope.currentUser._id,$rootScope.currentUser.username,comment,details)
+                    .then(function(response){
+                        clearSelection();
+                        init();
+                    });
 
-                clearSelection();
-                init();
+
+
             }else {
                 $scope.alertMessage = "Please select a movie comment to update";
             }
@@ -80,12 +94,8 @@
 
         function deleteForm(imdbID){
             $scope.alertMessage = null;
-            FormService.deleteFormById($rootScope.currentUser._id,imdbID);
+            FormService.deleteMovieBookmark($rootScope.currentUser._id,imdbID);
             init();
-        }
-
-        function renderFormAfterAction(userforms){
-            renderMovies(userforms);
         }
 
         function selectForm(index){

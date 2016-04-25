@@ -9,6 +9,7 @@ module.exports = function(app,movieModel,tmdbKey,$http) {
     app.post("/api/project/addmovielike", addMovieLike);
     app.put("/api/project/updatecomment",updateComment);
     app.delete("/api/project/deletemovie/:userid/:imdbid",deleteMovie);
+    app.delete("/api/project/deletemovieactivity/:userid/:imdbid",deleteMovieActivity);
     app.get("/api/project/getkey",getTMDBKey);
     app.get("/api/project/popular",fetchPopularMovies);
 
@@ -90,6 +91,22 @@ module.exports = function(app,movieModel,tmdbKey,$http) {
                 });
 
     };
+
+    function deleteMovieActivity(req,res){
+        var userID  = req.params.userid;
+        var imdID = req.params.imdbid;
+
+        movieModel
+            .deleteMovieActivity(userID,imdID)
+            .then(function(response){
+                    res.send(200);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
+
+    };
+
 
     function getMovieComments(req,res){
         var imdbID = req.params.imdbid;

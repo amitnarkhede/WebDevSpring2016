@@ -16,6 +16,7 @@ module.exports= function(uuid,db,mongoose,relationModel){
         checkIfLiked:checkIfLiked,
         updateMovieLike:updateMovieLike,
         deleteMovieUser:deleteMovieLike,
+        deleteMovieActivity:deleteMovieActivity,
         getMovieDetails:getMovieDetails,
         getMovieComments:getMovieComments
     };
@@ -146,6 +147,25 @@ module.exports= function(uuid,db,mongoose,relationModel){
 
         return deferred.promise;
     }
+
+    function deleteMovieActivity(userID,imdbID){
+
+        var deferred = q.defer();
+
+        relationModel.remove({userID : userID , imdbID: imdbID},
+            function(err,doc){
+                if(err){
+                    deferred.reject(err);
+                }else{
+                    //console.log(doc);
+                    deferred.resolve(doc);
+                }
+            });
+
+        return deferred.promise;
+    }
+
+
 
     function getMovieDetails(imdbID){
         var deferred = q.defer();
