@@ -12,14 +12,14 @@
             <div class="col-sm-10 col-xs-12">Director : <strong>{{model.details.Director}}</strong></div>
             <div ng-show="model.user" class="col-sm-2 col-xs-12 like-button">
                 <br>
-                <button ng-show="model.liked" class="btn btn-danger like-button"
+                <button ng-show="model.liked" class="btn btn-danger btn-like"
                         ng-click="model.removeLikeMovie()" title="Unlike">
-                    <span class="fa fa-star"></span>
+                    <span class="fa fa-thumbs-up like-color-white"></span>
                 </button>
 
-                <button ng-hide="model.liked" class="btn btn-secondary like-button"
+                <button ng-hide="model.liked" class="btn btn-secondary btn-like"
                         ng-click="model.likeMovie()" title="Like">
-                    <span class="fa fa-star-o"></span>
+                    <span class="fa fa-thumbs-up like-color-red"></span>
                 </button>
             </div>
         </div>
