@@ -1,0 +1,33 @@
+<div class="text-center color-elements">
+    <h2>Activity by the users that you follow</h2>
+</div>
+<br><br>
+<div>
+    <div class="row col-lg-offset-3 col-md-offset-2 col-sm-offset-2 col-xs-offset-1" ng-repeat="activity in model.followingActivity | orderBy: 'created' : true" style="padding-top: 20px; padding-bottom: 10px">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div><i class="fa fa-user fa-2x"></i></span> <a href="#/profile/{{activity.userID}}">{{activity.username}}</a>
+                <label class="txt-no-wrap" style="white-space: nowrap">reacted on movie</label>
+                <a href="#/details/{{activity.imdbID}}">{{activity.movieTitle}}</a>
+            </div>
+            <div>
+                <i class="fa fa-user fa-2x" style="visibility: hidden"></i>
+                <label>Liked : </label>
+                <label ng-show="activity.isLiked">Yes</label>
+                <label ng-show="!activity.isLiked">No</label>
+            </div>
+            <div ng-show="activity.comment">
+                <i class="fa fa-user fa-2x" style="visibility: hidden"></i>
+                <label ng-show="activity.comment"> Comment : {{activity.comment}} </label>
+            </div>
+            <div>
+                <i class="fa fa-user fa-2x" style="visibility: hidden"></i>
+                <label>Activity on : {{activity.created}}</label>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 hidden-xs"><img ng-src="{{activity.poster}}" height="90px"></div>
+        <hr class="col-lg-7 col-md-7 col-sm-7 col-xs-10">
+    </div>
+</div>
+<div class="include-view">
+
+</div>

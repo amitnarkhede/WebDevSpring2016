@@ -21,6 +21,14 @@
                     loggedin : checkCurrentUser
                 }
             })
+            .when("/timeline",{
+                templateUrl:"views/users/timeline.view.html",
+                controller:"TimelineController",
+                controllerAs:"model",
+                resolve: {
+                    loggedin : checkCurrentUser
+                }
+            })
             .when("/profile/:userid",{
                 templateUrl:"views/users/profile.view.html",
                 controller:"ProfileController",

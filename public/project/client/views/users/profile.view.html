@@ -93,7 +93,7 @@
             <th>Poster</th>
             <th>Title</th>
             <th class="hidden-xs hidden-sm">Comment</th>
-            <th class="hidden-xs">Action</th>
+            <th ng-show="model.self" class="hidden-xs">Action</th>
             </thead>
             <tr ng-repeat="movie in model.movies">
                 <td><img class="profile-poster" ng-src="{{movie.poster}}"/></td>
@@ -119,8 +119,8 @@
                         </a>
                     </div>
                 </td>
-                <td class="hidden-xs hidden-sm"><label class=" txt-no-wrap bookmark-cmnt-lbl">{{movie.comment}}</label></td>
-                <td class="hidden-xs">
+                <td class="hidden-xs hidden-sm"><label class="bookmark-cmnt-lbl">{{movie.comment}}</label></td>
+                <td ng-show="model.self" class="hidden-xs">
                     <div class="txt-no-wrap">
 
                         <button ng-show="movie.isLiked" class="btn btn-danger btn-like"

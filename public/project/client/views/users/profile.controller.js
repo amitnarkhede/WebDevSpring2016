@@ -185,7 +185,7 @@
                 .getFollowing(userid)
                 .then(function(res){
                     //console.log("Following");
-                    //console.log(res.data);
+                    console.log(res.data);
                     if(res.data.length==0){
                         vm.following = null;
                     }else{

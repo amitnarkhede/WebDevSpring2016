@@ -53,6 +53,7 @@ module.exports = function(app,movieModel,tmdbKey,$http) {
 
     function addMovieLike(req,res){
         var movieDetails = req.body;
+        movieDetails.created = (new Date).getTime();
         movieModel
             .addMovieLike(movieDetails)
             .then(function(response){
