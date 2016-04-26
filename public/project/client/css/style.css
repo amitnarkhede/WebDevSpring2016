@@ -24,10 +24,10 @@
     {
         width:250px!important; /* or whatever width you want. */
         max-width:250px!important; /* or whatever width you want. */
-        /*height: 300px!important;*/
-        /*max-height: 500px!important;*/
-        /*margin-left: 15%!important;*/
-        /*margin-right: 15%!important;*/
+        height: 330px!important;
+        max-height: 330px!important;
+        margin-left: 15%!important;
+        margin-right: 15%!important;
         /*display: table;*/
         /*margin-left: auto!important;*/
         /*margin-right: auto!important;*/
@@ -55,8 +55,8 @@
     {
         width:250px!important; /* or whatever width you want. */
         max-width:250px!important; /* or whatever width you want. */
-        /*height: 500px!important;*/
-        /*max-height: 500px!important;*/
+        height: 330px!important;
+        max-height: 330px!important;
         /*display: table;*/
         margin-left: 5%!important;
         margin-right: 5%!important;
@@ -84,8 +84,8 @@
     {
         width:250px!important; /* or whatever width you want. */
         max-width:250px!important; /* or whatever width you want. */
-        /*height: 500px!important;*/
-        /*max-height: 500px!important;*/
+        height: 330px!important;
+        max-height: 330px!important;
         padding-left: 2%!important;
         padding-right: 2%!important;
         /*display: table;*/
@@ -114,19 +114,23 @@
     {
         width:250px!important; /* or whatever width you want. */
         max-width:250px!important; /* or whatever width you want. */
-        /*height: 500px!important;*/
-        /*max-height: 500px!important;*/
+        height: 330px!important;
+        max-height: 330px!important;
         /*display: table;*/
         margin-left: 1%!important;
         margin-right: 1%!important;
     }
 
-
+    .verticle-center{
+        transform: translateY(+50%);
+        top: 50px
+    }
 
     .pop-img{
         height: 300px;;
         width: 230px;
     }
+
 }
 
 .carousel-img{
@@ -231,9 +235,11 @@ a:hover{
     background-color: #2D2D2D!important;
     color: white!important;
     overflow: hidden;
-    height: 40px;
-    max-width: 235px;
+    /*height: 40px;*/
+    margin-bottom: -5px;
+    max-width: 235px!important;
     word-wrap: break-word;
+    display: -webkit-inline-box;
 }
 
 .footer-div{
@@ -271,6 +277,10 @@ a:hover{
 
 .bookmark-poster{
     height: 250px;
+}
+
+.profile-poster{
+    height: 150px;
 }
 
 .profile-label{
@@ -434,4 +444,8 @@ a:hover{
 .error-red{
     color: red;
     text-transform: none!important;
+}
+
+.txt-no-wrap{
+    white-space: nowrap;
 }

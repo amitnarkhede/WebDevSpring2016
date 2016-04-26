@@ -60,13 +60,13 @@
                     loggedin : checkCurrentUser
                 }
             })
-            .when("/bookmarks",{
-                templateUrl:"views/bookmarks/bookmarks.view.html",
-                controller:"BookmarkController",
-                resolve: {
-                    loggedin : checkCurrentUser
-                }
-            })
+            //.when("/bookmarks",{
+            //    templateUrl:"views/bookmarks/bookmarks.view.html",
+            //    controller:"BookmarkController",
+            //    resolve: {
+            //        loggedin : checkCurrentUser
+            //    }
+            //})
             .when("/register",{
                 templateUrl:"views/users/register.view.html",
                 controller:"RegisterController",

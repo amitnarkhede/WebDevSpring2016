@@ -15,7 +15,7 @@
                 <li ng-class="{'active': $location.url()=='/search'}" ng-click="model.isCollapsed = !model.isCollapsed"><a href="#/search">Search</a></li>
                 <li ng-hide="currentUser" ng-class="{'active': $location.url()=='/register'}" ng-click="model.isCollapsed = !model.isCollapsed"><a href="#/register">Register</a></li>
                 <li ng-hide="currentUser" class="navbar-custom" ng-class="{'active': $location.url()=='/login'}" ng-click="model.isCollapsed = !model.isCollapsed"><a href="#/login">Login</a></li>
-                <li ng-show="currentUser" ng-class="{'active': $location.url()=='/bookmarks'}" ng-click="model.isCollapsed = !model.isCollapsed"><a href="#/bookmarks">Bookmarks</a></li>
+                <!--<li ng-show="currentUser" ng-class="{'active': $location.url()=='/bookmarks'}" ng-click="model.isCollapsed = !model.isCollapsed"><a href="#/bookmarks">Bookmarks</a></li>-->
                 <li ng-show="currentUser" class="username" ng-class="{'active': $location.url()=='/profile'}" ng-click="model.isCollapsed = !model.isCollapsed"><a class="username" ng-click="model.visitProfile()">{{currentUser.username}}</a></li>
                 <li ng-show="currentUser.roles == 'admin'" ng-class="{'active': $location.url()=='/admin'}" ng-click="model.isCollapsed = !model.isCollapsed"><a href="#/admin">Admin</a></li>
                 <li ng-show="currentUser" class="navbar-custom" ng-class="{'active': $location.url()=='/logout'}" ng-click="model.isCollapsed = !model.isCollapsed"><a href="#/logout" ng-click="model.logout()">Logout</a></li>

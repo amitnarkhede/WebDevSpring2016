@@ -54,7 +54,7 @@
         function likeMovie(){
             console.log("Liked Movie");
             if($rootScope.currentUser){
-                //console.log(vm.details);
+                console.log(vm.details);
                 UserService
                     .addMovieLike(vm.details,$rootScope.currentUser)
                     .success(function(res){
@@ -69,8 +69,7 @@
         }
 
         function removeLikeMovie(){
-
-
+            console.log(vm.details);
             if($rootScope.currentUser){
 
                 FormService.deleteFormById($rootScope.currentUser._id,vm.details.imdbID);

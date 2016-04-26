@@ -3,7 +3,7 @@
         .module("TheFilmDBApp")
         .controller("ProfileController",ProfileController);
 
-    function ProfileController($rootScope,UserService,$location,$routeParams){
+    function ProfileController($rootScope,UserService,$location,$routeParams,FormService){
 
         var currentUser= $rootScope.currentUser;
         var profileUserId = $routeParams.userid;
@@ -15,6 +15,9 @@
         vm.toggleEdit = toggleEdit;
         vm.followUser = followUser;
         vm.unfollowUser = unfollowUser;
+        vm.likeMovie = likeMovie;
+        vm.removeLikeMovie = removeLikeMovie;
+        vm.removeMovieActivity = removeMovieActivity;
 
 
         function init(){
@@ -33,6 +36,7 @@
                     vm.lastname = currentUser.lastname;
                     vm.username = currentUser.username;
                     vm.password = currentUser.password;
+                    vm.savedPassword = currentUser.password;
                     vm.email = currentUser.email;
                     vm.phone = currentUser.phone;
                     getMovies(profileUserId);
@@ -52,7 +56,7 @@
                             vm.firstname = currentUser.firstname;
                             vm.lastname = currentUser.lastname;
                             vm.username = currentUser.username;
-                            vm.password = currentUser.password;
+                            //vm.password = currentUser.password;
                             vm.email = currentUser.email;
                             vm.phone = currentUser.phone;
                         },function(err){
@@ -71,29 +75,36 @@
 
         function update(){
 
-            var updatedUser= {
-                "_id" : $rootScope.currentUser._id,
-                "username" : vm.username,
-                "firstname": vm.firstname,
-                "lastname": vm.lastname,
-                "email" : vm.email,
-                "password" : vm.password,
-                "phone" : vm.phone};
+            if(vm.password != "") {
 
-            //console.log(updatedUser);
-            UserService.updateUser(updatedUser)
-                .then(function(response){
-                        //console.log(response.data[0]);
-                        UserService.setCurrentUser(response.data[0]);
-                        vm.message = "Profile updated successfully!";
-                    },
-                    function(err){
-                        console.log(err);
-                    });
-            toggleEdit();
+                var updatedUser = {
+                    "_id": $rootScope.currentUser._id,
+                    "username": vm.username,
+                    "firstname": vm.firstname,
+                    "lastname": vm.lastname,
+                    "email": vm.email,
+                    "password": vm.password,
+                    "phone": vm.phone
+                };
+
+                //console.log(updatedUser);
+                UserService.updateUser(updatedUser)
+                    .then(function (response) {
+                            //console.log(response.data[0]);
+                            UserService.setCurrentUser(response.data[0]);
+                            vm.message = "Profile updated successfully!";
+                        },
+                        function (err) {
+                            console.log(err);
+                        });
+                toggleEdit();
+            }else{
+                vm.message = "Password can't be a blank value!"
+            }
         };
 
         function toggleEdit(){
+            vm.password = vm.savedPassword;
             vm.edit = !vm.edit;
             vm.message = null;
         }
@@ -107,6 +118,7 @@
                         vm.movies = null;
                     }else{
                         vm.movies= res.data;
+                        //console.log(vm.movies);
                     }
 
                 });
@@ -195,5 +207,37 @@
 
                 });
         }
+
+        function likeMovie(movie){
+            UserService
+                .addMovieLike(movie,$rootScope.currentUser)
+                .success(function(res){
+                    init();
+                },function(err){
+                    console.log(err);
+                });
+        }
+
+        function removeLikeMovie(movie){
+            FormService
+                .deleteFormById($rootScope.currentUser._id,movie.imdbID)
+                .success(function(res){
+                    init();
+                },function(err){
+                    console.log(err);
+                });
+        }
+
+        function removeMovieActivity(movie){
+            FormService
+                .deleteMovieBookmark($rootScope.currentUser._id,movie.imdbID)
+                .success(function(res){
+                    init();
+                },function(err){
+                    console.log(err);
+                });
+        }
+
+
     };
 })();

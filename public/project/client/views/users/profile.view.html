@@ -82,21 +82,44 @@
         </div>
     </div>
 
-    <div class="col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-6 col-lg-offset-4 col-lg-5">
+    <div class="col-xs-offset-0 col-xs-12 col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-7">
         <h3>Movies Reacted On!</h3>
         <h4 ng-hide="model.movies">None!</h4>
-        <table class="table table-bordered table-responsive rounded-table" ng-show="model.movies">
+        <table ng-show="model.movies" class="table table-bordered table-responsive">
             <thead>
-            <th>Movie</th>
+            <th>Poster</th>
+            <th>Title</th>
             <th>Comment</th>
+            <th>Action</th>
             </thead>
             <tr ng-repeat="movie in model.movies">
-                <td><a href="#/details/{{movie.imdbID}}">{{movie.movieTitle}}</a></td>
-                <td>{{movie.comment}}</td>
+                <td><img class="profile-poster" ng-src="{{movie.poster}}"/></td>
+                <td><a class="txt-no-wrap" href="#/details/{{movie.imdbID}}">{{movie.movieTitle}}</a></td>
+                <td><label class=" txt-no-wrap bookmark-cmnt-lbl">{{movie.comment}}</label></td>
+                <td>
+                    <a ng-hide = "movie.isLiked" ng-click="model.likeMovie(movie)" class="btn btn-danger btn-like" title="Unlike"><span class="fa fa-thumbs-up like-color-white"/></a>
+                    <a ng-show = "movie.isLiked" ng-click="model.removeLikeMovie(movie)" class="btn btn-secondary btn-like" title="Like"><span class="fa fa-thumbs-up like-color-red"/></a>
+                    <a ng-click="model.removeMovieActivity(movie)" class="btn btn-danger a-btn"><span class="glyphicon glyphicon-remove"/></a>
+                </td>
             </tr>
         </table>
+        <!--<div class="container col-xs-12" ng-show="model.movies">-->
+        <!--<div ng-repeat="movie in model.movies">-->
+        <!--<div class="col-xs-offset-1 col-xs-11 col-md-2 col-lg-2"><img class="profile-poster" ng-src="{{movie.poster}}"/></div>-->
+        <!--<div class="col-xs-12 col-md-offset-1 col-md-3 col-lg-offset-1 col-lg-3 verticle-center"><a class="txt-no-wrap" href="#/details/{{movie.imdbID}}">{{movie.movieTitle}}</a></div>-->
+
+        <!--<div class="col-xs-12 col-md-offset-1 col-md-2 col-lg-offset-1 col-lg-2 verticle-center">-->
+        <!--<div><label class=" txt-no-wrap bookmark-cmnt-lbl">{{movie.comment}}</label></div>-->
+        <!--</div>-->
+        <!--<div class="col-xs-offset-1 col-xs-11 col-md-offset-1 col-md-2 col-lg-offset-1 col-lg-2 verticle-center txt-no-wrap">-->
+        <!--<a ng-hide = "movie.isLiked" ng-click="model.likeMovie(movie)" class="btn btn-danger btn-like" title="Unlike"><span class="fa fa-thumbs-up like-color-white"/></a>-->
+        <!--<a ng-show = "movie.isLiked" ng-click="model.removeLikeMovie(movie)" class="btn btn-secondary btn-like" title="Like"><span class="fa fa-thumbs-up like-color-red"/></a>-->
+        <!--<a ng-click="model.removeMovieActivity(movie)" class="btn btn-danger a-btn"><span class="glyphicon glyphicon-remove"/></a>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
     </div>
-    <div class="col-sm-offset-3 col-sm-6">
+    <div class="col-xs-offset-0 col-xs-12 col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-7">
         <h3>Following : </h3>
         <h4 ng-hide="model.following">None!</h4>
         <table class="table table-bordered table-responsive rounded-table" ng-show="model.following">
@@ -108,7 +131,7 @@
             </tr>
         </table>
     </div>
-    <div class="col-sm-offset-3 col-sm-6 include-view">
+    <div class="col-xs-offset-0 col-xs-12 col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-7 include-view">
         <h3>Followers : </h3>
         <h4 ng-hide="model.followers">None!</h4>
         <table class="table table-bordered table-responsive rounded-table" ng-show="model.followers">
