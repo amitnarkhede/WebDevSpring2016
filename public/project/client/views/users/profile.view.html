@@ -1,4 +1,4 @@
-<form class="form-horizontal include-view">
+<div class="include-view">
     <div class="row">
         <div class="text-center color-elements">
             <h2>Profile</h2>
@@ -15,61 +15,64 @@
         </div>
     </div>
 
-    <div ng-hide="model.edit" class="col-xs-offset-1">
+    <form ng-hide="model.edit" class="form-horizontal col-xs-offset-1 col-xs-10">
+        <div class="col-sm-offset-2 col-lg-offset-2 col-sm-10"></div>
         <div class="form-group">
-            <label class="col-sm-2 col-lg-offset-3 col-lg-1 control-label">Username</label>
+            <label for="inputUsername" class="col-sm-2 col-lg-offset-3 col-lg-1 control-label">Username</label>
             <div class="col-sm-10 col-lg-4">
                 <label class="form-control profile-label">{{model.username}}</label>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 col-lg-offset-3 col-lg-1 control-label">First Name</label>
+            <label for="inputUsername" class="col-sm-2 col-lg-offset-3 col-lg-1 control-label">First Name</label>
             <div class="col-sm-10 col-lg-4">
                 <label class="form-control profile-label">{{model.firstname}}</label>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 col-lg-offset-3 col-lg-1 control-label">Last Name</label>
+            <label for="inputUsername" class="col-sm-2 col-lg-offset-3 col-lg-1 control-label">First Name</label>
             <div class="col-sm-10 col-lg-4">
                 <label class="form-control profile-label">{{model.lastname}}</label>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 col-lg-offset-3 col-lg-1 control-label">Email</label>
+            <label for="inputUsername" class="col-sm-2 col-lg-offset-3 col-lg-1 control-label">First Name</label>
             <div class="col-sm-10 col-lg-4">
                 <label class="form-control profile-label">{{model.email}}</label>
             </div>
         </div>
-    </div>
-    <div ng-hide="!model.edit" class="col-xs-offset-1">
+    </form>
+
+    <form ng-show="model.edit" class="form-horizontal col-xs-offset-1 col-xs-10">
+        <div class="col-sm-offset-2 col-lg-offset-2 col-sm-10"></div>
         <div class="form-group">
-            <label for="inputUsername" class="col-xs-offset-1 col-xs-11 col-md-offset-2 col-md-1 col-sm-offset-0 col-sm-1 col-lg-offset-3 col-lg-1 control-label">Username</label>
-            <div class="col-xs-8 col-xs-offset-1 col-lg-offset-0 col-lg-4 col-md-4">
+            <label for="inputUsername" class="col-sm-2 col-lg-offset-3 col-lg-1 control-label">Username</label>
+            <div class="col-sm-10 col-lg-4">
                 <input type="text" class="form-control" id="inputUsername" placeholder="Username" ng-model="model.username" disabled title="Can't update username!">
             </div>
         </div>
         <div class="form-group">
-            <label for="inputPassword" class="col-xs-offset-1 col-xs-11 col-md-offset-2 col-md-1 col-sm-offset-0 col-sm-1 col-lg-offset-3 col-lg-1 control-label">Password</label>
-            <div class="col-xs-8 col-xs-offset-1  col-lg-offset-0 col-lg-4 col-md-4">
+            <label for="inputPassword" class="col-sm-2 col-lg-offset-3 col-lg-1 control-label">Password</label>
+            <div class="col-sm-10 col-lg-4">
                 <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="model.password">
             </div>
         </div>
         <div class="form-group">
-            <label for="inputFirstName" class="col-xs-offset-1 col-xs-11 col-md-offset-2 col-md-1 col-sm-offset-0 col-sm-1 col-lg-offset-3 col-lg-1 control-label">First Name</label>
-            <div class="col-xs-8 col-xs-offset-1  col-lg-offset-0 col-lg-4 col-md-4">
+            <label for="inputFirstName" class="col-sm-2 col-lg-offset-3 col-lg-1 control-label">First Name</label>
+            <div class="col-sm-10 col-lg-4">
                 <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" ng-model="model.firstname">
             </div>
         </div>
         <div class="form-group">
-            <label for="inputLastName" class="col-xs-offset-1 col-xs-11 col-md-offset-2 col-md-1 col-sm-offset-0 col-sm-1 col-lg-offset-3 col-lg-1 control-label">Last Name</label>
-            <div class="col-xs-8 col-xs-offset-1  col-lg-offset-0 col-lg-4 col-md-4">
+            <label for="inputLastName" class="col-sm-2 col-lg-offset-3 col-lg-1 control-label">First Name</label>
+            <div class="col-sm-10 col-lg-4">
                 <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" ng-model="model.lastname">
             </div>
         </div>
         <div class="form-group">
-            <label for="inputLastName" class="col-xs-offset-1 col-xs-11 col-md-offset-2 col-md-1 col-sm-offset-0 col-sm-1 col-lg-offset-3 col-lg-1 control-label">Email</label>
-            <div class="col-xs-8 col-xs-offset-1  col-lg-offset-0 col-lg-4 col-md-4">
-                <input type="email" class="form-control" id="inputEmail" placeholder="alice@wonderland.com" ng-model="model.email">
+            <label for="inputEmail" class="col-sm-2 col-lg-offset-3 col-lg-1 control-label">Email</label>
+            <div class="col-sm-10 col-lg-4">
+                <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="model.email">
             </div>
         </div>
         <div class="form-group">
@@ -80,46 +83,65 @@
                 <button ng-show="model.edit" type="submit" class="btn btn-md btn-custom btn-noborder-radius" ng-click="model.toggleEdit()">Cancel</button>
             </div>
         </div>
-    </div>
+    </form>
 
-    <div class="col-xs-offset-0 col-xs-12 col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-7">
+    <div class="col-xs-offset-0 col-xs-11 col-sm-offset-1 col-sm-6 col-lg-offset-2 col-lg-7">
         <h3>Movies Reacted On!</h3>
         <h4 ng-hide="model.movies">None!</h4>
         <table ng-show="model.movies" class="table table-bordered table-responsive">
             <thead>
             <th>Poster</th>
             <th>Title</th>
-            <th>Comment</th>
-            <th>Action</th>
+            <th class="hidden-xs hidden-sm">Comment</th>
+            <th class="hidden-xs">Action</th>
             </thead>
             <tr ng-repeat="movie in model.movies">
                 <td><img class="profile-poster" ng-src="{{movie.poster}}"/></td>
-                <td><a class="txt-no-wrap" href="#/details/{{movie.imdbID}}">{{movie.movieTitle}}</a></td>
-                <td><label class=" txt-no-wrap bookmark-cmnt-lbl">{{movie.comment}}</label></td>
                 <td>
-                    <a ng-hide = "movie.isLiked" ng-click="model.likeMovie(movie)" class="btn btn-danger btn-like" title="Unlike"><span class="fa fa-thumbs-up like-color-white"/></a>
-                    <a ng-show = "movie.isLiked" ng-click="model.removeLikeMovie(movie)" class="btn btn-secondary btn-like" title="Like"><span class="fa fa-thumbs-up like-color-red"/></a>
-                    <a ng-click="model.removeMovieActivity(movie)" class="btn btn-danger a-btn"><span class="glyphicon glyphicon-remove"/></a>
+                    <a class="txt-no-wrap" href="#/details/{{movie.imdbID}}">{{movie.movieTitle}}</a>
+                    <br>
+                    <br>
+                    <label ng-show="movie.comment" class="bookmark-cmnt-lbl visible-xs">Comment: {{movie.comment}}</label>
+                    <div class=" col-xs-offset-3 txt-no-wrap visible-xs">
+                        <br>
+                        <button ng-show="movie.isLiked" class="btn btn-danger btn-like"
+                                ng-click="model.removeLikeMovie(movie)" title="Unlike">
+                            <span class="fa fa-thumbs-up like-color-white"></span>
+                        </button>
+
+                        <button ng-hide="movie.isLiked" class="btn btn-secondary btn-like"
+                                ng-click="model.likeMovie(movie)" title="Like">
+                            <span class="fa fa-thumbs-up like-color-red"></span>
+                        </button>
+
+                        <a ng-click="model.removeMovieActivity(movie)" class="btn btn-danger a-btn">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </div>
+                </td>
+                <td class="hidden-xs hidden-sm"><label class=" txt-no-wrap bookmark-cmnt-lbl">{{movie.comment}}</label></td>
+                <td class="hidden-xs">
+                    <div class="txt-no-wrap">
+
+                        <button ng-show="movie.isLiked" class="btn btn-danger btn-like"
+                                ng-click="model.removeLikeMovie(movie)" title="Unlike">
+                            <span class="fa fa-thumbs-up like-color-white"></span>
+                        </button>
+
+                        <button ng-hide="movie.isLiked" class="btn btn-secondary btn-like"
+                                ng-click="model.likeMovie(movie)" title="Like">
+                            <span class="fa fa-thumbs-up like-color-red"></span>
+                        </button>
+
+                        <a ng-click="model.removeMovieActivity(movie)" class="btn btn-danger a-btn">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </div>
                 </td>
             </tr>
         </table>
-        <!--<div class="container col-xs-12" ng-show="model.movies">-->
-        <!--<div ng-repeat="movie in model.movies">-->
-        <!--<div class="col-xs-offset-1 col-xs-11 col-md-2 col-lg-2"><img class="profile-poster" ng-src="{{movie.poster}}"/></div>-->
-        <!--<div class="col-xs-12 col-md-offset-1 col-md-3 col-lg-offset-1 col-lg-3 verticle-center"><a class="txt-no-wrap" href="#/details/{{movie.imdbID}}">{{movie.movieTitle}}</a></div>-->
-
-        <!--<div class="col-xs-12 col-md-offset-1 col-md-2 col-lg-offset-1 col-lg-2 verticle-center">-->
-        <!--<div><label class=" txt-no-wrap bookmark-cmnt-lbl">{{movie.comment}}</label></div>-->
-        <!--</div>-->
-        <!--<div class="col-xs-offset-1 col-xs-11 col-md-offset-1 col-md-2 col-lg-offset-1 col-lg-2 verticle-center txt-no-wrap">-->
-        <!--<a ng-hide = "movie.isLiked" ng-click="model.likeMovie(movie)" class="btn btn-danger btn-like" title="Unlike"><span class="fa fa-thumbs-up like-color-white"/></a>-->
-        <!--<a ng-show = "movie.isLiked" ng-click="model.removeLikeMovie(movie)" class="btn btn-secondary btn-like" title="Like"><span class="fa fa-thumbs-up like-color-red"/></a>-->
-        <!--<a ng-click="model.removeMovieActivity(movie)" class="btn btn-danger a-btn"><span class="glyphicon glyphicon-remove"/></a>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
     </div>
-    <div class="col-xs-offset-0 col-xs-12 col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-7">
+    <div class="col-xs-offset-0 col-xs-11 col-sm-offset-1 col-sm-6 col-lg-offset-2 col-lg-7">
         <h3>Following : </h3>
         <h4 ng-hide="model.following">None!</h4>
         <table class="table table-bordered table-responsive rounded-table" ng-show="model.following">
@@ -131,7 +153,7 @@
             </tr>
         </table>
     </div>
-    <div class="col-xs-offset-0 col-xs-12 col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-7 include-view">
+    <div class="col-xs-offset-0 col-xs-11 col-sm-offset-1 col-sm-6 col-lg-offset-2 col-lg-7 include-view">
         <h3>Followers : </h3>
         <h4 ng-hide="model.followers">None!</h4>
         <table class="table table-bordered table-responsive rounded-table" ng-show="model.followers">
@@ -143,4 +165,4 @@
             </tr>
         </table>
     </div>
-</form>
+</div>

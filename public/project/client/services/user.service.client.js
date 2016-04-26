@@ -17,6 +17,7 @@
             updateUser:updateUser,
             addMovieLike:addMovieLike,
             getMovieLike:getMovieLike,
+            getAllMovieActivity:getAllMovieActivity,
             followUser:followUser,
             unFollowUser:unFollowUser,
             checkIfFollowed:checkIfFollowed,
@@ -94,6 +95,10 @@
             return $http.get("/api/project/getmovielike/"+userID);
 
         };
+
+        function getAllMovieActivity(userID){
+            return $http.get("/api/project/getallmovielike/"+ userID);
+        }
 
         function followUser(userID,username,follow_userID,follow_username){
             var follow = {"follower_id" : userID,

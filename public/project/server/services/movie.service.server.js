@@ -4,6 +4,7 @@
 
 module.exports = function(app,movieModel,tmdbKey,$http) {
     app.get("/api/project/getmovielike/:userid", getMovieLike);
+    app.get("/api/project/getallmovielike/:userid", getAllMovieActivity);
     app.get("/api/project/comments/:imdbid", getMovieComments);
     app.get("/api/project/checklike/:userid/:imdbID",checkIfLiked);
     app.post("/api/project/addmovielike", addMovieLike);
@@ -23,6 +24,17 @@ module.exports = function(app,movieModel,tmdbKey,$http) {
                 res.status(400).send(err);
             });
     };
+
+    function getAllMovieActivity(req,res){
+        var userId  = req.params.userid;
+
+        movieModel.getAllMovieActivity(userId)
+            .then(function(movies){
+                res.send(movies);
+            },function(err){
+                res.status(400).send(err);
+            });
+    }
 
     function checkIfLiked(req,res){
         var userId = req.params.userid;

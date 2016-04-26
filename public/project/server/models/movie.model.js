@@ -13,6 +13,7 @@ module.exports= function(uuid,db,mongoose,relationModel){
     var api = {
         addMovieLike:addMovieLike,
         getMovieLike:getMovieLike,
+        getAllMovieActivity:getAllMovieActivity,
         checkIfLiked:checkIfLiked,
         updateMovieLike:updateMovieLike,
         deleteMovieUser:deleteMovieLike,
@@ -78,6 +79,18 @@ module.exports= function(uuid,db,mongoose,relationModel){
 
         return deferred.promise;
     };
+
+    function getAllMovieActivity(userId){
+        var deferred = q.defer();
+
+        relationModel
+            .find({userID : userId},
+                function(err,doc){
+                    deferred.resolve(doc);
+                });
+
+        return deferred.promise;
+    }
 
     function checkIfLiked(userId,imdbId){
 

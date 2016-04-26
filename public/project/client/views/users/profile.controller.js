@@ -111,7 +111,7 @@
 
         function getMovies(userid){
             UserService
-                .getMovieLike(userid)
+                .getAllMovieActivity(userid)
                 .then(function(res){
                     //console.log(res.data);
                     if(res.data.length==0){
