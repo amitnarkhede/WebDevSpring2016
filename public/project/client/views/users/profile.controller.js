@@ -135,7 +135,8 @@
                 .then(
                     function(res){
                         console.log(res);
-                        ifFollowed();
+                        //ifFollowed();
+                        init();
                     },function(err){
                         console.log(err);
                     });
@@ -151,7 +152,8 @@
                 .then(
                     function(res){
                         console.log(res);
-                        ifFollowed();
+                        init();
+                        //ifFollowed();
                     },function(err){
                         console.log(err);
                     });
