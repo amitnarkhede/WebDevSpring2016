@@ -19,7 +19,8 @@ module.exports= function(uuid,db,mongoose,relationModel){
         deleteMovieUser:deleteMovieLike,
         deleteMovieActivity:deleteMovieActivity,
         getMovieDetails:getMovieDetails,
-        getMovieComments:getMovieComments
+        getMovieComments:getMovieComments,
+        getUserMovieLikes:getUserMovieLikes
     };
 
     return api;
@@ -199,6 +200,21 @@ module.exports= function(uuid,db,mongoose,relationModel){
         var deferred = q.defer();
 
         relationModel.find({imdbID:imdbID,comment:{'$ne':""}},
+            function(err,doc){
+                if(err){
+                    deferred.reject(err);
+                }else{
+                    deferred.resolve(doc);
+                }
+            });
+
+        return deferred.promise;
+    }
+
+    function getUserMovieLikes(imdbID){
+        var deferred = q.defer();
+
+        relationModel.find({imdbID:imdbID,isLiked:true},
             function(err,doc){
                 if(err){
                     deferred.reject(err);

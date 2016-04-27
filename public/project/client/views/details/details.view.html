@@ -24,6 +24,7 @@
             </div>
         </div>
         <br>
+        <b><div>Released On : {{model.details.Released}}</div></b><br>
         <b><div>IMDB Rating : {{model.details.imdbRating}}</div></b><br>
         <b><div>Rotten Tomato Rating : {{model.details.tomatoRating}}</div></b>
     </div>
@@ -38,6 +39,11 @@
                 {{actorName}}
             </li>
         </ul>
+        <br>
+        <h3>Rotten Tomato Consensus:</h3>
+        <p>
+            {{model.details.tomatoConsensus}}
+        </p>
 
         <div ng-show="model.trailer">
             <br>
@@ -66,6 +72,14 @@
             <button ng-show="model.isNewComment" class="btn btn-primary a-btn" ng-click="model.updateComment()">Save</button>
             <button ng-show="!model.isNewComment" class="btn btn-primary a-btn" ng-click="model.updateComment()">Update</button>
             <button class="btn btn-danger a-btn" ng-click="model.commentFlag = !model.commentFlag">Cancel</button>
+        </div>
+
+        <div>
+            <h3 class="comment-div">User that liked the movie : </h3>
+            <h4 ng-hide="model.likes">None!</h4>
+            <div ng-show="model.likes" ng-repeat="like in model.likes">
+                <a href="#/profile/{{like.userID}}">{{like.username}}</a>
+            </div>
         </div>
 
         <div class="chat">

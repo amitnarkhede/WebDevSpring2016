@@ -49,6 +49,7 @@
             }
 
             fetchComments();
+            getUserLikes();
         }
 
         function likeMovie(){
@@ -58,7 +59,7 @@
                 UserService
                     .addMovieLike(vm.details,$rootScope.currentUser)
                     .success(function(res){
-                        checkIfLiked();
+                        init();
                     },function(err){
                         console.log(err);
                     });
@@ -73,7 +74,7 @@
             if($rootScope.currentUser){
 
                 FormService.deleteFormById($rootScope.currentUser._id,vm.details.imdbID);
-                checkIfLiked();
+                init();
 
             }else {
 
@@ -109,7 +110,6 @@
                         if(response.data.length!=0){
                             vm.comments = response.data;
                             if(vm.user){
-
                                 response.data.forEach(function(comment){
                                     if(comment.userID == vm.user._id){
                                         vm.userComment = comment.comment;
@@ -140,6 +140,15 @@
             vm.commentFlag = false;
 
             init();
+        }
+
+        function getUserLikes(){
+            MovieService
+                .getUserMovieLike(vm.details.imdbID)
+                .then(function(response){
+                    vm.likes = response.data;
+                    //console.log(response);
+                });
         }
     }
 })();

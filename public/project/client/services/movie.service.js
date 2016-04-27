@@ -24,7 +24,8 @@
             findMoviesByTitle: findMoviesByTitle,
             findMovieByImdbId: findMovieByImdbId,
             findMovieTrailer: findMovieTrailer,
-            fetchTopMovies:fetchTopMovies
+            fetchTopMovies:fetchTopMovies,
+            getUserMovieLike:getUserMovieLike
         };
 
         return api;
@@ -54,6 +55,10 @@
             $http.get("/api/project/popular").success(function(res){
                 $http.get(res).success(callback)
             });
+        }
+
+        function getUserMovieLike(imdbID){
+            return $http.get("/api/project/getusermovielikes/"+imdbID);
         }
     }
 })();
