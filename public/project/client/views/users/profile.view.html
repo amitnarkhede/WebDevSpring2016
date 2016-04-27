@@ -3,13 +3,13 @@
         <div class="text-center color-elements">
             <h2>Profile</h2>
             <div ng-hide="model.readonly">
-                <a ng-hide="model.edit" class="btn btn-primary" ng-click="model.toggleEdit()">Edit Profile</a>
+                <a ng-hide="model.edit" class="btn btn-primary btn-noborder-radius" ng-click="model.toggleEdit()">Edit Profile</a>
             </div>
             <div ng-hide="model.self" ng-show="!model.followed">
-                <a ng-hide="model.edit" class="btn btn-primary" ng-click="model.followUser()">Follow</a>
+                <a ng-hide="model.edit" class="btn btn-primary btn-noborder-radius" ng-click="model.followUser()">Follow</a>
             </div>
             <div ng-hide="model.self" ng-show="model.followed">
-                <a ng-hide="model.edit" class="btn btn-primary" ng-click="model.unfollowUser()">Unfollow</a>
+                <a ng-hide="model.edit" class="btn btn-primary btn-noborder-radius" ng-click="model.unfollowUser()">Unfollow</a>
             </div>
             <h5>{{model.message}}</h5>
         </div>
