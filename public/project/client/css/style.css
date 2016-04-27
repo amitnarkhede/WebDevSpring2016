@@ -449,3 +449,7 @@ a:hover{
 .txt-no-wrap{
     white-space: nowrap;
 }
+
+.table-noborder{
+    border: 0!important;
+}
