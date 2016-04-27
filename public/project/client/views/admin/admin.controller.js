@@ -36,7 +36,7 @@
         init();
 
         function deleteUser(userId){
-            UserService.deleteUser(userId);
+            UserService.deleteUserById(userId);
             init();
         }
 
