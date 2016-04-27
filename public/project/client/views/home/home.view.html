@@ -5,7 +5,7 @@
                 <div class="carousel slide" data-ride="carousel">
 
                     <!-- Indicators -->
-                    <ol class="carousel-indicators">
+                    <ol class="carousel-indicators txt-no-wrap">
                         <li ng-repeat="movie in model.movies" data-target="#carousel-example-generic" data-slide-to= "{{$index}}" ng-class="{{!$index}} ? 'active' : 'none'"></li>
                     </ol>
 
@@ -41,6 +41,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -61,6 +62,5 @@
         </div>
     </div>
     <div class="include-view">
-
     </div>
 </div>

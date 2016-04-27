@@ -26,7 +26,7 @@
         max-width:250px!important; /* or whatever width you want. */
         height: 330px!important;
         max-height: 330px!important;
-        margin-left: 15%!important;
+        margin-left: 10%!important;
         margin-right: 15%!important;
         /*display: table;*/
         /*margin-left: auto!important;*/
@@ -36,6 +36,10 @@
     .pop-img{
         height: 250px;;
         width: 200px;
+    }
+
+    .profile-poster{
+        height: 100px;
     }
 }
 
@@ -67,6 +71,9 @@
         width: 230px;
     }
 
+    .profile-poster{
+        height: 150px;
+    }
 }
 
 /* laptops */
@@ -113,7 +120,7 @@
     .pupular-div
     {
         width:250px!important; /* or whatever width you want. */
-        max-width:250px!important; /* or whatever width you want. */
+        max-width:270px!important; /* or whatever width you want. */
         height: 330px!important;
         max-height: 330px!important;
         /*display: table;*/
@@ -227,8 +234,8 @@ a:hover{
 }
 
 /*div + div {*/
-    /*margin-top: 20px;*/
-    /*margin-bottom: 20px;*/
+/*margin-top: 20px;*/
+/*margin-bottom: 20px;*/
 /*}*/
 
 .bookmark-cmnt-lbl{
@@ -279,9 +286,6 @@ a:hover{
     height: 250px;
 }
 
-.profile-poster{
-    height: 150px;
-}
 
 .profile-label{
     background-color: #2D2D2D!important;
@@ -309,16 +313,16 @@ a:hover{
 
 /*.pupular-div*/
 /*{*/
-    /*width:250px!important; !* or whatever width you want. *!*/
-    /*max-width:250px!important; !* or whatever width you want. *!*/
-    /*height: 350px!important;*/
-    /*max-height: 340px!important;*/
-    /*display: inline-block;*/
-    /*margin-left: 4%;*/
-    /*margin-right: 4%;*/
-    /*!*overflow: inherit;*!*/
-    /*word-wrap: break-word;*/
-    /*!*display:table-cell;*!*/
+/*width:250px!important; !* or whatever width you want. *!*/
+/*max-width:250px!important; !* or whatever width you want. *!*/
+/*height: 350px!important;*/
+/*max-height: 340px!important;*/
+/*display: inline-block;*/
+/*margin-left: 4%;*/
+/*margin-right: 4%;*/
+/*!*overflow: inherit;*!*/
+/*word-wrap: break-word;*/
+/*!*display:table-cell;*!*/
 /*}*/
 
 .popular-view{
@@ -332,8 +336,8 @@ a:hover{
 }
 
 /*.pop-img{*/
-    /*height: 260px;;*/
-    /*width: 200px;*/
+/*height: 260px;;*/
+/*width: 200px;*/
 /*}*/
 
 .carousel-control {
