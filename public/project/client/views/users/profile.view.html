@@ -146,9 +146,8 @@
         <h4 ng-hide="model.following">None!</h4>
         <table class="table table-noborder table-responsive rounded-table" ng-show="model.following">
             <tr ng-repeat="user in model.following">
-                <td><a href="#/profile/{{user.following_id}}">{{user.following_username}}</a></td>
+                <td class="table-noborder"><a href="#/profile/{{user.following_id}}">{{user.following_username}}</a></td>
             </tr>
-            <tr><td></td></tr>
         </table>
     </div>
     <div class="col-xs-offset-0 col-xs-9 col-sm-offset-1 col-sm-6 col-lg-offset-2 col-lg-7 include-view">
@@ -156,9 +155,8 @@
         <h4 ng-hide="model.followers">None!</h4>
         <table class="table table-noborder table-responsive rounded-table" ng-show="model.followers">
             <tr ng-repeat="user in model.followers">
-                <td><a href="#/profile/{{user.follower_id}}">{{user.follower_username}}</a></td>
+                <td class="table-noborder"><a href="#/profile/{{user.follower_id}}">{{user.follower_username}}</a></td>
             </tr>
-            <tr><td></td></tr>
         </table>
     </div>
 </div>
