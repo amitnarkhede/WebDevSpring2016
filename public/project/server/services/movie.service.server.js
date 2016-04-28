@@ -2,12 +2,12 @@
  * Created by amitv on 25-Mar-16.
  */
 
-module.exports = function(app,movieModel,tmdbKey,$http) {
+module.exports = function(app,movieModel,tmdbKey) {
     app.get("/api/project/getmovielike/:userid", getMovieLike);
     app.get("/api/project/getallmovielike/:userid", getAllMovieActivity);
     app.get("/api/project/comments/:imdbid", getMovieComments);
     app.get("/api/project/getusermovielikes/:imdbid", getUserMovieLikes);
-
+    app.delete("/api/project/deletecomment/:userid/:imdbid",removeMovieComment);
     app.get("/api/project/checklike/:userid/:imdbID",checkIfLiked);
     app.post("/api/project/addmovielike", addMovieLike);
     app.put("/api/project/updatecomment",updateComment);
@@ -150,6 +150,20 @@ module.exports = function(app,movieModel,tmdbKey,$http) {
                 });
 
     };
+
+    function removeMovieComment(req,res){
+        var userID = req.params.userid;
+        var imdbID = req.params.imdbid;
+
+        movieModel
+            .removeMovieComment(userID,imdbID)
+            .then(function(response){
+                    res.send(response);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                });
+    }
 
     function getTMDBKey(req,res){
         res.send(tmdbKey);

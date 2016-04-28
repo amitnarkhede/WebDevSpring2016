@@ -66,3 +66,7 @@ a.clickable-td {
 .embed-responsive {
     width: 80%;
 }
+
+.float-right{
+    float: right!important;
+}

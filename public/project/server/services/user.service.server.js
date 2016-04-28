@@ -9,19 +9,17 @@ var bcrypt = require("bcrypt-nodejs");
 module.exports = function(app,userModel) {
     var auth = authorized;
 
-    //app.get("/api/project/user/:username/:password", findUserByCredentials);
-
     app.post('/api/project/login', passport.authenticate('local'), login);
-    app.get("/api/project/user/:userid", findUserById);
+    app.get("/api/project/user/:userid",auth,findUserById);
     app.post("/api/project/register", register);
-    app.post("/api/project/addfollowing",addFollowing);
-    app.delete("/api/project/removefollowing/:userID/:followingID",removeFollowing);
-    app.get("/api/project/following/:userID/:followingID",checkIfFollowed);
+    app.post("/api/project/addfollowing",auth,addFollowing);
+    app.delete("/api/project/removefollowing/:userID/:followingID",auth,removeFollowing);
+    app.get("/api/project/following/:userID/:followingID",auth,checkIfFollowed);
     app.put("/api/project/updateUser/:id",auth,updateUser);
-    app.get("/api/project/alluser",auth, getAllUsers);
+    app.get("/api/project/alluser",auth,getAllUsers);
     app.delete("/api/project/user/:id",auth,deleteUser);
-    app.get("/api/project/getfollowing/:userID",getFollowing);
-    app.get("/api/project/getfollowers/:userID",getFollowers);
+    app.get("/api/project/getfollowing/:userID",auth,getFollowing);
+    app.get("/api/project/getfollowers/:userID",auth,getFollowers);
     app.post('/api/project/logout',logout);
     app.get("/api/project/loggedin", loggedIn);
 

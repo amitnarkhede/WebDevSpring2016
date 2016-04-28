@@ -25,7 +25,8 @@
             findMovieByImdbId: findMovieByImdbId,
             findMovieTrailer: findMovieTrailer,
             fetchTopMovies:fetchTopMovies,
-            getUserMovieLike:getUserMovieLike
+            getUserMovieLike:getUserMovieLike,
+            removeMovieComment:removeMovieComment
         };
 
         return api;
@@ -59,6 +60,10 @@
 
         function getUserMovieLike(imdbID){
             return $http.get("/api/project/getusermovielikes/"+imdbID);
+        }
+
+        function removeMovieComment(userID,imdbID){
+            return $http.delete("/api/project/deletecomment/"+userID+"/"+imdbID);
         }
     }
 })();

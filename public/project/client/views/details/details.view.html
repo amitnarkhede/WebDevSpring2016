@@ -97,6 +97,7 @@
             <div ng-show="model.comments">
                 <div class="bubble me col-xs-11" ng-repeat="comment in model.comments">
                     <a href="#/profile/{{comment.userID}}">{{comment.username}} : </a> {{comment.comment}}
+                    <a ng-show="model.isAdmin" ng-click="model.deleteComment(comment.userID,comment.imdbID)" style="float: right"><span class="glyphicon glyphicon-remove"></span></a>
                 </div>
             </div>
         </div>

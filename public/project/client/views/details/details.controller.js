@@ -11,6 +11,8 @@
         vm.likeMovie = likeMovie;
         vm.removeLikeMovie = removeLikeMovie;
         vm.updateComment = updateComment;
+        vm.deleteComment = deleteComment;
+        vm.isAdmin = false;
 
         vm.user = UserService.getCurrentUser();
         var imdbId = $routeParams.imdb_id;
@@ -21,8 +23,10 @@
         vm.liked = null;
 
         function init() {
-
             fetchMovie(imdbId);
+            if(vm.user.roles.indexOf("admin") > 0){
+                vm.isAdmin = true;
+            }
         }
         init();
 
@@ -108,6 +112,7 @@
                         //console.log(response.data);
                         if(response.data.length!=0){
                             vm.comments = response.data;
+                            //console.log(vm.comments);
                             if(vm.user){
                                 response.data.forEach(function(comment){
                                     if(comment.userID == vm.user._id){
@@ -128,7 +133,7 @@
 
         function updateComment() {
 
-            console.log(vm.user._id,vm.user.username,vm.userComment,vm.details);
+            //console.log(vm.user._id,vm.user.username,vm.userComment,vm.details);
             FormService.updateFormById(vm.user._id,vm.user.username,vm.userComment,vm.details);
 
             vm.commentFlag = false;
@@ -142,6 +147,16 @@
                 .then(function(response){
                     vm.likes = response.data;
                     //console.log(response);
+                });
+        }
+
+        function deleteComment(userID,imdbID){
+            console.log(userID,imdbID);
+            MovieService
+                .removeMovieComment(userID,imdbID)
+                .then(function(response){
+                    //console.log(response);
+                    fetchComments();
                 });
         }
     }
