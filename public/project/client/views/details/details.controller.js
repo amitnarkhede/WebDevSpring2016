@@ -5,7 +5,7 @@
         .module("TheFilmDBApp")
         .controller("DetailsController", DetailsController);
 
-    function DetailsController($routeParams,MovieService,UserService,FormService,$location) {
+    function DetailsController($routeParams,MovieService,UserService,FormService,$location,$timeout,$scope) {
 
         var vm = this;
         vm.likeMovie = likeMovie;
@@ -24,7 +24,7 @@
 
         function init() {
             fetchMovie(imdbId);
-            if(vm.user.roles.indexOf("admin") > 0){
+            if(vm.user && vm.user.roles.indexOf("admin") > 0){
                 vm.isAdmin = true;
             }
         }
