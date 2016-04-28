@@ -3,9 +3,8 @@
         .module("TheFilmDBApp")
         .controller("LoginController",LoginController);
 
-    function LoginController($rootScope,$location,UserService){
+    function LoginController($location,UserService){
         vm = this;
-        $rootScope.user = null;
         vm.login = login;
 
         function login(user) {

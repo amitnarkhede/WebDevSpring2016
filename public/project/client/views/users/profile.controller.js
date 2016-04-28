@@ -3,11 +3,11 @@
         .module("TheFilmDBApp")
         .controller("ProfileController",ProfileController);
 
-    function ProfileController($rootScope,UserService,$location,$routeParams,FormService){
+    function ProfileController(UserService,$location,$routeParams,FormService){
 
-        var currentUser= $rootScope.currentUser;
+
         var profileUserId = $routeParams.userid;
-
+        var currentUser = UserService.getCurrentUser();
         var vm=this;
         vm.edit = false;
         vm.readonly=false;
@@ -21,12 +21,13 @@
 
 
         function init(){
+            //console.log(UserService.getCurrentUser());
 
             if(!currentUser){
                 $location.url("/login");
             }
             else{
-                if(profileUserId == $rootScope.currentUser._id) {
+                if(profileUserId == currentUser._id) {
                     vm.self=true;
                     //console.log("UserID with logged in matched!");
                     vm.message = null;
@@ -50,7 +51,8 @@
                     UserService
                         .findUserById(profileUserId)
                         .then(function(response){
-                            console.log(response);
+                            //console.log(profileUserId);
+                            //console.log(response);
                             currentUser = response.data[0];
 
                             vm.firstname = currentUser.firstname;
@@ -67,7 +69,6 @@
                     getFollowing(profileUserId);
                     getFollers(profileUserId);
                 }
-
             }
         }
 
@@ -78,7 +79,7 @@
             if(vm.password != "") {
 
                 var updatedUser = {
-                    "_id": $rootScope.currentUser._id,
+                    "_id": currentUser._id,
                     "username": vm.username,
                     "firstname": vm.firstname,
                     "lastname": vm.lastname,
@@ -126,7 +127,7 @@
 
         function followUser(){
 
-            var loggedinUser = $rootScope.currentUser;
+            var loggedinUser = currentUser;
             var profileUserName = vm.username;
 
             //console.log(loggedinUser._id ,loggedinUser.username,profileUserId,profileUserName)
@@ -134,7 +135,7 @@
                 .followUser(loggedinUser._id ,loggedinUser.username,profileUserId,profileUserName)
                 .then(
                     function(res){
-                        console.log(res);
+                        //console.log(res);
                         //ifFollowed();
                         init();
                     },function(err){
@@ -144,14 +145,14 @@
 
         function unfollowUser(){
 
-            var loggedinUser = $rootScope.currentUser;
+            var loggedinUser = currentUser;
 
             //console.log(loggedinUser._id ,profileUserId)
             UserService
                 .unFollowUser(loggedinUser._id,profileUserId)
                 .then(
                     function(res){
-                        console.log(res);
+                        //console.log(res);
                         init();
                         //ifFollowed();
                     },function(err){
@@ -160,7 +161,7 @@
         }
 
         function ifFollowed(){
-            var loggedinUser = $rootScope.currentUser;
+            var loggedinUser = currentUser;
 
             //console.log(loggedinUser._id ,profileUserId);
             UserService
@@ -185,7 +186,7 @@
                 .getFollowing(userid)
                 .then(function(res){
                     //console.log("Following");
-                    console.log(res.data);
+                    //console.log(res.data);
                     if(res.data.length==0){
                         vm.following = null;
                     }else{
@@ -212,7 +213,7 @@
 
         function likeMovie(movie){
             UserService
-                .addMovieLike(movie,$rootScope.currentUser)
+                .addMovieLike(movie,currentUser)
                 .success(function(res){
                     init();
                 },function(err){
@@ -222,7 +223,7 @@
 
         function removeLikeMovie(movie){
             FormService
-                .deleteFormById($rootScope.currentUser._id,movie.imdbID)
+                .deleteFormById(currentUser._id,movie.imdbID)
                 .success(function(res){
                     init();
                 },function(err){
@@ -232,14 +233,12 @@
 
         function removeMovieActivity(movie){
             FormService
-                .deleteMovieBookmark($rootScope.currentUser._id,movie.imdbID)
+                .deleteMovieBookmark(currentUser._id,movie.imdbID)
                 .success(function(res){
                     init();
                 },function(err){
                     console.log(err);
                 });
         }
-
-
     };
 })();

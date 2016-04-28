@@ -5,14 +5,14 @@
         .module("TheFilmDBApp")
         .controller("DetailsController", DetailsController);
 
-    function DetailsController($rootScope, $routeParams, MovieService,UserService,FormService,$location) {
+    function DetailsController($routeParams,MovieService,UserService,FormService,$location) {
 
         var vm = this;
         vm.likeMovie = likeMovie;
         vm.removeLikeMovie = removeLikeMovie;
         vm.updateComment = updateComment;
 
-        vm.user = $rootScope.currentUser;
+        vm.user = UserService.getCurrentUser();
         var imdbId = $routeParams.imdb_id;
         //console.log(imdbId);
         vm.isNewComment = true;
@@ -44,7 +44,7 @@
                 }
             );
 
-            if($rootScope.currentUser){
+            if(vm.user){
                 checkIfLiked();
             }
 
@@ -53,11 +53,11 @@
         }
 
         function likeMovie(){
-            console.log("Liked Movie");
-            if($rootScope.currentUser){
-                console.log(vm.details);
+            //console.log("Liked Movie");
+            if(vm.user){
+                //console.log(vm.details);
                 UserService
-                    .addMovieLike(vm.details,$rootScope.currentUser)
+                    .addMovieLike(vm.details,vm.user)
                     .success(function(res){
                         init();
                     },function(err){
@@ -70,10 +70,9 @@
         }
 
         function removeLikeMovie(){
-            console.log(vm.details);
-            if($rootScope.currentUser){
-
-                FormService.deleteFormById($rootScope.currentUser._id,vm.details.imdbID);
+            //console.log(vm.details);
+            if(vm.user){
+                FormService.deleteFormById(vm.user._id,vm.details.imdbID);
                 init();
 
             }else {
@@ -84,7 +83,7 @@
 
         function checkIfLiked(){
             FormService
-                .checkIfLiked($rootScope.currentUser._id,vm.details.imdbID)
+                .checkIfLiked(vm.user._id,vm.details.imdbID)
                 .then(function(response){
                         //console.log(response.data);
                         if(response.data[0]){
@@ -105,8 +104,8 @@
             FormService
                 .fetchComments(vm.details.imdbID)
                 .then(function(response){
-                        console.log("Comments");
-                        console.log(response.data);
+                        //console.log("Comments");
+                        //console.log(response.data);
                         if(response.data.length!=0){
                             vm.comments = response.data;
                             if(vm.user){
@@ -128,14 +127,9 @@
         }
 
         function updateComment() {
-            console.log("Update was called");
-            //if(vm.isNewComment){
-            //    console.log("This is a new comment");
-            //    likeMovie();
-            //}
 
-            console.log($rootScope.currentUser._id,$rootScope.currentUser.username,vm.userComment,vm.details);
-            FormService.updateFormById($rootScope.currentUser._id,$rootScope.currentUser.username,vm.userComment,vm.details);
+            console.log(vm.user._id,vm.user.username,vm.userComment,vm.details);
+            FormService.updateFormById(vm.user._id,vm.user.username,vm.userComment,vm.details);
 
             vm.commentFlag = false;
 

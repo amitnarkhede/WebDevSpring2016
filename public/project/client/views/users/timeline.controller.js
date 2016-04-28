@@ -3,9 +3,9 @@
         .module("TheFilmDBApp")
         .controller("TimelineController", TimelineController);
 
-    function TimelineController(UserService,$rootScope){
+    function TimelineController(UserService){
         var vm = this;
-        var userid = $rootScope.currentUser._id;
+        var userid = UserService.getCurrentUser()._id;
 
         function init(){
             getFollowing();
@@ -40,14 +40,12 @@
                                             followingActivity.push(entry);
                                         });
 
-                                        console.log(followingActivity);
+                                        //console.log(followingActivity);
                                         vm.followingActivity = followingActivity;
                                     }
-
                                 })
                         }
                     }
-
                 });
         }
     };

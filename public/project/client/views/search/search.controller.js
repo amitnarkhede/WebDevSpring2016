@@ -6,12 +6,9 @@
         .module("TheFilmDBApp")
         .controller("SearchController", SearchController);
 
-    function SearchController($scope,$routeParams,MovieService) {
+    function SearchController($routeParams,MovieService) {
         vm = this;
         vm.movie=null;
-
-
-        //$scope.movieTitle = "Star Wars";
 
         function init() {
             vm.message = null;
@@ -38,7 +35,7 @@
                 vm.message = "No movies found for " + $routeParams.title;
             }
 
-            $scope.data = response;
+            vm.searchData = response.Search;
         }
     }
 })();

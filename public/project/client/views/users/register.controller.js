@@ -3,7 +3,7 @@
         .module("TheFilmDBApp")
         .controller("RegisterController",RegisterController);
 
-    function RegisterController($scope,$location,UserService){
+    function RegisterController($location,UserService){
         vm = this;
         vm.register = register;
         vm.message = null;

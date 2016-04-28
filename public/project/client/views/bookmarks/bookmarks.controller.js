@@ -3,13 +3,13 @@
         .module("TheFilmDBApp")
         .controller("BookmarkController",BookmarkController);
 
-    function BookmarkController($scope,FormService,$rootScope,$location,UserService) {
+    function BookmarkController($scope,FormService,$location,UserService) {
 
         $scope.alertMessage = null;
         var formIndexSelected;
         var currentUserForms = [];
-        $scope.username = $rootScope.currentUser.username;
-
+        var currentUser = UserService.getCurrentUser();
+        $scope.username = currentUser.username;
 
         $scope.addForm = addForm;
         $scope.updateForm = updateForm;
@@ -20,11 +20,11 @@
 
 
         function init(){
-            if($rootScope.currentUser == null) {
+            if(currentUser == null) {
                 $location.url("/login");
             }else{
                 UserService
-                    .getMovieLike($rootScope.currentUser._id)
+                    .getMovieLike(currentUser._id)
                     .then(function(res){
                         renderMovies(res.data);
                         $scope.selected = -1;
@@ -73,7 +73,7 @@
 
                 //FormService.updateFormById($rootScope.currentUser._id,imdbID,comment);
                 FormService
-                    .updateFormById($rootScope.currentUser._id,$rootScope.currentUser.username,comment,details)
+                    .updateFormById(currentUser._id,currentUser.username,comment,details)
                     .then(function(response){
                         clearSelection();
                         init();
@@ -94,7 +94,7 @@
 
         function deleteForm(imdbID){
             $scope.alertMessage = null;
-            FormService.deleteMovieBookmark($rootScope.currentUser._id,imdbID);
+            FormService.deleteMovieBookmark(currentUser._id,imdbID);
             init();
         }
 

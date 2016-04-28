@@ -13,6 +13,7 @@
             findUserById:findUserById,
             createUser:createUser,
             setCurrentUser : setCurrentUser,
+            getCurrentUser : getCurrentUser,
             deleteUserById:deleteUserById,
             updateUser:updateUser,
             addMovieLike:addMovieLike,
@@ -60,6 +61,10 @@
             if(user){
                 $rootScope.currentUser = user;
             }
+        };
+
+        function getCurrentUser(){
+            return $rootScope.currentUser;
         };
 
         function deleteUserById(userId){

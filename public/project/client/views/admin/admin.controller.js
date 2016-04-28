@@ -3,10 +3,10 @@
         .module("TheFilmDBApp")
         .controller("AdminController", AdminController);
 
-    function AdminController(UserService,$rootScope,$location){
+    function AdminController(UserService,$location){
         var vm=this;
-        vm.currentUser=$rootScope.currentUser;
-        vm.message=null;
+        vm.currentUser = UserService.getCurrentUser();
+        vm.message = null;
         vm.deleteUser = deleteUser;
         vm.selectUser = selectUser;
         vm.updateUser = updateUser;
@@ -25,7 +25,7 @@
                 UserService
                     .getAllUsers()
                     .then(function(response){
-                        console.log(response);
+                        //console.log(response);
                         if(response.data) {
                             vm.users=response.data;
                         }
@@ -61,8 +61,8 @@
             UserService
                 .updateUser(vm.selectedUser)
                 .then(function(response){
-                    console.log("After update");
-                    console.log(response);
+                    //console.log("After update");
+                    //console.log(response);
                     if(response.data[0]){
                         //UserService.setCurrentUser(response.data[0]);
                         init();
@@ -76,7 +76,7 @@
             UserService
                 .register(user)
                 .then(function(response){
-                    console.log(response);
+                    //console.log(response);
                     init();
                 });
         }
