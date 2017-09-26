@@ -42,7 +42,7 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 console.log("Mongo DB URI: ",process.env.MONGODB_URI);
 
 if(process.env.MONGODB_URI) {
-    connectionString = MONGODB_URI;
+    connectionString = process.env.MONGODB_URI;
 }
 
 // connect to the database
