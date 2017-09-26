@@ -39,6 +39,10 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
         process.env.OPENSHIFT_APP_NAME;
 };
 
+if(process.env.MONGODB_URI) {
+    connectionString = MONGODB_URI;
+}
+
 // connect to the database
 var db = mongoose.connect(connectionString);
 var tmdbKey = process.env.TMDB_SECRET;
