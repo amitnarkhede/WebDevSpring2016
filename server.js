@@ -51,8 +51,6 @@ var tmdbKey = process.env.TMDB_SECRET;
 //require("./public/assignment/server/app.js")(app,uuid,db,mongoose);
 require("./public/project/server/app.js")(app,uuid,db,mongoose,tmdbKey);
 
-
-var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 3000;
 app.use(express.static(__dirname + '/public'));
 
@@ -60,4 +58,4 @@ app.get('/hello', function(req, res){
     res.send('hello world');
 });
 
-app.listen(port, ipaddress);
+app.listen(port);
