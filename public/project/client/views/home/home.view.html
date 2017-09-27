@@ -12,7 +12,7 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         <div class="item slider-size" ng-class="{{!$index}} ? 'active' : 'none'" ng-repeat="movie in model.movies">
-                            <img class="carousel-img" ng-src="http://image.tmdb.org/t/p/original{{movie.backdrop_path}}" alt="Awesome Image">
+                            <img class="carousel-img" ng-src="https://image.tmdb.org/t/p/original{{movie.backdrop_path}}" alt="Awesome Image">
                         </div>
                     </div>
 
@@ -53,7 +53,7 @@
     <div class="container container-fluid">
         <div class="col-xs-offset-2 col-xs-10 col-lg-12 col pupular-div popular-view" ng-repeat="movie in model.movies">
             <div>
-                <img class="pop-img" ng-src="http://image.tmdb.org/t/p/original{{movie.poster_path}}"/>
+                <img class="pop-img" ng-src="https://image.tmdb.org/t/p/original{{movie.poster_path}}"/>
             </div>
             <div class="home-popular-title">
                 <a href="#/search/{{movie.title}}">{{movie.title}}</a><br>

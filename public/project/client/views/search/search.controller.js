@@ -1,6 +1,6 @@
 (function(){
-    var SEARCH_URL = "http://www.omdbapi.com/?s=TITLE&page=PAGE&type=movie";
-    var POSTER_URL = "http://img.omdbapi.com/?i=IMDBID&apikey=2bf5ee9";
+    var SEARCH_URL = "https://www.omdbapi.com/?s=TITLE&page=PAGE&type=movie";
+    var POSTER_URL = "https://img.omdbapi.com/?i=IMDBID&apikey=2bf5ee9";
 
     angular
         .module("TheFilmDBApp")

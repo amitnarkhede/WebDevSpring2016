@@ -5,8 +5,8 @@
 
     function MovieService($http) {
 
-        var SEARCH_URL = "http://www.omdbapi.com/?s=TITLE&page=PAGE&type=movie";
-        var DETAILS_URL = "http://www.omdbapi.com/?i=IMDBID&type=movie&plot=full&tomatoes=true";
+        var SEARCH_URL = "https://www.omdbapi.com/?s=TITLE&page=PAGE&type=movie&apikey=2bf5ee9";
+        var DETAILS_URL = "https://www.omdbapi.com/?i=IMDBID&type=movie&plot=full&tomatoes=true&apikey=2bf5ee9";
         var TRAILER_SEARCH_URL = "";
         var tmdbKey = "";
 
@@ -14,7 +14,7 @@
             $http.get("/api/project/getKey").then(
                 function (response) {
                     tmdbKey = response.data;
-                    TRAILER_SEARCH_URL = "http://api.themoviedb.org/3/movie/IMDBID?api_key=" + tmdbKey + "&append_to_response=trailers";
+                    TRAILER_SEARCH_URL = "https://api.themoviedb.org/3/movie/IMDBID?api_key=" + tmdbKey + "&append_to_response=trailers";
                 });
         }
 

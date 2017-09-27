@@ -1,5 +1,5 @@
 (function(){
-    var POSTER_URL = "http://img.omdbapi.com/?i=IMDBID&apikey=2bf5ee9";
+    var POSTER_URL = "https://img.omdbapi.com/?i=IMDBID&apikey=2bf5ee9";
 
     angular
         .module("TheFilmDBApp")
@@ -41,7 +41,7 @@
             MovieService.findMovieTrailer(imdbId,function(res){
                     //console.log(res);
                     if(res['trailers']['youtube'][0]){
-                        vm.trailer = "http://www.youtube.com/embed/" + res['trailers']['youtube'][0]['source'].trim()
+                        vm.trailer = "https://www.youtube.com/embed/" + res['trailers']['youtube'][0]['source'].trim()
                     }else{
                         vm.trailer = null;
                     }

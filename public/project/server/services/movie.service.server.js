@@ -170,7 +170,7 @@ module.exports = function(app,movieModel,tmdbKey) {
     };
 
     function fetchPopularMovies(req,res){
-        var url = "http://api.themoviedb.org/3/movie/popular?api_key=" + tmdbKey;
+        var url = "https://api.themoviedb.org/3/movie/popular?api_key=" + tmdbKey;
         res.send(url);
     }
 }
