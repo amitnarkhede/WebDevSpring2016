@@ -39,8 +39,6 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
         process.env.OPENSHIFT_APP_NAME;
 };
 
-console.log("Mongo DB URI: ",process.env.MONGODB_URI);
-
 if(process.env.MONGODB_URI) {
     connectionString = process.env.MONGODB_URI;
 }
