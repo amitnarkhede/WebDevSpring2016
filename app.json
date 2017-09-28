@@ -1,0 +1,26 @@
+{
+  "name": "WebDevSpring2016",
+  "scripts": {
+  },
+  "env": {
+    "MONGODB_URI": {
+      "required": true
+    },
+    "PASSPORT_SECRET": {
+      "required": true
+    },
+    "TMDB_SECRET": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+    "mongolab"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
